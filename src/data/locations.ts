@@ -150,31 +150,94 @@ export interface Offer {
 }
 
 export const offers: Offer[] = [
+  // Monday - Meat Lovers Monday
   {
-    id: "tuesday-bogo",
-    title: "Tuesday BOGO Pizza",
-    description: "Buy one pizza, get one 50% off every Tuesday",
-    validDays: ["Tuesday"],
+    id: "monday-meat-lovers",
+    title: "Meat Lovers Monday",
+    description: "50% off all meat pizzas - Pepperoni, BBQ Chicken, Supreme & more!",
+    validDays: ["Monday"],
     locations: ["westbury", "salisbury", "trowbridge"],
     isActive: true,
     priority: 1
   },
+  // Tuesday - Two for Tuesday
+  {
+    id: "tuesday-bogo",
+    title: "Two for Tuesday",
+    description: "Buy one pizza, get one 50% off every Tuesday",
+    validDays: ["Tuesday"],
+    locations: ["westbury", "salisbury", "trowbridge"],
+    isActive: true,
+    priority: 2
+  },
+  // Wednesday - Wine & Dine Wednesday
   {
     id: "wednesday-buffet",
-    title: "Wednesday Pizza Buffet",
+    title: "Wine & Dine Wednesday",
     description: "All-you-can-eat pizza buffet with salad bar - £15 per person",
     validDays: ["Wednesday"],
     validTimes: "12:00 PM - 3:00 PM",
     locations: ["westbury", "salisbury"],
     isActive: true,
-    priority: 2
+    priority: 3
   },
+  // Thursday - Thirsty Thursday
   {
-    id: "family-deal",
-    title: "Family Feast",
-    description: "2 large pizzas, garlic bread, side salad & 1.5L drink - £29.99",
+    id: "thursday-drinks",
+    title: "Thirsty Thursday",
+    description: "Free soft drinks with any large pizza order",
+    validDays: ["Thursday"],
     locations: ["westbury", "salisbury", "trowbridge"],
     isActive: true,
-    priority: 3
+    priority: 4
+  },
+  // Friday - Fish Friday
+  {
+    id: "friday-fish",
+    title: "Fish Friday",
+    description: "Special seafood pizzas - Tuna & Sweetcorn, Anchovy & Olive - 30% off",
+    validDays: ["Friday"],
+    locations: ["westbury", "salisbury", "trowbridge"],
+    isActive: true,
+    priority: 5
+  },
+  // Saturday - Student Saturday
+  {
+    id: "saturday-student",
+    title: "Student Saturday",
+    description: "20% off for students with valid ID - Show your student card!",
+    validDays: ["Saturday"],
+    locations: ["westbury", "salisbury", "trowbridge"],
+    isActive: true,
+    priority: 6
+  },
+  // Sunday - Family Sunday
+  {
+    id: "sunday-family",
+    title: "Family Sunday",
+    description: "2 large pizzas, garlic bread, side salad & 1.5L drink - £29.99",
+    validDays: ["Sunday"],
+    locations: ["westbury", "salisbury", "trowbridge"],
+    isActive: true,
+    priority: 7
+  },
+  // Daily offers (available every day)
+  {
+    id: "lunch-special",
+    title: "Lunch Special",
+    description: "Personal pizza + side + drink - £8.99 (11:30 AM - 3:00 PM)",
+    validTimes: "11:30 AM - 3:00 PM",
+    locations: ["westbury", "salisbury", "trowbridge"],
+    isActive: true,
+    priority: 8
+  },
+  {
+    id: "late-night-deal",
+    title: "Late Night Deal",
+    description: "Any medium pizza for £12.99 (9:00 PM - 11:00 PM)",
+    validTimes: "9:00 PM - 11:00 PM",
+    locations: ["westbury", "salisbury", "trowbridge"],
+    isActive: true,
+    priority: 9
   }
 ];

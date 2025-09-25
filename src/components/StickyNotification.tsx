@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { X, Clock, ArrowRight } from "lucide-react";
+import { X, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { offers } from "@/data/locations";
 
 const StickyNotification = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -11,39 +12,59 @@ const StickyNotification = () => {
       const today = new Date().toLocaleDateString('en-US', { weekday: 'long' });
       const currentHour = new Date().getHours();
       
-      // Wednesday Buffet (12-3 PM)
-      if (today === 'Wednesday' && currentHour >= 12 && currentHour < 15) {
+      // Find today's offer from the offers data
+      const todaysOffer = offers.find(offer => 
+        offer.isActive && 
+        offer.validDays && 
+        offer.validDays.includes(today)
+      );
+      
+      if (todaysOffer) {
+        // Check if it's a time-sensitive offer (like Wednesday buffet)
+        const isTimeSensitive = todaysOffer.validTimes && todaysOffer.id === 'wednesday-buffet';
+        let urgent = false;
+        let timeRemaining = '';
+        
+        if (isTimeSensitive) {
+          // Parse time range (e.g., "12:00 PM - 3:00 PM")
+          const timeRange = todaysOffer.validTimes;
+          const [startTime, endTime] = timeRange.split(' - ');
+          
+          // Convert to 24-hour format for comparison
+          const parseTime = (timeStr: string) => {
+            const [time, period] = timeStr.split(' ');
+            const [hours, minutes] = time.split(':');
+            let hour24 = parseInt(hours);
+            if (period === 'PM' && hour24 !== 12) hour24 += 12;
+            if (period === 'AM' && hour24 === 12) hour24 = 0;
+            return hour24;
+          };
+          
+          const startHour = parseTime(startTime);
+          const endHour = parseTime(endTime);
+          
+          if (currentHour >= startHour && currentHour < endHour) {
+            urgent = true;
+            timeRemaining = `${endHour - currentHour} hours left`;
+          }
+        }
+        
         return {
-          id: 'wednesday-buffet-live',
-          title: 'Pizza Buffet Available Now!',
-          description: 'All-you-can-eat pizza buffet until 3 PM - £15 per person',
-          cta: 'Book Now',
-          ctaLink: '/locations',
-          urgent: true,
-          timeRemaining: `${15 - currentHour} hours left`
+          id: todaysOffer.id,
+          title: `${todaysOffer.title} - Available Today!`,
+          description: todaysOffer.description,
+          urgent: urgent,
+          timeRemaining: timeRemaining
         };
       }
       
-      // Tuesday BOGO
-      if (today === 'Tuesday') {
+      // Fallback: Show family deal if no specific day offer
+      const familyDeal = offers.find(offer => offer.id === 'sunday-family' && offer.isActive);
+      if (familyDeal) {
         return {
-          id: 'tuesday-bogo',
-          title: 'Tuesday BOGO Pizza Special!',
-          description: 'Buy one pizza, get one 50% off all day today',
-          cta: 'Order Now',
-          ctaLink: '/locations',
-          urgent: false
-        };
-      }
-      
-      // Evening special
-      if (currentHour >= 18 && currentHour < 22) {
-        return {
-          id: 'evening-special',
-          title: 'Evening Dining Available',
-          description: 'Book your table for authentic Italian dining experience',
-          cta: 'Reserve Table',
-          ctaLink: '/locations',
+          id: familyDeal.id,
+          title: 'Special Family Deal Available!',
+          description: familyDeal.description,
           urgent: false
         };
       }
@@ -79,8 +100,8 @@ const StickyNotification = () => {
       currentOffer.urgent ? 'bg-gradient-to-r from-secondary to-accent' : 'bg-gradient-to-r from-primary to-primary/90'
     } text-white shadow-lg animate-in slide-in-from-top duration-500`}>
       <div className="container mx-auto px-4 py-3">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3 flex-1">
+        <div className="flex items-center justify-center gap-4 relative">
+          <div className="flex items-center gap-3 flex-1 justify-center">
             {currentOffer.urgent && (
               <div className="flex items-center gap-1 px-2 py-1 bg-white/20 rounded-full text-xs font-medium">
                 <Clock className="w-3 h-3" />
@@ -88,8 +109,8 @@ const StickyNotification = () => {
               </div>
             )}
             
-            <div className="flex-1">
-              <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+            <div className="flex-1 text-center">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 justify-center">
                 <span className="font-semibold">
                   {currentOffer.title}
                 </span>
@@ -100,22 +121,7 @@ const StickyNotification = () => {
             </div>
           </div>
           
-          <div className="flex items-center gap-3">
-            <a href={currentOffer.ctaLink}>
-              <Button 
-                variant="secondary"
-                size="sm"
-                className={`${
-                  currentOffer.urgent 
-                    ? 'bg-white text-secondary hover:bg-white/90' 
-                    : 'bg-secondary hover:bg-secondary/90'
-                } font-medium whitespace-nowrap`}
-              >
-                {currentOffer.cta}
-                <ArrowRight className="w-3 h-3 ml-1" />
-              </Button>
-            </a>
-            
+          <div className="absolute right-0 flex items-center gap-3">
             <button
               onClick={handleClose}
               className="p-1 hover:bg-white/20 rounded transition-colors"

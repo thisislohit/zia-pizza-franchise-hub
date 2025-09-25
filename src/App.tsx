@@ -9,6 +9,8 @@ import StickyNotification from "@/components/StickyNotification";
 import Index from "./pages/Index";
 import LocationsPage from "./pages/LocationsPage";
 import LocationDetailPage from "./pages/LocationDetailPage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +30,8 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/locations" element={<LocationsPage />} />
               <Route path="/location/:locationId" element={<LocationDetailPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

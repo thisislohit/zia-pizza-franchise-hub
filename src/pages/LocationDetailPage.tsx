@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { 
   MapPin, Phone, Mail, Clock, Navigation, ArrowLeft, 
   ExternalLink, Calendar, Users, Utensils, Car, Store, MessageSquare 
@@ -15,6 +15,7 @@ const LocationDetailPage = () => {
   const { locationId } = useParams();
   const location = locations.find(loc => loc.id === locationId);
   const [activeTab, setActiveTab] = useState("feedback");
+  const [timeUntil, setTimeUntil] = useState<{type: 'opening' | 'closing' | null, hours: number, minutes: number, seconds: number}>({type: null, hours: 0, minutes: 0, seconds: 0});
 
   if (!location) {
     return (
@@ -32,18 +33,115 @@ const LocationDetailPage = () => {
     );
   }
 
+  const parseTime = (timeStr: string) => {
+    const [time, period] = timeStr.split(' ');
+    const [hours, minutes] = time.split(':');
+    let hour24 = parseInt(hours);
+    if (period === 'PM' && hour24 !== 12) hour24 += 12;
+    if (period === 'AM' && hour24 === 12) hour24 = 0;
+    return hour24 * 60 + parseInt(minutes); // Convert to minutes from midnight
+  };
+
+  const calculateTimeUntil = () => {
+    const now = new Date();
+    const currentSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+    const day = now.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
+    
+    const todayHours = location.openingHours[day as keyof typeof location.openingHours];
+    if (!todayHours || todayHours === "Closed") {
+      // Find next opening day
+      const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+      const currentDayIndex = days.indexOf(day);
+      
+      for (let i = 1; i <= 7; i++) {
+        const nextDayIndex = (currentDayIndex + i) % 7;
+        const nextDay = days[nextDayIndex];
+        const nextDayHours = location.openingHours[nextDay as keyof typeof location.openingHours];
+        
+        if (nextDayHours && nextDayHours !== "Closed") {
+          const [openingTime] = nextDayHours.split(' – ');
+          const openingSeconds = parseTime(openingTime) * 60; // Convert to seconds
+          const daysUntil = i === 7 ? 0 : i;
+          const totalSeconds = daysUntil * 24 * 3600 + openingSeconds;
+          const secondsUntil = totalSeconds - currentSeconds;
+          
+          // Show countdown if within 2 hours of opening
+          if (secondsUntil > 0 && secondsUntil <= 7200) { // 2 hours = 7200 seconds
+            return {
+              type: 'opening' as const,
+              hours: Math.floor(secondsUntil / 3600),
+              minutes: Math.floor((secondsUntil % 3600) / 60),
+              seconds: secondsUntil % 60
+            };
+          }
+        }
+      }
+      return { type: null, hours: 0, minutes: 0, seconds: 0 };
+    }
+    
+    // Parse opening and closing times
+    const [openingTime, closingTime] = todayHours.split(' – ');
+    const openingSeconds = parseTime(openingTime) * 60; // Convert to seconds
+    const closingSeconds = parseTime(closingTime) * 60; // Convert to seconds
+    
+    // Check if within 2 hours before opening (show countdown)
+    if (currentSeconds < openingSeconds && currentSeconds >= (openingSeconds - 7200)) { // 2 hours = 7200 seconds
+      const secondsUntil = openingSeconds - currentSeconds;
+      if (secondsUntil > 0) {
+        return {
+          type: 'opening' as const,
+          hours: Math.floor(secondsUntil / 3600),
+          minutes: Math.floor((secondsUntil % 3600) / 60),
+          seconds: secondsUntil % 60
+        };
+      }
+    }
+    
+    // Check if within 2 hours before closing (show countdown)
+    if (currentSeconds >= openingSeconds && currentSeconds < closingSeconds && currentSeconds >= (closingSeconds - 7200)) { // 2 hours = 7200 seconds
+      const secondsUntilClosing = closingSeconds - currentSeconds;
+      if (secondsUntilClosing > 0) {
+        return {
+          type: 'closing' as const,
+          hours: Math.floor(secondsUntilClosing / 3600),
+          minutes: Math.floor((secondsUntilClosing % 3600) / 60),
+          seconds: secondsUntilClosing % 60
+        };
+      }
+    }
+    
+    return { type: null, hours: 0, minutes: 0, seconds: 0 };
+  };
+
+  useEffect(() => {
+    if (!location) return;
+    
+    const updateTimer = () => {
+      const result = calculateTimeUntil();
+      console.log('Timer update:', result, 'Current time:', new Date().toLocaleTimeString()); // Debug log
+      setTimeUntil(result);
+    };
+    
+    updateTimer(); // Initial calculation
+    const interval = setInterval(updateTimer, 1000); // Update every second
+    
+    return () => clearInterval(interval);
+  }, [location]);
+
   const isCurrentlyOpen = () => {
     const now = new Date();
     const day = now.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
-    const currentTime = now.getHours() * 100 + now.getMinutes();
+    const currentSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
     
     const todayHours = location.openingHours[day as keyof typeof location.openingHours];
     if (!todayHours || todayHours === "Closed") return false;
     
-    if (todayHours.includes("11:30 AM – 11:00 PM")) {
-      return currentTime >= 1130 && currentTime <= 2300;
-    }
-    return false;
+    // Parse opening and closing times using the same method as calculateTimeUntil
+    const [openingTime, closingTime] = todayHours.split(' – ');
+    const openingSeconds = parseTime(openingTime) * 60; // Convert to seconds
+    const closingSeconds = parseTime(closingTime) * 60; // Convert to seconds
+    
+    return currentSeconds >= openingSeconds && currentSeconds < closingSeconds;
   };
 
   const getDirectionsUrl = () => {
@@ -75,10 +173,30 @@ const LocationDetailPage = () => {
                   {location.name}
                 </h1>
                 <Badge 
-                  variant={isCurrentlyOpen() ? "default" : "secondary"}
-                  className={`${isCurrentlyOpen() ? "bg-green-500" : ""} text-sm`}
+                  variant="default"
+                  className={`text-sm ${
+                    timeUntil.type === 'opening' 
+                      ? timeUntil.hours === 0 && timeUntil.minutes <= 30
+                        ? "bg-green-500" // Green when very close to opening (last 30 minutes)
+                        : "bg-red-500" // Red when 2 hours to 30 minutes before opening
+                      : timeUntil.type === 'closing'
+                        ? timeUntil.hours === 0 && timeUntil.minutes <= 30
+                          ? "bg-red-500" // Red when very close to closing (last 30 minutes)
+                          : "bg-yellow-500" // Yellow when 2 hours to 30 minutes before closing
+                        : isCurrentlyOpen()
+                          ? "bg-green-500" // Green when fully open
+                          : "bg-gray-500" // Gray when closed and no countdown
+                  }`}
                 >
-                  {isCurrentlyOpen() ? "Open Now" : "Closed"}
+                  {timeUntil.type === 'opening' ? (
+                    `Opens in ${timeUntil.hours}:${timeUntil.minutes.toString().padStart(2, '0')}:${timeUntil.seconds.toString().padStart(2, '0')}`
+                  ) : timeUntil.type === 'closing' ? (
+                    `Closing in ${timeUntil.hours}:${timeUntil.minutes.toString().padStart(2, '0')}:${timeUntil.seconds.toString().padStart(2, '0')}`
+                  ) : (() => {
+                    const isOpen = isCurrentlyOpen();
+                    console.log('Status check - isOpen:', isOpen, 'timeUntil.type:', timeUntil.type);
+                    return isOpen ? "Open Now" : "Closed";
+                  })()}
                 </Badge>
               </div>
               

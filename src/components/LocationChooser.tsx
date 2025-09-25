@@ -148,14 +148,9 @@ const LocationChooser = () => {
               </CardHeader>
               
               <CardContent className="space-y-4">
-                {/* Address */}
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-secondary mt-1 flex-shrink-0" />
-                  <p className="text-sm text-muted-foreground">{location.address}</p>
-                </div>
-
-                {/* Contact Info */}
-                <div className="space-y-2">
+                {/* Mobile Layout - Simple */}
+                <div className="md:hidden space-y-3">
+                  {/* Phone Number - Mobile Only */}
                   <div className="flex items-center gap-3">
                     <Phone className="w-4 h-4 text-secondary" />
                     <a 
@@ -165,34 +160,67 @@ const LocationChooser = () => {
                       {location.phone}
                     </a>
                   </div>
+
+                  {/* Hours Today - Mobile Only */}
                   <div className="flex items-center gap-3">
-                    <Mail className="w-4 h-4 text-secondary" />
-                    <a 
-                      href={`mailto:${location.email}`}
-                      className="text-sm hover:text-secondary transition-colors"
-                    >
-                      {location.email}
-                    </a>
+                    <Clock className="w-4 h-4 text-secondary" />
+                    <div>
+                      <p className="text-xs text-muted-foreground">Today</p>
+                      <p className="text-sm font-medium">
+                        {location.openingHours[new Date().toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase() as keyof typeof location.openingHours] || "Closed"}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Features */}
-                <div className="flex flex-wrap gap-2">
-                  {location.features.slice(0, 3).map((feature) => (
-                    <Badge key={feature} variant="outline" className="text-xs">
-                      {feature}
-                    </Badge>
-                  ))}
-                </div>
+                {/* Desktop Layout - Original Design */}
+                <div className="hidden md:block space-y-4">
+                  {/* Address */}
+                  <div className="flex items-start gap-3">
+                    <MapPin className="w-5 h-5 text-secondary mt-1 flex-shrink-0" />
+                    <p className="text-sm text-muted-foreground">{location.address}</p>
+                  </div>
 
-                {/* Hours Today */}
-                <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg">
-                  <Clock className="w-4 h-4 text-secondary" />
-                  <div>
-                    <p className="text-xs text-muted-foreground">Today</p>
-                    <p className="text-sm font-medium">
-                      {location.openingHours[new Date().toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase() as keyof typeof location.openingHours] || "Closed"}
-                    </p>
+                  {/* Contact Info */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-3">
+                      <Phone className="w-4 h-4 text-secondary" />
+                      <a 
+                        href={`tel:${location.phone}`}
+                        className="text-sm hover:text-secondary transition-colors"
+                      >
+                        {location.phone}
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Mail className="w-4 h-4 text-secondary" />
+                      <a 
+                        href={`mailto:${location.email}`}
+                        className="text-sm hover:text-secondary transition-colors"
+                      >
+                        {location.email}
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Features */}
+                  <div className="flex flex-wrap gap-2">
+                    {location.features.slice(0, 3).map((feature) => (
+                      <Badge key={feature} variant="outline" className="text-xs">
+                        {feature}
+                      </Badge>
+                    ))}
+                  </div>
+
+                  {/* Hours Today */}
+                  <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg">
+                    <Clock className="w-4 h-4 text-secondary" />
+                    <div>
+                      <p className="text-xs text-muted-foreground">Today</p>
+                      <p className="text-sm font-medium">
+                        {location.openingHours[new Date().toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase() as keyof typeof location.openingHours] || "Closed"}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
