@@ -82,14 +82,16 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-border shadow-card">
+    <nav className="fixed top-0 left-0 right-0 z-50 nav-premium">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="font-display font-bold text-2xl text-primary">
-              Zia <span className="text-secondary">Pizza</span>
-            </div>
+          <Link to="/" className="flex items-center">
+            <img 
+              src="/logo.png" 
+              alt="Zia Pizza" 
+              className="h-[40px] w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -98,9 +100,9 @@ const Navigation = () => {
               <Link
                 key={item.href}
                 to={item.href}
-                className={`font-medium transition-colors hover:text-secondary ${
+                className={`font-medium transition-colors hover:text-primary ${
                   location.pathname === item.href
-                    ? "text-secondary"
+                    ? "text-primary"
                     : "text-foreground"
                 }`}
               >
@@ -113,7 +115,7 @@ const Navigation = () => {
           <div className="hidden md:flex items-center space-x-4">
             <Button 
               variant="outline" 
-              className="btn-outline-premium"
+              className="btn-gold-outline"
               onClick={handleFindLocation}
             >
               <MapPin className="w-4 h-4 mr-2" />
@@ -123,7 +125,7 @@ const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-foreground hover:text-secondary transition-colors"
+            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
             onClick={toggleMenu}
             aria-label="Toggle menu"
           >
@@ -133,15 +135,15 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border bg-white/95 backdrop-blur-md">
+          <div className="md:hidden py-4 border-t border-border bg-background/95 backdrop-blur-md">
             <div className="flex flex-col space-y-4">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`font-medium py-2 transition-colors hover:text-secondary ${
+                  className={`font-medium py-2 transition-colors hover:text-primary ${
                     location.pathname === item.href
-                      ? "text-secondary"
+                      ? "text-primary"
                       : "text-foreground"
                   }`}
                   onClick={() => setIsMenuOpen(false)}
@@ -152,7 +154,7 @@ const Navigation = () => {
               <div className="flex flex-col space-y-3 pt-4">
                 <Button 
                   variant="outline" 
-                  className="w-full btn-outline-premium"
+                  className="w-full btn-gold-outline"
                   onClick={handleFindLocation}
                 >
                   <MapPin className="w-4 h-4 mr-2" />

@@ -61,6 +61,15 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Zia Pizza Brand Colors
+        brand: {
+          'charcoal-navy': '#0C0D14',
+          'dark-charcoal': '#1A1B23',
+          'logo-red': '#E31E24',
+          'logo-white': '#FFFFFF',
+          'gold-highlight': '#D4C29C',
+          'light-neutral': '#F5F5F5',
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

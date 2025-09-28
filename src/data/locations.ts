@@ -150,94 +150,155 @@ export interface Offer {
 }
 
 export const offers: Offer[] = [
-  // Monday - Meat Lovers Monday
+  // Semington (The Lamb on the Strand) - Sunday
   {
-    id: "monday-meat-lovers",
-    title: "Meat Lovers Monday",
-    description: "50% off all meat pizzas - Pepperoni, BBQ Chicken, Supreme & more!",
-    validDays: ["Monday"],
-    locations: ["westbury", "salisbury", "trowbridge"],
+    id: "semington-sunday-roast",
+    title: "Great Zia Roast",
+    description: "Family feast with Yorkshire puds, gravy & veggies from £14.95.",
+    validDays: ["Sunday"],
+    locations: ["trowbridge"],
     isActive: true,
     priority: 1
   },
-  // Tuesday - Two for Tuesday
+  // Semington - Monday
   {
-    id: "tuesday-bogo",
-    title: "Two for Tuesday",
-    description: "Buy one pizza, get one 50% off every Tuesday",
-    validDays: ["Tuesday"],
-    locations: ["westbury", "salisbury", "trowbridge"],
+    id: "semington-monday-funday",
+    title: "Monday Funday",
+    description: "Carlsberg & Thatchers Gold £2.95/pint, best way to start the week.",
+    validDays: ["Monday"],
+    locations: ["trowbridge"],
     isActive: true,
     priority: 2
   },
-  // Wednesday - Wine & Dine Wednesday
+  // Semington - Tuesday
   {
-    id: "wednesday-buffet",
-    title: "Wine & Dine Wednesday",
-    description: "All-you-can-eat pizza buffet with salad bar - £15 per person",
-    validDays: ["Wednesday"],
-    validTimes: "12:00 PM - 3:00 PM",
-    locations: ["westbury", "salisbury"],
+    id: "semington-tuesday-bogo",
+    title: "2-for-1 Pizza",
+    description: "Dine-in, takeaway & delivery 🍕, share delicious slices without extra cost.",
+    validDays: ["Tuesday"],
+    locations: ["trowbridge"],
     isActive: true,
     priority: 3
   },
-  // Thursday - Thirsty Thursday
+  // Semington - Wednesday
   {
-    id: "thursday-drinks",
-    title: "Thirsty Thursday",
-    description: "Free soft drinks with any large pizza order",
-    validDays: ["Thursday"],
-    locations: ["westbury", "salisbury", "trowbridge"],
+    id: "semington-wednesday-buffet",
+    title: "Buffet Night",
+    description: "6–9 PM, Adults £16.45, Kids £9, all-you-can-eat favorites.",
+    validDays: ["Wednesday"],
+    validTimes: "6:00 PM - 9:00 PM",
+    locations: ["trowbridge"],
     isActive: true,
     priority: 4
   },
-  // Friday - Fish Friday
+  // Semington - Thursday
   {
-    id: "friday-fish",
-    title: "Fish Friday",
-    description: "Special seafood pizzas - Tuna & Sweetcorn, Anchovy & Olive - 30% off",
-    validDays: ["Friday"],
-    locations: ["westbury", "salisbury", "trowbridge"],
+    id: "semington-thursday-pasta",
+    title: "2-for-1 Pasta",
+    description: "Authentic Italian dishes 🍝, perfect for couples, friends, or family dinners.",
+    validDays: ["Thursday"],
+    locations: ["trowbridge"],
     isActive: true,
     priority: 5
   },
-  // Saturday - Student Saturday
+  // Semington - Friday
   {
-    id: "saturday-student",
-    title: "Student Saturday",
-    description: "20% off for students with valid ID - Show your student card!",
-    validDays: ["Saturday"],
-    locations: ["westbury", "salisbury", "trowbridge"],
+    id: "semington-friday-kids",
+    title: "Kids Eat for £1",
+    description: "With full-price adult main, great for family evenings.",
+    validDays: ["Friday"],
+    locations: ["trowbridge"],
     isActive: true,
     priority: 6
   },
-  // Sunday - Family Sunday
+  // Semington - Daily
   {
-    id: "sunday-family",
-    title: "Family Sunday",
-    description: "2 large pizzas, garlic bread, side salad & 1.5L drink - £29.99",
-    validDays: ["Sunday"],
-    locations: ["westbury", "salisbury", "trowbridge"],
+    id: "semington-daily-drinks",
+    title: "Double the Drinks",
+    description: "2 cocktails £13.95 from 5 PM 🍹, enjoy happy vibes daily.",
+    validTimes: "5:00 PM - Close",
+    locations: ["trowbridge"],
     isActive: true,
     priority: 7
   },
-  // Daily offers (available every day)
+  // Westbury - Tuesday
   {
-    id: "lunch-special",
-    title: "Lunch Special",
-    description: "Personal pizza + side + drink - £8.99 (11:30 AM - 3:00 PM)",
-    validTimes: "11:30 AM - 3:00 PM",
-    locations: ["westbury", "salisbury", "trowbridge"],
+    id: "westbury-tuesday-bogo",
+    title: "2-for-1 Pizza",
+    description: "Fresh, stone-baked pizzas, dine-in, takeaway or delivery 🍕.",
+    validDays: ["Tuesday"],
+    locations: ["westbury"],
     isActive: true,
     priority: 8
   },
+  // Westbury - Thursday
   {
-    id: "late-night-deal",
-    title: "Late Night Deal",
-    description: "Any medium pizza for £12.99 (9:00 PM - 11:00 PM)",
-    validTimes: "9:00 PM - 11:00 PM",
-    locations: ["westbury", "salisbury", "trowbridge"],
+    id: "westbury-thursday-pasta",
+    title: "2-for-1 Pasta",
+    description: "Creamy, saucy, and flavorful pasta dishes 🍝, share with friends.",
+    validDays: ["Thursday"],
+    locations: ["westbury"],
     isActive: true,
     priority: 9
+  },
+  // Westbury - Friday
+  {
+    id: "westbury-friday-kids",
+    title: "Kids Eat for £1",
+    description: "Affordable treat for families, kids dine with adult mains.",
+    validDays: ["Friday"],
+    locations: ["westbury"],
+    isActive: true,
+    priority: 10
+  },
+  // Westbury - Daily
+  {
+    id: "westbury-daily-drinks",
+    title: "Double the Drinks",
+    description: "2 cocktails £13.95 from 5 PM 🍹, perfect for evenings out.",
+    validTimes: "5:00 PM - Close",
+    locations: ["westbury"],
+    isActive: true,
+    priority: 11
+  },
+  // Salisbury - Tuesday
+  {
+    id: "salisbury-tuesday-bogo",
+    title: "2-for-1 Pizza",
+    description: "Classic Zia pizzas 🍕, dine-in, takeaway & delivery deals.",
+    validDays: ["Tuesday"],
+    locations: ["salisbury"],
+    isActive: true,
+    priority: 12
+  },
+  // Salisbury - Thursday
+  {
+    id: "salisbury-thursday-pasta",
+    title: "2-for-1 Pasta",
+    description: "Share Italian favorites 🍝, tasty dishes for every pasta lover.",
+    validDays: ["Thursday"],
+    locations: ["salisbury"],
+    isActive: true,
+    priority: 13
+  },
+  // Salisbury - Friday
+  {
+    id: "salisbury-friday-kids",
+    title: "Kids Eat for £1",
+    description: "Kids dine for just £1, family-friendly Fridays every week.",
+    validDays: ["Friday"],
+    locations: ["salisbury"],
+    isActive: true,
+    priority: 14
+  },
+  // Salisbury - Daily
+  {
+    id: "salisbury-daily-drinks",
+    title: "Double the Drinks",
+    description: "2 cocktails £13.95, every evening from 5 PM 🍹.",
+    validTimes: "5:00 PM - Close",
+    locations: ["salisbury"],
+    isActive: true,
+    priority: 15
   }
 ];

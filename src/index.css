@@ -8,49 +8,54 @@
 
 @layer base {
   :root {
-    /* Core Brand Colors */
-    --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
+    /* Zia Pizza Brand Colors - Dark Premium Theme */
+    /* Primary Background (Charcoal Navy) */
+    --background: 240 25% 5%; /* #0C0D14 */
+    --foreground: 0 0% 96%; /* #F5F5F5 */
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
+    /* Secondary Background (Dark Charcoal) */
+    --card: 240 15% 10%; /* #1A1B23 */
+    --card-foreground: 0 0% 96%; /* #F5F5F5 */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
+    --popover: 240 15% 10%; /* #1A1B23 */
+    --popover-foreground: 0 0% 96%; /* #F5F5F5 */
 
-    /* Brand Primary - Zia Black */
-    --primary: 0 0% 0%;
-    --primary-foreground: 0 0% 100%;
+    /* Primary Accent Red (Logo Red) */
+    --primary: 357 78% 50%; /* #E31E24 */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
 
-    /* Brand Secondary - Zia Red */
-    --secondary: 0 84% 45%;
-    --secondary-foreground: 0 0% 100%;
+    /* Gold Highlight (Premium Touch) */
+    --secondary: 42 35% 70%; /* #D4C29C */
+    --secondary-foreground: 240 25% 5%; /* #0C0D14 */
 
-    /* Premium Accents */
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 40%;
+    /* Muted colors for subtle elements */
+    --muted: 240 15% 15%; /* Darker charcoal */
+    --muted-foreground: 0 0% 70%; /* Light neutral */
 
-    --accent: 0 84% 45%;
-    --accent-foreground: 0 0% 100%;
+    /* Accent - Logo Red */
+    --accent: 357 78% 50%; /* #E31E24 */
+    --accent-foreground: 0 0% 100%; /* #FFFFFF */
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 357 78% 50%; /* #E31E24 */
+    --destructive-foreground: 0 0% 100%; /* #FFFFFF */
 
-    --border: 0 0% 90%;
-    --input: 0 0% 95%;
-    --ring: 0 84% 45%;
+    --border: 42 35% 70%; /* Gold highlight for borders */
+    --input: 240 15% 15%; /* Dark charcoal for inputs */
+    --ring: 357 78% 50%; /* Logo red for focus rings */
 
     --radius: 0.75rem;
 
-    /* Premium Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 0%), hsl(0 0% 15%));
-    --gradient-red: linear-gradient(135deg, hsl(0 84% 45%), hsl(0 84% 35%));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(0 0% 98%));
+    /* Premium Gradients with new colors */
+    --gradient-hero: linear-gradient(135deg, #0C0D14, #1A1B23);
+    --gradient-red: linear-gradient(135deg, #E31E24, #C41E3A);
+    --gradient-gold: linear-gradient(135deg, #D4C29C, #B8A082);
+    --gradient-card: linear-gradient(145deg, #1A1B23, #0C0D14);
     
-    /* Shadows */
-    --shadow-premium: 0 25px 50px -12px hsl(0 0% 0% / 0.15);
-    --shadow-card: 0 10px 30px -5px hsl(0 0% 0% / 0.08);
-    --shadow-glow: 0 0 40px hsl(0 84% 45% / 0.3);
+    /* Shadows with new color scheme */
+    --shadow-premium: 0 25px 50px -12px rgba(12, 13, 20, 0.4);
+    --shadow-card: 0 10px 30px -5px rgba(12, 13, 20, 0.3);
+    --shadow-glow: 0 0 40px rgba(227, 30, 36, 0.3);
+    --shadow-gold: 0 0 20px rgba(212, 194, 156, 0.2);
 
     /* Typography Scale */
     --font-display: 'Playfair Display', serif;
@@ -60,59 +65,54 @@
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar colors matching the dark theme */
+    --sidebar-background: 240 15% 10%; /* #1A1B23 */
+    --sidebar-foreground: 0 0% 96%; /* #F5F5F5 */
+    --sidebar-primary: 357 78% 50%; /* #E31E24 */
+    --sidebar-primary-foreground: 0 0% 100%; /* #FFFFFF */
+    --sidebar-accent: 42 35% 70%; /* #D4C29C */
+    --sidebar-accent-foreground: 240 25% 5%; /* #0C0D14 */
+    --sidebar-border: 42 35% 70%; /* #D4C29C */
+    --sidebar-ring: 357 78% 50%; /* #E31E24 */
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark mode uses the same colors as light mode since we're using a dark theme by default */
+    --background: 240 25% 5%; /* #0C0D14 */
+    --foreground: 0 0% 96%; /* #F5F5F5 */
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 240 15% 10%; /* #1A1B23 */
+    --card-foreground: 0 0% 96%; /* #F5F5F5 */
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 240 15% 10%; /* #1A1B23 */
+    --popover-foreground: 0 0% 96%; /* #F5F5F5 */
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 357 78% 50%; /* #E31E24 */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 42 35% 70%; /* #D4C29C */
+    --secondary-foreground: 240 25% 5%; /* #0C0D14 */
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 240 15% 15%; /* Darker charcoal */
+    --muted-foreground: 0 0% 70%; /* Light neutral */
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 357 78% 50%; /* #E31E24 */
+    --accent-foreground: 0 0% 100%; /* #FFFFFF */
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 357 78% 50%; /* #E31E24 */
+    --destructive-foreground: 0 0% 100%; /* #FFFFFF */
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 42 35% 70%; /* Gold highlight for borders */
+    --input: 240 15% 15%; /* Dark charcoal for inputs */
+    --ring: 357 78% 50%; /* Logo red for focus rings */
+    --sidebar-background: 240 15% 10%; /* #1A1B23 */
+    --sidebar-foreground: 0 0% 96%; /* #F5F5F5 */
+    --sidebar-primary: 357 78% 50%; /* #E31E24 */
+    --sidebar-primary-foreground: 0 0% 100%; /* #FFFFFF */
+    --sidebar-accent: 42 35% 70%; /* #D4C29C */
+    --sidebar-accent-foreground: 240 25% 5%; /* #0C0D14 */
+    --sidebar-border: 42 35% 70%; /* #D4C29C */
+    --sidebar-ring: 357 78% 50%; /* #E31E24 */
   }
 }
 
@@ -131,27 +131,31 @@
 }
 
 @layer components {
-  /* Premium Button Variants */
+  /* Premium Button Variants - Zia Pizza Style */
   .btn-hero {
-    @apply bg-gradient-to-r from-secondary to-accent text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-glow transition-all duration-300 transform hover:-translate-y-1;
+    @apply bg-gradient-to-r from-primary to-accent text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-glow transition-all duration-300 transform hover:-translate-y-1;
   }
 
   .btn-outline-premium {
-    @apply border-2 border-primary text-primary bg-transparent font-semibold px-6 py-3 rounded-lg hover:bg-primary hover:text-white transition-all duration-300;
+    @apply border-2 border-secondary text-secondary bg-transparent font-semibold px-6 py-3 rounded-lg hover:bg-secondary hover:text-background transition-all duration-300;
   }
 
-  /* Card Styles */
+  .btn-gold-outline {
+    @apply border-2 border-secondary text-secondary bg-transparent font-semibold px-6 py-3 rounded-lg hover:bg-secondary hover:text-background transition-all duration-300;
+  }
+
+  /* Card Styles - Dark Premium Theme */
   .card-premium {
-    @apply bg-white rounded-2xl p-6 shadow-card hover:shadow-premium transition-all duration-500 transform hover:-translate-y-2;
+    @apply bg-card rounded-2xl p-6 shadow-card hover:shadow-premium transition-all duration-500 transform hover:-translate-y-2 border border-border/20;
   }
 
   .card-location {
-    @apply card-premium border border-border hover:border-secondary/30;
+    @apply card-premium border border-border hover:border-secondary/50;
   }
 
-  /* Hero Gradient Overlay */
+  /* Hero Gradient Overlay - Enhanced for dark theme */
   .hero-overlay {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+    background: linear-gradient(rgba(12, 13, 20, 0.7), rgba(26, 27, 35, 0.8));
   }
 
   /* Premium Text Gradients */
@@ -162,12 +166,29 @@
     background-clip: text;
   }
 
+  .text-gradient-gold {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Section Headers with Gold Accent */
+  .section-header {
+    @apply font-display text-3xl md:text-4xl font-bold text-foreground mb-4 relative;
+  }
+
+  .section-header::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-16 h-1 bg-gradient-to-r from-secondary to-transparent;
+  }
+
   /* Loading Animation */
   .loading-pulse {
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
-  /* Custom Scrollbar */
+  /* Custom Scrollbar - Dark Theme */
   .scrollbar-custom::-webkit-scrollbar {
     width: 6px;
   }
@@ -180,6 +201,16 @@
   .scrollbar-custom::-webkit-scrollbar-thumb {
     background: hsl(var(--secondary));
     border-radius: 3px;
+  }
+
+  /* Navigation Styles */
+  .nav-premium {
+    @apply bg-background/95 backdrop-blur-md border-b border-border shadow-card;
+  }
+
+  /* Gold Divider */
+  .divider-gold {
+    @apply border-t border-secondary/30 my-8;
   }
 }
 
@@ -194,6 +225,10 @@
   
   .shadow-card {
     box-shadow: var(--shadow-card);
+  }
+
+  .shadow-gold {
+    box-shadow: var(--shadow-gold);
   }
 
   .font-display {

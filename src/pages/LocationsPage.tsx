@@ -35,7 +35,7 @@ const LocationsPage = () => {
             Our <span className="text-gradient-red">Locations</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Find your nearest Zia Pizza restaurant and experience authentic Italian cuisine in a premium setting. 
+            Find your nearest <span className="text-foreground">Zia</span> <span className="text-primary">Pizza</span> restaurant and experience authentic Italian cuisine in a premium setting. 
             Each location offers the same exceptional quality with its own unique character.
           </p>
           
@@ -106,8 +106,8 @@ const LocationsPage = () => {
                         </div>
 
                         {/* Opening Hours */}
-                        <div className="bg-muted/50 p-4 rounded-lg">
-                          <h4 className="font-medium text-primary mb-3 flex items-center gap-2">
+                        <div className="bg-card border border-border/20 p-4 rounded-lg">
+                          <h4 className="font-medium text-foreground mb-3 flex items-center gap-2">
                             <Clock className="w-4 h-4 text-secondary" />
                             Opening Hours
                           </h4>
@@ -117,16 +117,16 @@ const LocationsPage = () => {
                               return (
                                 <div
                                   key={day}
-                                  className={`p-3 rounded-lg ${isSunday ? 'sm:col-span-2 bg-muted/70 flex items-center justify-center text-center' : 'bg-white/70 flex items-center justify-between'}`}
+                                  className={`p-3 rounded-lg ${isSunday ? 'sm:col-span-2 bg-secondary/20 border border-secondary/30 flex items-center justify-center text-center' : 'bg-card border border-border/20 flex items-center justify-between'}`}
                                 >
                                   {isSunday ? (
-                                    <span className={`${hours === 'Closed' ? 'text-muted-foreground' : 'font-medium'}`}>
+                                    <span className={`${hours === 'Closed' ? 'text-muted-foreground' : 'font-medium text-foreground'}`}>
                                       Sunday: {hours}
                                     </span>
                                   ) : (
                                     <>
-                                      <span className="capitalize font-medium">{day}:</span>
-                                      <span className={`${hours === 'Closed' ? 'text-muted-foreground' : 'font-medium'} tabular-nums whitespace-nowrap`}>
+                                      <span className="capitalize font-medium text-foreground">{day}:</span>
+                                      <span className={`${hours === 'Closed' ? 'text-muted-foreground' : 'font-medium text-foreground'} tabular-nums whitespace-nowrap`}>
                                         {hours}
                                       </span>
                                     </>
@@ -139,7 +139,7 @@ const LocationsPage = () => {
 
                         {/* Services */}
                         <div>
-                          <h4 className="font-medium text-primary mb-3">Services</h4>
+                          <h4 className="font-medium text-foreground mb-3">Services</h4>
                           <div className="flex flex-wrap gap-2">
                             {location.features.map((feature) => (
                               <Badge key={feature} variant="outline">
@@ -163,7 +163,7 @@ const LocationsPage = () => {
                             </Button>
                           </a>
                           <Link to={location.orderUrl || "#"}>
-                            <Button className="w-full bg-secondary hover:bg-secondary/90">
+                            <Button className="w-full bg-red-600 hover:bg-red-700">
                               Order Now
                             </Button>
                           </Link>

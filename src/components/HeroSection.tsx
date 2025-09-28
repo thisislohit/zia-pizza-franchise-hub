@@ -76,7 +76,7 @@ const HeroSection = () => {
                   {slide.description}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                  <Button size="lg" className="btn-hero px-8 py-4 text-lg" onClick={() => {
+                  <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-glow transition-all duration-300 transform hover:-translate-y-1" onClick={() => {
                     const el = document.getElementById('locations');
                     el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
                   }}>
@@ -85,7 +85,7 @@ const HeroSection = () => {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="bg-white border-white text-black hover:bg-white hover:text-secondary px-8 py-4 text-lg transition-all duration-300 transform hover:-translate-y-1"
+                    className="bg-transparent border-secondary text-secondary hover:bg-secondary hover:text-background px-8 py-4 text-lg transition-all duration-300 transform hover:-translate-y-1"
                     onClick={() => {
                       const el = document.getElementById('locations');
                       el?.scrollIntoView({ behavior: 'smooth', block: 'center' });

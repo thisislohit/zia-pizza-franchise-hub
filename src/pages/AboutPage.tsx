@@ -10,8 +10,8 @@ const AboutPage = () => {
       <section className="py-16 bg-gradient-to-br from-secondary/5 to-accent/5">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6">
-              About <span className="text-gradient-red">Zia Pizza</span>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              About <span className="text-foreground">Zia</span> <span className="text-primary">Pizza</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Bringing authentic Italian flavors to your neighborhood with passion, tradition, and the finest ingredients
@@ -30,7 +30,7 @@ const AboutPage = () => {
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Founded with a passion for authentic Italian cuisine, Zia Pizza has been serving the community 
+                  Founded with a passion for authentic Italian cuisine, <span className="text-foreground">Zia</span> <span className="text-primary">Pizza</span> has been serving the community 
                   with traditional recipes passed down through generations. Our commitment to quality and authenticity 
                   has made us a beloved destination for pizza lovers across the region.
                 </p>

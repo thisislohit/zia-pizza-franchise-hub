@@ -96,14 +96,12 @@ const StickyNotification = () => {
   }
 
   return (
-    <div className={`fixed top-16 left-0 right-0 z-40 ${
-      currentOffer.urgent ? 'bg-gradient-to-r from-secondary to-accent' : 'bg-gradient-to-r from-primary to-primary/90'
-    } text-white shadow-lg animate-in slide-in-from-top duration-500`}>
+    <div className="fixed top-16 left-0 right-0 z-40 text-black shadow-lg animate-in slide-in-from-top duration-500" style={{backgroundColor: '#D4C29C'}}>
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-center gap-4 relative">
           <div className="flex items-center gap-3 flex-1 justify-center">
             {currentOffer.urgent && (
-              <div className="flex items-center gap-1 px-2 py-1 bg-white/20 rounded-full text-xs font-medium">
+              <div className="flex items-center gap-1 px-2 py-1 bg-black/20 rounded-full text-xs font-medium">
                 <Clock className="w-3 h-3" />
                 {currentOffer.timeRemaining}
               </div>
@@ -114,7 +112,7 @@ const StickyNotification = () => {
                 <span className="font-semibold">
                   {currentOffer.title}
                 </span>
-                <span className="text-sm text-white/90">
+                <span className="text-sm text-black/80">
                   {currentOffer.description}
                 </span>
               </div>
@@ -124,7 +122,7 @@ const StickyNotification = () => {
           <div className="absolute right-0 flex items-center gap-3">
             <button
               onClick={handleClose}
-              className="p-1 hover:bg-white/20 rounded transition-colors"
+              className="p-1 hover:bg-black/20 rounded transition-colors"
               aria-label="Close notification"
             >
               <X className="w-4 h-4" />

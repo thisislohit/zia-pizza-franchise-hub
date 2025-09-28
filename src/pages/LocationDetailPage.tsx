@@ -155,7 +155,7 @@ const LocationDetailPage = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="py-16 bg-gradient-to-br from-primary/10 to-secondary/10">
+      <section className="py-16 bg-gradient-to-br from-muted/20 to-muted/10">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-4 mb-6">
             <Link to="/locations">
@@ -169,8 +169,17 @@ const LocationDetailPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="flex items-center gap-4 mb-4">
-                <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                  {location.name}
+                <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold">
+                  {location.name.includes('Zia Pizza') ? (
+                    <>
+                      <span className="text-foreground">Zia</span> <span className="text-primary">Pizza</span>
+                      {location.name.replace('Zia Pizza', '').trim() && (
+                        <span className="text-primary">{location.name.replace('Zia Pizza', '').trim()}</span>
+                      )}
+                    </>
+                  ) : (
+                    <span className="text-primary">{location.name}</span>
+                  )}
                 </h1>
                 <Badge 
                   variant="default"
@@ -226,7 +235,7 @@ const LocationDetailPage = () => {
                 <Button 
                   onClick={() => window.open(location.iframes.feedback, '_blank')}
                   variant="outline" 
-                  className="w-full"
+                  className="w-full btn-gold-outline"
                 >
                   <MessageSquare className="w-4 h-4 mr-2" />
                   Feedback
@@ -234,7 +243,7 @@ const LocationDetailPage = () => {
                 <Button 
                   onClick={() => setActiveTab("map")}
                   variant="outline" 
-                  className="w-full"
+                  className="w-full btn-gold-outline"
                 >
                   <Navigation className="w-4 h-4 mr-2" />
                   Map & Directions
@@ -386,7 +395,7 @@ const LocationDetailPage = () => {
                 {/* Opening Hours (moved to sidebar) */}
                 <Card className="card-premium">
                   <CardHeader>
-                    <CardTitle className="font-display text-lg text-primary flex items-center gap-2">
+                    <CardTitle className="font-display text-lg text-foreground flex items-center gap-2">
                       <Clock className="w-5 h-5 text-secondary" />
                       Opening Hours
                     </CardTitle>
@@ -399,23 +408,23 @@ const LocationDetailPage = () => {
                         return (
                           <div
                             key={day}
-                            className={`${isToday ? 'bg-secondary/10 border border-secondary/20' : 'bg-muted/30'} p-3 rounded-lg`}
+                            className={`${isToday ? 'bg-secondary/20 border border-secondary/30' : 'bg-card border border-border/20'} p-3 rounded-lg`}
                           >
                             {isSunday ? (
                               <div className="flex justify-between items-center gap-3">
-                                <span className="capitalize font-medium shrink-0 text-sm">
+                                <span className="capitalize font-medium shrink-0 text-sm text-foreground">
                                   {isToday && 'Today - '}Sunday:
                                 </span>
-                                <span className={`${hours === 'Closed' ? 'text-muted-foreground' : 'font-medium'} tabular-nums text-right text-sm`}> 
+                                <span className={`${hours === 'Closed' ? 'text-muted-foreground' : 'font-medium text-foreground'} tabular-nums text-right text-sm`}> 
                                   {hours}
                                 </span>
                               </div>
                             ) : (
                               <div className="flex justify-between items-center gap-3">
-                                <span className="capitalize font-medium shrink-0 text-sm">
+                                <span className="capitalize font-medium shrink-0 text-sm text-foreground">
                                   {isToday && 'Today - '}{day}:
                                 </span>
-                                <span className={`${hours === 'Closed' ? 'text-muted-foreground' : 'font-medium'} tabular-nums text-right text-sm`}> 
+                                <span className={`${hours === 'Closed' ? 'text-muted-foreground' : 'font-medium text-foreground'} tabular-nums text-right text-sm`}> 
                                   {hours}
                                 </span>
                               </div>

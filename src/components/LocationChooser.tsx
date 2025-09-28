@@ -97,11 +97,11 @@ const LocationChooser = () => {
     <section id="locations" className="py-16 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Choose Your <span className="text-gradient-red">Location</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Find your nearest Zia Pizza location and start your authentic Italian dining experience
+            Find your nearest <span className="text-foreground">Zia</span> <span className="text-primary">Pizza</span> location and start your authentic Italian dining experience
           </p>
         </div>
 
@@ -121,7 +121,7 @@ const LocationChooser = () => {
             <Button
               onClick={handleUseMyLocation}
               variant="outline"
-              className="btn-outline-premium whitespace-nowrap"
+              className="btn-gold-outline whitespace-nowrap"
             >
               <Navigation className="w-4 h-4 mr-2" />
               Use My Location
@@ -135,8 +135,17 @@ const LocationChooser = () => {
             <Card key={location.id} className="card-location group overflow-hidden">
               <CardHeader className="pb-4">
                 <div className="flex items-start justify-between">
-                  <CardTitle className="font-display text-xl text-primary leading-tight">
-                    {location.name}
+                  <CardTitle className="font-display text-xl leading-tight">
+                    {location.name.includes('Zia Pizza') ? (
+                      <>
+                        <span className="text-foreground">Zia</span> <span className="text-primary">Pizza</span>
+                        {location.name.replace('Zia Pizza', '').trim() && (
+                          <span className="text-primary">{location.name.replace('Zia Pizza', '').trim()}</span>
+                        )}
+                      </>
+                    ) : (
+                      <span className="text-foreground">{location.name}</span>
+                    )}
                   </CardTitle>
                   <Badge 
                     variant={isCurrentlyOpen(location) ? "default" : "secondary"}
@@ -166,7 +175,7 @@ const LocationChooser = () => {
                     <Clock className="w-4 h-4 text-secondary" />
                     <div>
                       <p className="text-xs text-muted-foreground">Today</p>
-                      <p className="text-sm font-medium">
+                      <p className="text-sm font-medium text-foreground">
                         {location.openingHours[new Date().toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase() as keyof typeof location.openingHours] || "Closed"}
                       </p>
                     </div>
@@ -213,11 +222,11 @@ const LocationChooser = () => {
                   </div>
 
                   {/* Hours Today */}
-                  <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg">
+                  <div className="flex items-center gap-3 p-3 bg-card border border-border/20 rounded-lg">
                     <Clock className="w-4 h-4 text-secondary" />
                     <div>
                       <p className="text-xs text-muted-foreground">Today</p>
-                      <p className="text-sm font-medium">
+                      <p className="text-sm font-medium text-foreground">
                         {location.openingHours[new Date().toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase() as keyof typeof location.openingHours] || "Closed"}
                       </p>
                     </div>
@@ -233,7 +242,7 @@ const LocationChooser = () => {
                       </Button>
                     </Link>
                     <Button
-                      className="w-full text-sm bg-secondary hover:bg-secondary/90"
+                      className="w-full text-sm bg-red-600 hover:bg-red-700"
                       onClick={() => {
                         window.location.href = location.iframes.order;
                       }}
@@ -242,7 +251,7 @@ const LocationChooser = () => {
                     </Button>
                     <Button
                       variant="outline"
-                      className="w-full btn-outline-premium text-sm"
+                      className="w-full btn-gold-outline text-sm"
                       onClick={() => {
                         setIframeUrl(location.iframes.booking);
                         setIframeTitle(`${location.name} – Book a Table`);
@@ -278,7 +287,7 @@ const LocationChooser = () => {
         {/* View All Locations Link */}
         <div className="text-center mt-12">
           <Link to="/locations">
-            <Button variant="outline" className="btn-outline-premium">
+            <Button variant="outline" className="btn-gold-outline">
               <MapPin className="w-4 h-4 mr-2" />
               View All Locations & Map
               <ExternalLink className="w-4 h-4 ml-2" />
@@ -289,7 +298,7 @@ const LocationChooser = () => {
       <Dialog open={isIframeOpen} onOpenChange={setIsIframeOpen}>
         <DialogContent className="max-w-[95vw] w-[1200px] h-[90vh] p-0 overflow-hidden">
           <DialogHeader className="px-6 py-4">
-            <DialogTitle className="font-display text-primary">{iframeTitle}</DialogTitle>
+            <DialogTitle className="font-display text-foreground">{iframeTitle}</DialogTitle>
           </DialogHeader>
           <div className="w-full h-full bg-white">
             {iframeUrl && (
