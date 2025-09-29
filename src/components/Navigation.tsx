@@ -84,23 +84,23 @@ const Navigation = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 nav-premium">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 relative">
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img 
-              src="/logo.png" 
+              src="/logo1.png" 
               alt="Zia Pizza" 
               className="h-[40px] w-auto"
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop Navigation - Absolutely Centered */}
+          <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 to={item.href}
-                className={`font-medium transition-colors hover:text-primary ${
+                className={`font-italiana font-medium transition-colors hover:text-primary ${
                   location.pathname === item.href
                     ? "text-primary"
                     : "text-foreground"
@@ -141,7 +141,7 @@ const Navigation = () => {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`font-medium py-2 transition-colors hover:text-primary ${
+                  className={`font-italiana font-medium py-2 transition-colors hover:text-primary ${
                     location.pathname === item.href
                       ? "text-primary"
                       : "text-foreground"

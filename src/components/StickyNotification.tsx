@@ -4,6 +4,10 @@ import { Button } from "@/components/ui/button";
 import { offers } from "@/data/locations";
 
 const StickyNotification = () => {
+  // Commented out - notification disabled
+  return null;
+  
+  /* 
   const [isVisible, setIsVisible] = useState(true);
   const [currentOffer, setCurrentOffer] = useState<any>(null);
 
@@ -132,6 +136,7 @@ const StickyNotification = () => {
       </div>
     </div>
   );
+  */
 };
 
 export default StickyNotification;

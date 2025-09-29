@@ -61,8 +61,8 @@ const ContactPage = () => {
       <section className="py-16 bg-gradient-to-br from-secondary/5 to-accent/5">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6">
-              Contact <span className="text-gradient-red">Us</span>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              Contact <span className="text-primary">Us</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               We'd love to hear from you. Get in touch with us for reservations, feedback, or any questions
@@ -77,8 +77,8 @@ const ContactPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div>
-              <h2 className="font-display text-3xl font-bold text-primary mb-6">
-                Send us a Message
+              <h2 className="font-display text-3xl font-bold text-foreground mb-6">
+                Send us a <span className="text-primary">Message</span>
               </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -165,8 +165,8 @@ const ContactPage = () => {
 
             {/* Contact Information */}
             <div>
-              <h2 className="font-display text-3xl font-bold text-primary mb-6">
-                Get in Touch
+              <h2 className="font-display text-3xl font-bold text-foreground mb-6">
+                Get in <span className="text-primary">Touch</span>
               </h2>
               
               <div className="space-y-6">
@@ -240,8 +240,8 @@ const ContactPage = () => {
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-primary mb-4">
-              Visit Our Locations
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Visit Our <span className="text-primary">Locations</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Find us at one of our three convenient locations

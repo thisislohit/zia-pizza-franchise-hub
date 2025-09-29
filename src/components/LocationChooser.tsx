@@ -98,9 +98,9 @@ const LocationChooser = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Choose Your <span className="text-gradient-red">Location</span>
+            Choose Your <span className="text-primary">Location</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-raleway">
             Find your nearest <span className="text-foreground">Zia</span> <span className="text-primary">Pizza</span> location and start your authentic Italian dining experience
           </p>
         </div>
@@ -187,7 +187,7 @@ const LocationChooser = () => {
                   {/* Address */}
                   <div className="flex items-start gap-3">
                     <MapPin className="w-5 h-5 text-secondary mt-1 flex-shrink-0" />
-                    <p className="text-sm text-muted-foreground">{location.address}</p>
+                    <p className="text-sm text-muted-foreground font-raleway">{location.address}</p>
                   </div>
 
                   {/* Contact Info */}
@@ -278,7 +278,7 @@ const LocationChooser = () => {
 
         {filteredLocations.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-muted-foreground font-raleway">
               No locations found matching your search. Please try different keywords.
             </p>
           </div>

@@ -31,8 +31,8 @@ const LocationsPage = () => {
       {/* Hero Section */}
       <section className="py-16 bg-gradient-to-br from-primary/5 to-secondary/5">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6">
-            Our <span className="text-gradient-red">Locations</span>
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+            Our <span className="text-primary">Locations</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
             Find your nearest <span className="text-foreground">Zia</span> <span className="text-primary">Pizza</span> restaurant and experience authentic Italian cuisine in a premium setting. 

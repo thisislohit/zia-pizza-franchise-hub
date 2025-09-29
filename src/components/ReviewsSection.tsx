@@ -24,9 +24,9 @@ const ReviewsSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Guest <span className="text-gradient-red">Reviews</span>
+            Guest <span className="text-primary">Reviews</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-raleway">
             What our guests love about <span className="text-foreground">Zia</span> <span className="text-primary">Pizza</span> across our locations
           </p>
         </div>
@@ -48,7 +48,7 @@ const ReviewsSection = () => {
                       <span className="font-medium text-foreground">{r.author}</span>
                       {renderStars(r.rating)}
                     </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{r.text}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed font-raleway">{r.text}</p>
                     {r.relativeTime && (
                       <p className="text-xs text-muted-foreground mt-2">{r.relativeTime}</p>
                     )}

@@ -86,9 +86,9 @@ const OffersSection = () => {
         <div className="container mx-auto px-4">
           <div className="text-center">
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              Special <span className="text-gradient-red">Offers</span>
+              Special <span className="text-primary">Offers</span>
             </h2>
-            <p className="text-lg text-muted-foreground">Loading offers...</p>
+            <p className="text-lg text-muted-foreground font-raleway">Loading offers...</p>
           </div>
         </div>
       </section>
@@ -102,9 +102,9 @@ const OffersSection = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              Special <span className="text-gradient-red">Offers</span>
+              Special <span className="text-primary">Offers</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 font-raleway">
               Select your nearest <span className="text-foreground">Zia</span> <span className="text-primary">Pizza</span> branch to see offers.
             </p>
             <Button
@@ -128,9 +128,9 @@ const OffersSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Special <span className="text-gradient-red">Offers</span>
+            Special <span className="text-primary">Offers</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4 font-raleway">
             Discover our delicious deals at {getCityFromLocationId(userLocation)} branch
           </p>
           <Badge variant="outline" className="text-sm border-secondary text-secondary">
@@ -163,7 +163,7 @@ const OffersSection = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed font-raleway">
                       {offer.description}
                     </p>
                     {/* Meta row: day + time inline */}
@@ -213,7 +213,7 @@ const OffersSection = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed font-raleway">
                       {todaysOffers[currentOfferIndex]?.description}
                     </p>
                     {/* Meta row: day + time inline */}
@@ -314,7 +314,7 @@ const OffersSection = () => {
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-lg text-muted-foreground">
+              <p className="text-lg text-muted-foreground font-raleway">
                 No offers available at this location at the moment.
               </p>
             </div>
