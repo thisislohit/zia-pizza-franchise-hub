@@ -11,7 +11,7 @@ const AboutPage = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              About <span className="text-foreground">Zia</span> <span className="text-primary">Pizza</span>
+              About <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Your Local Pub, Reborn with Italian Soul
@@ -30,13 +30,13 @@ const AboutPage = () => {
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed font-raleway">
                 <p>
-                  <span className="text-foreground">Zia</span> <span className="text-primary">Pizza</span> is more than a restaurant — it's a mission. We exist to save local pubs by filling them
+                  <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span> is more than a restaurant — it's a mission. We exist to save local pubs by filling them
                   with the warmth of fresh Italian food at pub-friendly prices.
                 </p>
                 <p>
                   Our story begins in Naples, where Zia Maria taught her nephew, Chef Vittorio Capetti, the
                   secrets of stone-baked pizza. In 2009, Vittorio brought her recipes to Westbury, Wiltshire,
-                  lighting the oven that started it all. Today, under the care of Nidhin Rey Sajeev, <span className="text-foreground">Zia</span> <span className="text-primary">Pizza</span>
+                  lighting the oven that started it all. Today, under the care of Nidhin Rey Sajeev, <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
                   continues that tradition — preserving heritage pubs, baking with love, and keeping community
                   at the heart.
                 </p>
@@ -67,7 +67,11 @@ const AboutPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <Card>
               <CardHeader>
-                <CardTitle className="text-2xl text-foreground">Zia Pizza — Italian Restaurant & Takeaway (Express)</CardTitle>
+                <CardTitle className="text-2xl text-foreground">
+                  <span className="text-white">Zia</span>
+                  <span className="text-red-600"> Pizza</span>
+                  <span style={{ color: '#D4C29C' }}> — Italian Restaurant & Takeaway (Express)</span>
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground leading-relaxed font-raleway">
@@ -80,7 +84,11 @@ const AboutPage = () => {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-2xl text-foreground">Zia Pizza Gastropubs</CardTitle>
+                <CardTitle className="text-2xl text-foreground">
+                  <span className="text-white">Zia</span>
+                  <span className="text-red-600"> Pizza</span>
+                  <span style={{ color: '#D4C29C' }}> Gastropubs</span>
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground leading-relaxed font-raleway">
@@ -348,7 +356,7 @@ const AboutPage = () => {
                 makes every visit special.
               </p>
               <p className="text-lg font-medium text-foreground">
-                Because at <span className="text-primary">Zia Pizza</span>, it's not just what's on the plate — it's the love baked into every crust.
+                Because at <span className="text-white">Zia</span><span className="text-red-600"> Pizza</span>, it's not just what's on the plate — it's the love baked into every crust.
               </p>
             </div>
           </div>
@@ -374,7 +382,18 @@ const AboutPage = () => {
                   <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <MapPin className="w-6 h-6 text-secondary" />
                   </div>
-                  <CardTitle className="text-xl">{location.name}</CardTitle>
+                  <CardTitle className="text-xl">
+                    {location.name.includes('Zia Pizza') ? (
+                      <>
+                        <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
+                        {location.name.replace('Zia Pizza', '').trim() && (
+                          <span style={{ color: '#D4C29C' }}>{location.name.replace('Zia Pizza', '').trim()}</span>
+                        )}
+                      </>
+                    ) : (
+                      location.name
+                    )}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col justify-between h-full">
                   <p className="text-muted-foreground mb-4">{location.address}</p>

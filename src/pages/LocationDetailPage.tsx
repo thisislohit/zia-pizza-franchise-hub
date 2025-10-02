@@ -172,9 +172,9 @@ const LocationDetailPage = () => {
                 <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold">
                   {location.name.includes('Zia Pizza') ? (
                     <>
-                      <span className="text-foreground">Zia</span> <span className="text-primary">Pizza</span>
+                      <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
                       {location.name.replace('Zia Pizza', '').trim() && (
-                        <span className="text-primary">{location.name.replace('Zia Pizza', '').trim()}</span>
+                        <span style={{ color: '#D4C29C' }}>{location.name.replace('Zia Pizza', '').trim()}</span>
                       )}
                     </>
                   ) : (
@@ -209,7 +209,7 @@ const LocationDetailPage = () => {
                 </Badge>
               </div>
               
-              <p className="text-lg text-muted-foreground mb-8">
+              <p className="text-lg text-white mb-8">
                 Experience authentic Italian cuisine in our premium restaurant. Fresh ingredients, traditional recipes, and exceptional service await you.
               </p>
 
@@ -253,7 +253,7 @@ const LocationDetailPage = () => {
               {/* Delivery Partners (below Order Online) */}
               {location.deliveryPartners && (
                 <div className="mt-4">
-                  <p className="text-sm text-muted-foreground mb-2">Delivery Partners</p>
+                  <p className="text-sm text-white mb-2">Delivery Partners</p>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     {location.deliveryPartners.uberEats && (
                       <a href={location.deliveryPartners.uberEats} target="_blank" rel="noopener noreferrer">
@@ -287,15 +287,15 @@ const LocationDetailPage = () => {
             {/* Location Info Card */}
             <Card className="card-premium">
               <CardHeader>
-                <CardTitle className="font-display text-xl text-primary">Location Details</CardTitle>
+                <CardTitle className="font-display text-xl text-white">Location Details</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {/* Address */}
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-secondary mt-1 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-primary">Address</p>
-                    <p className="text-muted-foreground">{location.address}</p>
+                    <p className="font-medium text-white">Address</p>
+                    <p className="text-white">{location.address}</p>
                   </div>
                 </div>
 
@@ -304,7 +304,7 @@ const LocationDetailPage = () => {
                   <div className="flex items-center gap-3">
                     <Phone className="w-4 h-4 text-secondary" />
                     <div>
-                      <p className="text-xs text-muted-foreground">Phone</p>
+                      <p className="text-xs text-white">Phone</p>
                       <a 
                         href={`tel:${location.phone}`}
                         className="font-medium hover:text-secondary transition-colors"
@@ -316,7 +316,7 @@ const LocationDetailPage = () => {
                   <div className="flex items-center gap-3">
                     <Mail className="w-4 h-4 text-secondary" />
                     <div>
-                      <p className="text-xs text-muted-foreground">Email</p>
+                      <p className="text-xs text-white">Email</p>
                       <a 
                         href={`mailto:${location.email}`}
                         className="font-medium hover:text-secondary transition-colors"
@@ -343,7 +343,7 @@ const LocationDetailPage = () => {
               {/* Current Offers (replacing Opening Hours) */}
               <Card className="card-premium">
                 <CardHeader>
-                  <CardTitle className="font-display text-xl text-primary flex items-center gap-2">
+                  <CardTitle className="font-display text-xl text-white flex items-center gap-2">
                     <Store className="w-5 h-5 text-secondary" />
                     Current Offers
                   </CardTitle>
@@ -353,8 +353,8 @@ const LocationDetailPage = () => {
                     <div className="space-y-4">
                       {locationOffers.map((offer) => (
                         <div key={offer.id} className="p-4 bg-secondary/5 border border-secondary/20 rounded-lg">
-                          <h4 className="font-semibold text-primary mb-2">{offer.title}</h4>
-                          <p className="text-sm text-muted-foreground mb-2">{offer.description}</p>
+                          <h4 className="font-semibold text-white mb-2">{offer.title}</h4>
+                          <p className="text-sm text-white mb-2">{offer.description}</p>
                           {offer.validDays && (
                             <Badge variant="outline" className="text-xs">
                               {offer.validDays.join(", ")}
@@ -364,7 +364,7 @@ const LocationDetailPage = () => {
                       ))}
                     </div>
                   ) : (
-                    <p className="text-muted-foreground">No current offers at this location.</p>
+                    <p className="text-white">No current offers at this location.</p>
                   )}
                 </CardContent>
               </Card>
@@ -372,7 +372,7 @@ const LocationDetailPage = () => {
               {/* Map */}
               <Card className="card-premium overflow-hidden">
                 <CardHeader>
-                  <CardTitle className="font-display text-xl text-primary">Map</CardTitle>
+                  <CardTitle className="font-display text-xl text-white">Map</CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
                   <iframe 
@@ -395,7 +395,7 @@ const LocationDetailPage = () => {
                 {/* Opening Hours (moved to sidebar) */}
                 <Card className="card-premium">
                   <CardHeader>
-                    <CardTitle className="font-display text-lg text-foreground flex items-center gap-2">
+                    <CardTitle className="font-display text-lg text-white flex items-center gap-2">
                       <Clock className="w-5 h-5 text-secondary" />
                       Opening Hours
                     </CardTitle>
@@ -412,19 +412,19 @@ const LocationDetailPage = () => {
                           >
                             {isSunday ? (
                               <div className="flex justify-between items-center gap-3">
-                                <span className="capitalize font-medium shrink-0 text-sm text-foreground">
+                                <span className="capitalize font-medium shrink-0 text-sm text-white">
                                   {isToday && 'Today - '}Sunday:
                                 </span>
-                                <span className={`${hours === 'Closed' ? 'text-muted-foreground' : 'font-medium text-foreground'} tabular-nums text-right text-sm`}> 
+                                <span className={`${hours === 'Closed' ? 'text-white' : 'font-medium text-white'} tabular-nums text-right text-sm`}> 
                                   {hours}
                                 </span>
                               </div>
                             ) : (
                               <div className="flex justify-between items-center gap-3">
-                                <span className="capitalize font-medium shrink-0 text-sm text-foreground">
+                                <span className="capitalize font-medium shrink-0 text-sm text-white">
                                   {isToday && 'Today - '}{day}:
                                 </span>
-                                <span className={`${hours === 'Closed' ? 'text-muted-foreground' : 'font-medium text-foreground'} tabular-nums text-right text-sm`}> 
+                                <span className={`${hours === 'Closed' ? 'text-white' : 'font-medium text-white'} tabular-nums text-right text-sm`}> 
                                   {hours}
                                 </span>
                               </div>

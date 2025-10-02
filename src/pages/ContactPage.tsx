@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { MapPin, Phone, Mail, Clock, Send, MessageSquare } from "lucide-react";
+import { MapPin, Phone, Mail, Send, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { locations } from "@/data/locations";
 import { useToast } from "@/hooks/use-toast";
 
@@ -16,7 +15,42 @@ const ContactPage = () => {
     subject: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
   const { toast } = useToast();
+
+  const validateForm = () => {
+    const newErrors: {[key: string]: string} = {};
+    
+    // Name validation
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = "Name must be at least 2 characters";
+    }
+    
+    // Email validation
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+    
+    // Phone validation (optional but if provided, should be valid)
+    if (formData.phone && !/^[\+]?[0-9\s\-\(\)]{10,}$/.test(formData.phone)) {
+      newErrors.phone = "Please enter a valid phone number";
+    }
+    
+    // Message validation
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = "Message must be at least 10 characters";
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -24,35 +58,72 @@ const ContactPage = () => {
       ...prev,
       [name]: value
     }));
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ""
+      }));
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic validation
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!validateForm()) {
       toast({
-        title: "Missing Information",
-        description: "Please fill in all required fields.",
+        title: "Validation Error",
+        description: "Please fix the errors below and try again.",
         variant: "destructive"
       });
       return;
     }
 
-    // Simulate form submission
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for contacting us. We'll get back to you soon.",
-    });
+    setIsSubmitting(true);
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: ""
-    });
+    try {
+      // Simulate API call with realistic delay
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      // Log the form data (in production, this would be sent to your backend)
+      console.log('Contact form submission:', {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
+        timestamp: new Date().toISOString(),
+        source: 'contact-page'
+      });
+
+      // Simulate successful submission
+      toast({
+        title: "Message Sent Successfully!",
+        description: "Thank you for contacting us. We'll get back to you within 24 hours.",
+      });
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: ""
+      });
+      setErrors({});
+
+    } catch (error) {
+      console.error('Error sending message:', error);
+      
+      toast({
+        title: "Error Sending Message",
+        description: "There was an error sending your message. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -93,8 +164,12 @@ const ContactPage = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="Your full name"
+                      className={errors.name ? "border-red-500 focus:border-red-500" : ""}
                       required
                     />
+                    {errors.name && (
+                      <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                    )}
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
@@ -107,8 +182,12 @@ const ContactPage = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="your.email@example.com"
+                      className={errors.email ? "border-red-500 focus:border-red-500" : ""}
                       required
                     />
+                    {errors.email && (
+                      <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                    )}
                   </div>
                 </div>
 
@@ -124,7 +203,11 @@ const ContactPage = () => {
                       value={formData.phone}
                       onChange={handleInputChange}
                       placeholder="Your phone number"
+                      className={errors.phone ? "border-red-500 focus:border-red-500" : ""}
                     />
+                    {errors.phone && (
+                      <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                    )}
                   </div>
                   <div>
                     <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
@@ -152,13 +235,30 @@ const ContactPage = () => {
                     onChange={handleInputChange}
                     placeholder="Tell us how we can help you..."
                     rows={6}
+                    className={errors.message ? "border-red-500 focus:border-red-500" : ""}
                     required
                   />
+                  {errors.message && (
+                    <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+                  )}
                 </div>
 
-                <Button type="submit" className="w-full bg-secondary hover:bg-secondary/90">
-                  <Send className="w-4 h-4 mr-2" />
-                  Send Message
+                <Button 
+                  type="submit" 
+                  className="w-full bg-secondary hover:bg-secondary/90 disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-4 h-4 mr-2 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4 mr-2" />
+                      Send Message
+                    </>
+                  )}
                 </Button>
               </form>
             </div>
@@ -194,42 +294,6 @@ const ContactPage = () => {
                   </CardContent>
                 </Card>
 
-                {/* Business Hours */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Clock className="w-5 h-5 text-secondary" />
-                      Business Hours
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-2">
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Monday</span>
-                      <span>Closed</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Tuesday - Sunday</span>
-                      <span>11:30 AM - 11:00 PM</span>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Quick Actions */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Quick Actions</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-3">
-                    <Button variant="outline" className="w-full justify-start">
-                      <MapPin className="w-4 h-4 mr-2" />
-                      Find Nearest Location
-                    </Button>
-                    <Button variant="outline" className="w-full justify-start">
-                      <Phone className="w-4 h-4 mr-2" />
-                      Call for Reservations
-                    </Button>
-                  </CardContent>
-                </Card>
               </div>
             </div>
           </div>
@@ -240,12 +304,9 @@ const ContactPage = () => {
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Visit Our <span className="text-primary">Locations</span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+              Visit Our <span style={{ color: '#D4C29C' }}>Locations</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Find us at one of our three convenient locations
-            </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -254,39 +315,38 @@ const ContactPage = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <MapPin className="w-5 h-5 text-secondary" />
-                    {location.name}
+                    {location.name.includes('Zia Pizza') ? (
+                      <>
+                        <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
+                        {location.name.replace('Zia Pizza', '').trim() && (
+                          <span style={{ color: '#D4C29C' }}>{location.name.replace('Zia Pizza', '').trim()}</span>
+                        )}
+                      </>
+                    ) : (
+                      location.name
+                    )}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-2">Address</p>
+                  <div className="flex items-start gap-2">
+                    <MapPin className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
                     <p className="text-sm">{location.address}</p>
                   </div>
                   
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-2">Phone</p>
+                  <div className="flex items-center gap-2">
+                    <Phone className="w-4 h-4 text-secondary flex-shrink-0" />
                     <a href={`tel:${location.phone}`} className="text-sm hover:text-secondary transition-colors">
                       {location.phone}
                     </a>
                   </div>
                   
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-2">Email</p>
+                  <div className="flex items-center gap-2">
+                    <Mail className="w-4 h-4 text-secondary flex-shrink-0" />
                     <a href={`mailto:${location.email}`} className="text-sm hover:text-secondary transition-colors">
                       {location.email}
                     </a>
                   </div>
                   
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-2">Services</p>
-                    <div className="flex flex-wrap gap-1">
-                      {location.features.map((feature) => (
-                        <Badge key={feature} variant="outline" className="text-xs">
-                          {feature}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
                 </CardContent>
               </Card>
             ))}

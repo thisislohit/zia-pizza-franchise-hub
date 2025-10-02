@@ -51,134 +51,122 @@ const LocationsPage = () => {
               {locations.map((location, index) => (
                 <Card key={location.id} className="card-premium overflow-hidden">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {/* Location Info */}
-                    <div className="p-6 lg:p-8">
-                      <CardHeader className="px-0 pt-0">
-                        <div className="flex items-start justify-between">
-                          <CardTitle className="font-display text-2xl text-primary leading-tight">
-                            {location.name}
+                    {/* Left Column - Location Details */}
+                    <div className="p-6">
+                      {/* Location Name + Status */}
+                        <div className="flex items-center justify-between mb-4">
+                          <CardTitle className="font-display text-2xl leading-tight">
+                            <span className="text-white">Zia</span>
+                            <span className="text-red-600"> Pizza</span>
+                            <span style={{ color: '#D4C29C' }}> – {location.name.replace('Zia Pizza – ', '')}</span>
                           </CardTitle>
-                          <Badge 
-                            variant={isCurrentlyOpen(location) ? "default" : "secondary"}
-                            className={isCurrentlyOpen(location) ? "bg-green-500" : ""}
-                          >
-                            {isCurrentlyOpen(location) ? "Open Now" : "Closed"}
-                          </Badge>
-                        </div>
-                      </CardHeader>
-                      
-                      <CardContent className="px-0 space-y-6">
-                        {/* Address */}
-                        <div className="flex items-start gap-4">
-                          <MapPin className="w-5 h-5 text-secondary mt-1 flex-shrink-0" />
-                          <div>
-                            <p className="font-medium text-primary">Address</p>
-                            <p className="text-muted-foreground">{location.address}</p>
-                          </div>
-                        </div>
+                        <Badge 
+                          variant={isCurrentlyOpen(location) ? "default" : "secondary"}
+                          className={isCurrentlyOpen(location) ? "bg-green-500" : ""}
+                        >
+                          {isCurrentlyOpen(location) ? "Open Now" : "Closed"}
+                        </Badge>
+                      </div>
 
-                        {/* Contact */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          <div className="flex items-center gap-3">
-                            <Phone className="w-4 h-4 text-secondary" />
-                            <div>
-                              <p className="text-xs text-muted-foreground">Phone</p>
-                              <a 
-                                href={`tel:${location.phone}`}
-                                className="text-sm font-medium hover:text-secondary transition-colors"
-                              >
-                                {location.phone}
-                              </a>
-                            </div>
+                      {/* Large Image */}
+                      <div className="mb-6 h-64 overflow-hidden rounded-lg">
+                        <img 
+                          src={
+                            location.id === 'westbury' ? new URL('../assets/resturant_imgae_westbury.jpeg', import.meta.url).href :
+                            location.id === 'salisbury' ? new URL('../assets/resturant_image_salisbury.jpeg', import.meta.url).href :
+                            location.id === 'trowbridge' ? new URL('../assets/resturant_image_lamb_on_the_strand.jpeg', import.meta.url).href :
+                            new URL('../assets/restaurant-interior.jpg', import.meta.url).href
+                          }
+                          alt={`${location.name} exterior`}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+
+                      {/* Contact Info & Opening Hours Row */}
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                        {/* Contact Info */}
+                        <div className="space-y-3">
+                          <div className="flex items-start gap-3">
+                            <MapPin className="w-5 h-5 text-secondary mt-1 flex-shrink-0" />
+                            <p className="text-muted-foreground text-sm">{location.address}</p>
                           </div>
                           <div className="flex items-center gap-3">
-                            <Mail className="w-4 h-4 text-secondary" />
-                            <div>
-                              <p className="text-xs text-muted-foreground">Email</p>
-                              <a 
-                                href={`mailto:${location.email}`}
-                                className="text-sm font-medium hover:text-secondary transition-colors"
-                              >
-                                {location.email}
-                              </a>
-                            </div>
+                            <Phone className="w-5 h-5 text-secondary" />
+                            <a 
+                              href={`tel:${location.phone}`}
+                              className="text-sm font-medium hover:text-secondary transition-colors"
+                            >
+                              {location.phone}
+                            </a>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <Mail className="w-5 h-5 text-secondary" />
+                            <a 
+                              href={`mailto:${location.email}`}
+                              className="text-sm font-medium hover:text-secondary transition-colors"
+                            >
+                              {location.email}
+                            </a>
                           </div>
                         </div>
 
                         {/* Opening Hours */}
                         <div className="bg-card border border-border/20 p-4 rounded-lg">
                           <h4 className="font-medium text-foreground mb-3 flex items-center gap-2">
-                            <Clock className="w-4 h-4 text-secondary" />
+                            <Clock className="w-5 h-5 text-secondary" />
                             Opening Hours
                           </h4>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                            {Object.entries(location.openingHours).map(([day, hours]) => {
-                              const isSunday = day === 'sunday';
-                              return (
-                                <div
-                                  key={day}
-                                  className={`p-3 rounded-lg ${isSunday ? 'sm:col-span-2 bg-secondary/20 border border-secondary/30 flex items-center justify-center text-center' : 'bg-card border border-border/20 flex items-center justify-between'}`}
-                                >
-                                  {isSunday ? (
-                                    <span className={`${hours === 'Closed' ? 'text-muted-foreground' : 'font-medium text-foreground'}`}>
-                                      Sunday: {hours}
-                                    </span>
-                                  ) : (
-                                    <>
-                                      <span className="capitalize font-medium text-foreground">{day}:</span>
-                                      <span className={`${hours === 'Closed' ? 'text-muted-foreground' : 'font-medium text-foreground'} tabular-nums whitespace-nowrap`}>
-                                        {hours}
-                                      </span>
-                                    </>
-                                  )}
+                          <div className="space-y-2 text-sm">
+                            {location.openingHours.monday === "Closed" ? (
+                              <>
+                                <div className="flex justify-between items-center py-1 border-b border-border/10">
+                                  <span className="font-medium text-foreground">Monday</span>
+                                  <span className="text-muted-foreground">Closed</span>
                                 </div>
-                              );
-                            })}
+                                <div className="flex justify-between items-center py-1">
+                                  <span className="font-medium text-foreground">Tuesday - Sunday</span>
+                                  <span className="text-foreground">11:30 AM - 11:00 PM</span>
+                                </div>
+                              </>
+                            ) : (
+                              <div className="flex justify-between items-center py-1">
+                                <span className="font-medium text-foreground">Monday - Sunday</span>
+                                <span className="text-foreground">11:30 AM - 11:00 PM</span>
+                              </div>
+                            )}
                           </div>
                         </div>
+                      </div>
 
-                        {/* Services */}
-                        <div>
-                          <h4 className="font-medium text-foreground mb-3">Services</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {location.features.map((feature) => (
-                              <Badge key={feature} variant="outline">
-                                {feature}
-                              </Badge>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Action Buttons */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                          <Link to={`/location/${location.id}`}>
-                            <Button variant="outline" className="w-full">
-                              View Details
-                            </Button>
-                          </Link>
-                          <a href={getDirectionsUrl(location)} target="_blank" rel="noopener noreferrer">
-                            <Button variant="outline" className="w-full">
-                              <Navigation className="w-4 h-4 mr-2" />
-                              Directions
-                            </Button>
-                          </a>
-                          <Link to={location.orderUrl || "#"}>
-                            <Button className="w-full bg-red-600 hover:bg-red-700">
-                              Order Now
-                            </Button>
-                          </Link>
-                        </div>
-                      </CardContent>
+                      {/* Action Buttons */}
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <Link to={`/location/${location.id}`}>
+                          <Button variant="outline" className="w-full">
+                            View Details
+                          </Button>
+                        </Link>
+                        <a href={getDirectionsUrl(location)} target="_blank" rel="noopener noreferrer">
+                          <Button variant="outline" className="w-full">
+                            <Navigation className="w-4 h-4 mr-2" />
+                            Direction
+                          </Button>
+                        </a>
+                        <Link to={location.orderUrl || "#"}>
+                          <Button className="w-full bg-red-600 hover:bg-red-700">
+                            Order Now
+                          </Button>
+                        </Link>
+                      </div>
                     </div>
 
-                    {/* Map iframe */}
+                    {/* Right Column - Map */}
                     <div className="bg-muted/30 min-h-[300px] lg:min-h-full">
                       <iframe
                         src={location.iframes.map}
                         title={`${location.name} Map`}
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
-                        className="w-full h-full min-h-[300px] border-0"
+                        className="w-full h-full min-h-[300px] lg:min-h-[500px] border-0"
                         allowFullScreen
                       />
                     </div>

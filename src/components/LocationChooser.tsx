@@ -138,9 +138,9 @@ const LocationChooser = () => {
                   <CardTitle className="font-display text-xl leading-tight">
                     {location.name.includes('Zia Pizza') ? (
                       <>
-                        <span className="text-foreground">Zia</span> <span className="text-primary">Pizza</span>
+                        <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
                         {location.name.replace('Zia Pizza', '').trim() && (
-                          <span className="text-primary">{location.name.replace('Zia Pizza', '').trim()}</span>
+                          <span style={{ color: '#D4C29C' }}>{location.name.replace('Zia Pizza', '').trim()}</span>
                         )}
                       </>
                     ) : (

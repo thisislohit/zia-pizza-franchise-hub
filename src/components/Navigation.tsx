@@ -88,9 +88,9 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img 
-              src="/logo1.png" 
+              src="/logo.png" 
               alt="Zia Pizza" 
-              className="h-[40px] w-auto"
+              className="h-[20px] w-auto"
             />
           </Link>
 
