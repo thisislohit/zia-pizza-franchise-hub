@@ -100,7 +100,7 @@ const Navigation = () => {
               <Link
                 key={item.href}
                 to={item.href}
-                className={`font-italiana font-medium transition-colors hover:text-primary ${
+                className={`font-body font-medium transition-all duration-300 hover:text-primary hover:transform hover:-translate-y-1 hover:scale-105 ${
                   location.pathname === item.href
                     ? "text-primary"
                     : "text-foreground"
@@ -141,7 +141,7 @@ const Navigation = () => {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`font-italiana font-medium py-2 transition-colors hover:text-primary ${
+                  className={`font-body font-medium py-2 transition-all duration-300 hover:text-primary hover:transform hover:-translate-y-1 hover:scale-105 ${
                     location.pathname === item.href
                       ? "text-primary"
                       : "text-foreground"
