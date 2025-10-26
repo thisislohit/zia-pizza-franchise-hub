@@ -53,22 +53,51 @@ const Navigation = () => {
           setIsMenuOpen(false);
         },
         (error) => {
+          // Handle different types of geolocation errors more gracefully
+          let errorMessage = "Unable to get your location.";
+          let shouldRedirect = false;
+          
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              errorMessage = "Location access denied. Redirecting to locations page.";
+              shouldRedirect = true;
+              break;
+            case error.POSITION_UNAVAILABLE:
+              errorMessage = "Location information unavailable. Please try again or search manually.";
+              break;
+            case error.TIMEOUT:
+              errorMessage = "Location request timed out. Please try again or search manually.";
+              break;
+            default:
+              errorMessage = "Unable to get your location. Please search manually.";
+              break;
+          }
+          
           toast({
-            title: "Location Error",
-            description: "Unable to get your location. Redirecting to locations page.",
+            title: "Location Access",
+            description: errorMessage,
             variant: "destructive"
           });
-          navigate("/locations");
+          
+          // Redirect to locations page if permission was denied
+          if (shouldRedirect) {
+            navigate("/locations");
+          }
+          
           setIsMenuOpen(false);
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 300000 // 5 minutes
         }
       );
     } else {
       toast({
         title: "Location Not Supported",
-        description: "Your browser doesn't support location services. Redirecting to locations page.",
+        description: "Your browser doesn't support location services. Please search manually.",
         variant: "destructive"
       });
-      navigate("/locations");
       setIsMenuOpen(false);
     }
   };
@@ -76,7 +105,8 @@ const Navigation = () => {
   const navItems = [
     { href: "/", label: "Home" },
     { href: "/locations", label: "Locations" },
-    { href: "/menu", label: "Menu" },
+    { href: "/deals", label: "Deals" },
+    { href: "/christmas", label: "Christmas" },
     { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact" }
   ];
@@ -86,7 +116,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 relative">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center hover:scale-105 hover:opacity-80 transition-all duration-300">
             <img 
               src="/logo.png" 
               alt="Zia Pizza" 

@@ -23,10 +23,10 @@ const HeroSection = () => {
       <div className="relative z-10 w-full h-full flex items-center justify-center">
         <div className="container mx-auto px-4 text-center text-white">
           <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-bounce-in-up">
-            Fresh. Local. Italian.
+            Welcome to Zia Pizza
           </h1>
           <h2 className="font-display text-lg md:text-xl lg:text-2xl mb-4 text-white/90 animate-bounce-in-up animation-delay-200">
-            Stone-baked pizzas & hearty pub classics.
+            Your Home for Authentic Italian Pizza in Wiltshire!
           </h2>
           <h3 className="font-display text-base md:text-lg lg:text-xl mb-6 text-white/80 animate-bounce-in-up animation-delay-400">
             Fresh, affordable, and made with love.

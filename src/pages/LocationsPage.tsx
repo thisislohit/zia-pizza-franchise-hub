@@ -160,7 +160,7 @@ const LocationsPage = () => {
                     </div>
 
                     {/* Right Column - Map */}
-                    <div className="bg-muted/30 min-h-[300px] lg:min-h-full">
+                    <div className="bg-muted/30 min-h-[300px] lg:min-h-full hidden md:block">
                       <iframe
                         src={location.iframes.map}
                         title={`${location.name} Map`}

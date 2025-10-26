@@ -220,7 +220,6 @@ const LocationDetailPage = () => {
                   className="w-full btn-hero"
                 >
                   <Utensils className="w-4 h-4 mr-2" />
-                  <ExternalLink className="w-3 h-3 ml-1" />
                   Order Online
                 </Button>
                 <Button 
@@ -229,7 +228,6 @@ const LocationDetailPage = () => {
                   className="w-full btn-outline-premium"
                 >
                   <Calendar className="w-4 h-4 mr-2" />
-                  <ExternalLink className="w-3 h-3 ml-1" />
                   Book Table
                 </Button>
                 <Button 
@@ -246,7 +244,8 @@ const LocationDetailPage = () => {
                   className="w-full btn-gold-outline"
                 >
                   <Navigation className="w-4 h-4 mr-2" />
-                  Map & Directions
+                  <span className="hidden sm:inline">Map & Directions</span>
+                  <span className="sm:hidden">Map</span>
                 </Button>
               </div>
 

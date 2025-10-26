@@ -106,7 +106,7 @@ const LocationChooser = () => {
         </div>
 
         {/* Search Controls */}
-        <div className="max-w-2xl mx-auto mb-12">
+        {/* <div className="max-w-2xl mx-auto mb-12">
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
@@ -127,7 +127,7 @@ const LocationChooser = () => {
               Use My Location
             </Button>
           </div>
-        </div>
+        </div> */}
 
         {/* Locations Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -253,9 +253,7 @@ const LocationChooser = () => {
                       variant="outline"
                       className="w-full btn-gold-outline text-sm"
                       onClick={() => {
-                        setIframeUrl(location.iframes.booking);
-                        setIframeTitle(`${location.name} – Book a Table`);
-                        setIsIframeOpen(true);
+                        window.open(location.iframes.booking, '_blank');
                       }}
                     >
                       Book a Table

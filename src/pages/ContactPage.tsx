@@ -142,164 +142,6 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* Contact Form & Info */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <div>
-              <h2 className="font-display text-3xl font-bold text-foreground mb-6">
-                Send us a <span className="text-primary">Message</span>
-              </h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                      Name *
-                    </label>
-                    <Input
-                      id="name"
-                      name="name"
-                      type="text"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      placeholder="Your full name"
-                      className={errors.name ? "border-red-500 focus:border-red-500" : ""}
-                      required
-                    />
-                    {errors.name && (
-                      <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-                    )}
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                      Email *
-                    </label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      placeholder="your.email@example.com"
-                      className={errors.email ? "border-red-500 focus:border-red-500" : ""}
-                      required
-                    />
-                    {errors.email && (
-                      <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-                    )}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                      Phone
-                    </label>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      placeholder="Your phone number"
-                      className={errors.phone ? "border-red-500 focus:border-red-500" : ""}
-                    />
-                    {errors.phone && (
-                      <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
-                    )}
-                  </div>
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
-                      Subject
-                    </label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      type="text"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      placeholder="What's this about?"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                    Message *
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    placeholder="Tell us how we can help you..."
-                    rows={6}
-                    className={errors.message ? "border-red-500 focus:border-red-500" : ""}
-                    required
-                  />
-                  {errors.message && (
-                    <p className="text-red-500 text-sm mt-1">{errors.message}</p>
-                  )}
-                </div>
-
-                <Button 
-                  type="submit" 
-                  className="w-full bg-secondary hover:bg-secondary/90 disabled:opacity-50 disabled:cursor-not-allowed"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <div className="w-4 h-4 mr-2 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4 mr-2" />
-                      Send Message
-                    </>
-                  )}
-                </Button>
-              </form>
-            </div>
-
-            {/* Contact Information */}
-            <div>
-              <h2 className="font-display text-3xl font-bold text-foreground mb-6">
-                Get in <span className="text-primary">Touch</span>
-              </h2>
-              
-              <div className="space-y-6">
-                {/* General Contact */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <MessageSquare className="w-5 h-5 text-secondary" />
-                      General Inquiries
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <Mail className="w-4 h-4 text-secondary" />
-                      <a href="mailto:info@ziapizza.com" className="hover:text-secondary transition-colors">
-                        info@ziapizza.com
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Phone className="w-4 h-4 text-secondary" />
-                      <a href="tel:+441234567890" className="hover:text-secondary transition-colors">
-                        +44 123 456 7890
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Location Details */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
@@ -313,15 +155,17 @@ const ContactPage = () => {
             {locations.map((location) => (
               <Card key={location.id}>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <MapPin className="w-5 h-5 text-secondary" />
+                  <CardTitle className="flex items-center flex-wrap">
                     {location.name.includes('Zia Pizza') ? (
-                      <>
-                        <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
+                      <div className="flex items-center flex-wrap">
+                        <span className="text-white">Zia</span>
+                        <span className="text-red-600">Pizza</span>
                         {location.name.replace('Zia Pizza', '').trim() && (
-                          <span style={{ color: '#D4C29C' }}>{location.name.replace('Zia Pizza', '').trim()}</span>
+                          <span style={{ color: '#D4C29C' }} className="whitespace-nowrap">
+                            {location.name.replace('Zia Pizza', '').trim()}
+                          </span>
                         )}
-                      </>
+                      </div>
                     ) : (
                       location.name
                     )}
@@ -330,7 +174,14 @@ const ContactPage = () => {
                 <CardContent className="space-y-4">
                   <div className="flex items-start gap-2">
                     <MapPin className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
-                    <p className="text-sm">{location.address}</p>
+                    <a 
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.address)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm hover:text-secondary transition-colors cursor-pointer"
+                    >
+                      {location.address}
+                    </a>
                   </div>
                   
                   <div className="flex items-center gap-2">
@@ -350,6 +201,43 @@ const ContactPage = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Information */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto">
+            <h2 className="font-display text-3xl font-bold text-foreground mb-6 text-center">
+              Get in <span className="text-primary">Touch</span>
+            </h2>
+            
+            <div className="space-y-6">
+              {/* General Contact */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <MessageSquare className="w-5 h-5 text-secondary" />
+                    General Inquiries
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <Mail className="w-4 h-4 text-secondary" />
+                    <a href="mailto:info@ziapizza.com" className="hover:text-secondary transition-colors">
+                      info@ziapizza.com
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Phone className="w-4 h-4 text-secondary" />
+                    <a href="tel:+441234567890" className="hover:text-secondary transition-colors">
+                      +44 123 456 7890
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>

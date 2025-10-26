@@ -1,7 +1,7 @@
 import HeroSection from "@/components/HeroSection";
 import LocationChooser from "@/components/LocationChooser";
 import OffersSection from "@/components/OffersSection";
-import ReviewsSection from "@/components/ReviewsSection";
+// import ReviewsSection from "@/components/ReviewsSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -10,7 +10,7 @@ const Index = () => {
       <HeroSection />
       <LocationChooser />
       <OffersSection />
-      <ReviewsSection />
+      {/* <ReviewsSection /> */}
       <Footer />
     </div>
   );

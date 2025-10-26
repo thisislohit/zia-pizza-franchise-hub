@@ -14,7 +14,7 @@ const AboutPage = () => {
               About <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Your Local Pub, Reborn with Italian Soul
+              A Slice of Italy in Every Bite!
             </p>
           </div>
         </div>
@@ -30,15 +30,10 @@ const AboutPage = () => {
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed font-raleway">
                 <p>
-                  <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span> is more than a restaurant — it's a mission. We exist to save local pubs by filling them
-                  with the warmth of fresh Italian food at pub-friendly prices.
+                  Welcome to <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>! We're not just another pizza place; we're your go-to destination for authentic Italian cuisine and unforgettable, freshly baked pizzas. We are a place where friends, families, and pizza lovers come together to share great food in a cozy, welcoming atmosphere.
                 </p>
                 <p>
-                  Our story begins in Naples, where Zia Maria taught her nephew, Chef Vittorio Capetti, the
-                  secrets of stone-baked pizza. In 2009, Vittorio brought her recipes to Westbury, Wiltshire,
-                  lighting the oven that started it all. Today, under the care of Nidhin Rey Sajeev, <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
-                  continues that tradition — preserving heritage pubs, baking with love, and keeping community
-                  at the heart.
+                  At <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>, we believe flavour is everything. Every pizza is crafted with passion, using only fresh, high-quality ingredients. From the timeless Classic Margherita to our unique gourmet specialty pizzas, each slice is a taste of Italy, made with love.
                 </p>
               </div>
             </div>
@@ -55,144 +50,70 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Two Ways to Enjoy Zia */}
+      {/* Our Story Continued */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Two Ways to Enjoy Zia
+              Our Story: From Passion to Your Plate
             </h2>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl text-foreground">
-                  <span className="text-white">Zia</span>
-                  <span className="text-red-600"> Pizza</span>
-                  <span style={{ color: '#D4C29C' }}> — Italian Restaurant & Takeaway (Express)</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed font-raleway">
-                  Perfect for quick dining, family meals, or a pizza night at home. Enjoy hand-stretched pizzas,
-                  comforting Lasagne, indulgent Calzones, and our viral-favourite tiramisu range — including
-                  the Dubai Chocolate Tiramisu and seasonal Orange Tiramisu.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl text-foreground">
-                  <span className="text-white">Zia</span>
-                  <span className="text-red-600"> Pizza</span>
-                  <span style={{ color: '#D4C29C' }}> Gastropubs</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed font-raleway">
-                  Here, we rescue historic pubs and give them new life. We keep the original pub name and
-                  exterior, while transforming the inside into a cozy, family-friendly Italian gastropub.
-                  Alongside our Italian signatures, guests enjoy local pub specials and Sunday Roasts —
-                  blending Italian craft with British tradition.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="max-w-4xl mx-auto">
+            <div className="space-y-6 text-muted-foreground leading-relaxed font-raleway text-center">
+              <p className="text-lg">
+                <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span> began with one simple passion: bringing the true, authentic flavours of Italy to the heart of Salisbury, Trowbridge, and Westbury. Inspired by traditional recipes, we've grown from a small beginning into three beloved branches. But our dedication remains the same: delivering incredible quality, amazing taste, and a warm, welcoming experience for everyone.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Our Signature Heroes */}
+      {/* Our Locations */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Our Signature Heroes
+              Come Say Ciao! Visit Our Branches
             </h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="text-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <Card>
               <CardHeader>
-                <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Pizza className="w-6 h-6 text-secondary" />
-                </div>
-                <CardTitle className="text-xl">Zia Special Pizza</CardTitle>
+                <CardTitle className="text-2xl text-foreground">
+                  <span className="text-white">Restaurant in</span> <span className="text-red-600">Salisbury</span>
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">
-                  Flagship stone-baked recipe
+                <p className="text-muted-foreground leading-relaxed font-raleway">
+                  Our Salisbury location is a local favourite! As a top Restaurant in Salisbury, we offer a warm, family-friendly setting. Perfect for a casual meal or a fun gathering.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="text-center">
+            <Card>
               <CardHeader>
-                <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <ChefHat className="w-6 h-6 text-secondary" />
-                </div>
-                <CardTitle className="text-xl">Lasagne</CardTitle>
+                <CardTitle className="text-2xl text-foreground">
+                  <span className="text-white">Restaurant in</span> <span className="text-red-600">Trowbridge</span>
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">
-                  Slow-baked, layered, and loved
+                <p className="text-muted-foreground leading-relaxed font-raleway">
+                  Your community spot for flavour! Our Restaurant in Trowbridge is loved by locals for fresh, handcrafted pizzas in a cozy atmosphere. Ideal for dining in or grabbing a takeaway.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="text-center">
+            <Card>
               <CardHeader>
-                <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Pizza className="w-6 h-6 text-secondary" />
-                </div>
-                <CardTitle className="text-xl">Calzone</CardTitle>
+                <CardTitle className="text-2xl text-foreground">
+                  <span className="text-white">Westbury</span> <span className="text-red-600">Branch</span>
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">
-                  Folded perfection, bubbling and golden
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center">
-              <CardHeader>
-                <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Coffee className="w-6 h-6 text-secondary" />
-                </div>
-                <CardTitle className="text-xl">Dubai Chocolate Tiramisu</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Indulgent, viral-ready dessert
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center">
-              <CardHeader>
-                <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Coffee className="w-6 h-6 text-secondary" />
-                </div>
-                <CardTitle className="text-xl">Orange Tiramisu</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  A seasonal, refreshing twist
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center">
-              <CardHeader>
-                <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Utensils className="w-6 h-6 text-secondary" />
-                </div>
-                <CardTitle className="text-xl">Pub Specials & Sunday Roasts</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Local comfort reimagined
+                <p className="text-muted-foreground leading-relaxed font-raleway">
+                  A popular hub for families and pizza fans! Get the same high-quality pizzas and friendly service you love, right here in Westbury.
                 </p>
               </CardContent>
             </Card>
@@ -200,40 +121,26 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* How We Do It */}
+      {/* Why You'll Love Zia Pizza */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-              How We Do It
+              Why You'll Love <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
             </h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card className="text-center">
               <CardHeader>
                 <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Pizza className="w-6 h-6 text-secondary" />
+                  <Leaf className="w-6 h-6 text-secondary" />
                 </div>
-                <CardTitle className="text-xl">The Dough</CardTitle>
+                <CardTitle className="text-xl">Freshness First</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Cold-proofed for up to 72 hours for a light, airy crust. Always hand-stretched, never rolled.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center">
-              <CardHeader>
-                <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Thermometer className="w-6 h-6 text-secondary" />
-                </div>
-                <CardTitle className="text-xl">The Oven</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Stone-baked at high heat for that leopard-spotted crust and smoky flavour.
+                  We use only fresh, premium ingredients in every single pizza.
                 </p>
               </CardContent>
             </Card>
@@ -243,38 +150,11 @@ const AboutPage = () => {
                 <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Home className="w-6 h-6 text-secondary" />
                 </div>
-                <CardTitle className="text-xl">The Kitchen</CardTitle>
+                <CardTitle className="text-xl">Cozy Vibes</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Every sauce, dough ball, and dish made fresh — never frozen.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Values */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-              What We Stand For
-            </h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-            <Card className="text-center">
-              <CardHeader>
-                <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Award className="w-6 h-6 text-secondary" />
-                </div>
-                <CardTitle className="text-xl">Freshness</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Everything made in-house, from dough to desserts.
+                  Our dining experience is always cozy and family-friendly.
                 </p>
               </CardContent>
             </Card>
@@ -282,27 +162,13 @@ const AboutPage = () => {
             <Card className="text-center">
               <CardHeader>
                 <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-6 h-6 text-secondary" />
+                  <Zap className="w-6 h-6 text-secondary" />
                 </div>
-                <CardTitle className="text-xl">Community</CardTitle>
+                <CardTitle className="text-xl">Easy & Convenient</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Reviving pubs so they remain part of local life.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center">
-              <CardHeader>
-                <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <DollarSign className="w-6 h-6 text-secondary" />
-                </div>
-                <CardTitle className="text-xl">Value</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Affordable menus, daily deals, and family-friendly prices.
+                  We offer easy takeaway and online ordering options.
                 </p>
               </CardContent>
             </Card>
@@ -312,25 +178,11 @@ const AboutPage = () => {
                 <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Heart className="w-6 h-6 text-secondary" />
                 </div>
-                <CardTitle className="text-xl">Warmth</CardTitle>
+                <CardTitle className="text-xl">Service with a Smile</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Italian hospitality with English pub comfort.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center">
-              <CardHeader>
-                <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Leaf className="w-6 h-6 text-secondary" />
-                </div>
-                <CardTitle className="text-xl">Sustainability</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Local sourcing where possible, reduced waste, eco-friendly packaging.
+                  Our friendly team is ready to welcome you at all three branches.
                 </p>
               </CardContent>
             </Card>
@@ -338,25 +190,19 @@ const AboutPage = () => {
         </div>
       </section>
 
-
-      {/* Our Promise */}
+      {/* Order Online or Visit Us Today */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Our Promise
+              Order Online or Visit Us Today!
             </h2>
             <div className="max-w-4xl mx-auto space-y-6 text-muted-foreground leading-relaxed font-raleway">
               <p className="text-lg">
-                Freshly made Italian food, cozy pub vibes, unbeatable value — always with warmth.
-              </p>
-              <p>
-                Whether it's a pizza takeaway, a midweek buffet, or a Sunday roast at your local gastropub,
-                you'll always find food that's made with love, a place that feels like home, and value that
-                makes every visit special.
+                Whether you're in Salisbury, Trowbridge, or Westbury, an unforgettable pizza experience is waiting for you. Dine in with us, grab a takeaway, or order online to enjoy authentic Italian flavours wherever you are.
               </p>
               <p className="text-lg font-medium text-foreground">
-                Because at <span className="text-white">Zia</span><span className="text-red-600"> Pizza</span>, it's not just what's on the plate — it's the love baked into every crust.
+                <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span> – Serving the finest pizzas and Italian flavors in Salisbury, Trowbridge, and Westbury!
               </p>
             </div>
           </div>
@@ -377,7 +223,11 @@ const AboutPage = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {locations.map((location) => (
-              <Card key={location.id} className="text-center h-full flex flex-col">
+              <Card 
+                key={location.id} 
+                className="text-center h-full flex flex-col cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300"
+                onClick={() => window.open(location.iframes.order, '_blank')}
+              >
                 <CardHeader className="flex-grow">
                   <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <MapPin className="w-6 h-6 text-secondary" />

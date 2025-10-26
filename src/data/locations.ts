@@ -20,6 +20,10 @@ export interface Location {
     justEat?: string;
     deliveroo?: string;
   };
+  socialMedia?: {
+    facebook?: string;
+    instagram?: string;
+  };
   coordinates: {
     lat: number;
     lng: number;
@@ -52,9 +56,12 @@ export const locations: Location[] = [
     orderUrl: "/order/westbury",
     bookingUrl: "/book/westbury",
     deliveryPartners: {
-      uberEats: "https://ubereats.com/gb/westbury/zia-pizza",
-      justEat: "https://justeat.co.uk/restaurants-zia-pizza-westbury",
-      deliveroo: "https://deliveroo.co.uk/menu/westbury/zia-pizza"
+      uberEats: "https://www.ubereats.com/gb/store/zia-pizza-15-palomino-pl/LTFu_grXQcW0Qb7VSyYmQw?srsltid=AfmBOorXGXPm4FmWldz1ZbiUFdFLbwSR-VmcbpuA9ibAcd7h5utaPRcX",
+      deliveroo: "https://deliveroo.co.uk/menu/Bath/westbury-leigh/zia-pizza-westbury-15-palomino-pl?srsltid=AfmBOooePO6aKZE5BW4WWFq7fYZ-gneAw5l2cJoualOgxmayCsEFsigc"
+    },
+    socialMedia: {
+      facebook: "https://www.facebook.com/share/16K5gAssg7/?mibextid=wwXIfr",
+      instagram: "https://www.instagram.com/ziapizza_westbury?igsh=dTdrbjM4MjVqNThi"
     },
     coordinates: {
       lat: 51.2604,
@@ -86,9 +93,12 @@ export const locations: Location[] = [
     orderUrl: "/order/salisbury",
     bookingUrl: "/book/salisbury",
     deliveryPartners: {
-      uberEats: "https://ubereats.com/gb/salisbury/zia-pizza",
-      justEat: "https://justeat.co.uk/restaurants-zia-pizza-salisbury",
-      deliveroo: "https://deliveroo.co.uk/menu/salisbury/zia-pizza"
+      uberEats: "https://www.ubereats.com/gb/store/zia-pizza-salisbury/ZKw0-eTvTOuXhb6bwZkLyg?srsltid=AfmBOoptJayJ3W-g7f48y5Hbr2-FtXHNVJT7PA4pcfGAM_2rmHzRlojt",
+      justEat: "https://www.just-eat.co.uk/restaurants-zia-pizza-salisbury/menu"
+    },
+    socialMedia: {
+      facebook: "https://www.facebook.com/share/19tVr2C1Gy/?mibextid=wwXIfr",
+      instagram: "https://www.instagram.com/ziapizza.salisbury?igsh=dGdzcnh3Mm96M2c="
     },
     coordinates: {
       lat: 51.0693,
@@ -120,9 +130,12 @@ export const locations: Location[] = [
     orderUrl: "/order/trowbridge",
     bookingUrl: "/book/trowbridge",
     deliveryPartners: {
-      uberEats: "https://ubereats.com/gb/trowbridge/zia-pizza",
-      justEat: "https://justeat.co.uk/restaurants-zia-pizza-trowbridge",
-      deliveroo: "https://deliveroo.co.uk/menu/trowbridge/zia-pizza"
+      uberEats: "https://www.ubereats.com/gb/store/zia-pizza-the-lamb-on-the-strand/fiPax3kyUwyzKU9OFob5YA?srsltid=AfmBOopQKON2wD12Y3_ABugD4TGIUbZj1zQlteEx5uPQVNf7KnTCJApD",
+      justEat: "https://www.just-eat.co.uk/restaurants-zia-pizza---trowbridge-trowbridge/menu"
+    },
+    socialMedia: {
+      facebook: "https://www.facebook.com/share/1CkvTGuMtM/?mibextid=wwXIfr",
+      instagram: "https://www.instagram.com/ziapizza_lambonthestrand?igsh=azY5d3NhMG5ma2pq"
     },
     coordinates: {
       lat: 51.3188,
