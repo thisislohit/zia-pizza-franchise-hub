@@ -1,21 +1,17 @@
 import { Button } from "@/components/ui/button";
-import pizzaHeroVideo from "@/assets/pizza-hero-1.mp4";
+import homePageImage from "@/assets/home_page/image1.jpg";
 
 const HeroSection = () => {
 
   return (
     <section className="relative h-[90vh] overflow-hidden">
-      {/* Video Background */}
+      {/* Image Background */}
       <div className="absolute inset-0 w-full h-full">
-        <video
+        <img
+          src={homePageImage}
+          alt="Zia Pizza Home"
           className="w-full h-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-        >
-          <source src={pizzaHeroVideo} type="video/mp4" />
-        </video>
+        />
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
 

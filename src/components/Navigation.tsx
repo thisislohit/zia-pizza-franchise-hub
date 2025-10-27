@@ -107,6 +107,7 @@ const Navigation = () => {
     { href: "/locations", label: "Locations" },
     { href: "/deals", label: "Deals" },
     { href: "/christmas", label: "Christmas" },
+    { href: "/blog", label: "Blog" },
     { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact" }
   ];

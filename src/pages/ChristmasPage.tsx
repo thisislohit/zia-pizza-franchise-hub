@@ -1,12 +1,157 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Clock, Users, Star, Gift, Phone, MapPin, ChefHat, Wine, Utensils } from "lucide-react";
+import { Calendar, Clock, Users, Star, Gift, Phone, MapPin, ChefHat, Wine, Utensils, X } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Snowfall from 'react-snowfall';
+import { useState, useEffect } from "react";
 
 const ChristmasPage = () => {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [showSpecialMenu, setShowSpecialMenu] = useState(false);
+  const [api, setApi] = useState<any>(null);
+  const [current, setCurrent] = useState(0);
+  
+  // Check if today is December 25th, 2025
+  const isDecember25 = () => {
+    const today = new Date();
+    return today.getDate() === 25 && 
+           today.getMonth() === 11 && // December is month 11 (0-indexed)
+           today.getFullYear() === 2025;
+  };
+  
+  useEffect(() => {
+    setShowSpecialMenu(isDecember25());
+  }, []);
+
+  // Auto-play carousel every 3 seconds
+  useEffect(() => {
+    if (!api) return;
+
+    const totalSlides = showSpecialMenu ? 4 : 3;
+
+    const interval = setInterval(() => {
+      if (api.canScrollNext()) {
+        api.scrollNext();
+      } else {
+        api.scrollTo(0); // Reset to first slide
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [api, showSpecialMenu]);
+
+  // Track carousel slide changes
+  useEffect(() => {
+    if (!api) return;
+
+    const updateSlide = () => {
+      setCurrent(api.selectedScrollSnap());
+    };
+
+    api.on('select', updateSlide);
+    updateSlide(); // Set initial slide
+
+    return () => {
+      api.off('select', updateSlide);
+    };
+  }, [api]);
+
+  useEffect(() => {
+    // Check if popup has been shown before in this browser session
+    const popupShown = sessionStorage.getItem('christmas_popup_shown');
+    
+    if (!popupShown) {
+      // Show popup after 1 second when page loads
+      const timer = setTimeout(() => {
+        setIsPopupOpen(true);
+        // Mark popup as shown in session storage
+        sessionStorage.setItem('christmas_popup_shown', 'true');
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
   return (
     <div className="pt-16 relative">
+      {/* Christmas Popup Modal */}
+      <Dialog open={isPopupOpen} onOpenChange={handleClosePopup}>
+        <DialogContent className="max-w-2xl bg-black border-4 border-white rounded-2xl text-white">
+          <div className="text-center space-y-6">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <span className="text-4xl animate-bounce">🎄</span>
+            </div>
+            
+            <h2 className="font-display text-3xl font-bold text-white">
+              It's the Season to Feast, Laugh & Be Merry — the Italian Way!
+            </h2>
+            
+            <p className="text-lg text-white/80 leading-relaxed">
+              Step inside Zia Pizza and let the aroma of stone-baked joy, mulled wine, and Christmas magic wrap around you.
+            </p>
+
+            <div className="bg-white/10 rounded-xl p-6 border border-white/20">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div className="text-center">
+                  <p className="text-sm text-white/70 mb-1">Adults</p>
+                  <p className="text-2xl font-bold text-red-500">£55</p>
+                </div>
+                <div className="text-center border-x border-white/30">
+                  <p className="text-sm text-white/70 mb-1">Kids 2 Courses</p>
+                  <p className="text-2xl font-bold text-green-400">£15.95</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-sm text-white/70 mb-1">Kids 3 Courses</p>
+                  <p className="text-2xl font-bold text-green-400">£19.95</p>
+                </div>
+              </div>
+              
+              <p className="text-sm text-white/70 mb-2">Indulge in:</p>
+              <div className="flex flex-wrap gap-2 justify-center text-sm">
+                <Badge variant="outline" className="border-white/50 text-white">Roast Turkey Roulade</Badge>
+                <Badge variant="outline" className="border-white/50 text-white">Porchetta with Festive Spices</Badge>
+                <Badge variant="outline" className="border-white/50 text-white">Truffle Lasagne</Badge>
+                <Badge variant="outline" className="border-white/50 text-white">Mulled Wine Tiramisu</Badge>
+              </div>
+            </div>
+
+            <div className="text-center space-y-3">
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-2xl">✨</span>
+                <p className="text-white/80">
+                  Golden lights, laughter, and Italian warmth await.
+                </p>
+              </div>
+              
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-2xl">🎁</span>
+                <p className="text-white/80 font-semibold">
+                  Tables are vanishing faster than snowflakes — book yours before Santa grabs the last one!
+                </p>
+              </div>
+            </div>
+
+            <Button 
+              size="lg" 
+              className="w-full bg-red-600 hover:bg-red-700 text-white font-bold text-lg py-6"
+              onClick={() => {
+                setIsPopupOpen(false);
+                window.open('https://www.eposhybrid.uk/index.php/online-table-booking/SUhBQkJW', '_blank');
+              }}
+            >
+              <Calendar className="w-5 h-5 mr-2" />
+              Book Your Table Now
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       {/* Snowfall Effect for entire page */}
       <Snowfall
         snowflakeCount={313}
@@ -30,9 +175,16 @@ const ChristmasPage = () => {
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
               <span className="text-red-600">Christmas</span> <span className="text-green-600">2025</span> at <span className="text-red-600">Zia Pizza</span>
             </h1>
-            <p className="text-xl text-white max-w-3xl mx-auto leading-relaxed font-raleway">
+            <p className="text-xl text-white max-w-3xl mx-auto leading-relaxed font-raleway mb-6">
               A Festive Feast in Trowbridge - Celebrate the magic of the season with an unforgettable Christmas lunch
             </p>
+            {/* Test Button - Remove in production */}
+            <Button 
+              onClick={() => setShowSpecialMenu(!showSpecialMenu)}
+              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold"
+            >
+  {showSpecialMenu ? 'Show Festive Menu' : 'Show Dec 25 Menu'}
+            </Button>
           </div>
         </div>
       </section>
@@ -43,45 +195,98 @@ const ChristmasPage = () => {
           {/* Pricing Section */}
           <div className="text-center mb-16">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-8">
-              Christmas <span className="text-primary">Festive Menu</span>
+              {showSpecialMenu ? (
+                <>
+                  Christmas Day <span className="text-primary">Special Menu</span>
+                </>
+              ) : (
+                <>
+                  Christmas <span className="text-primary">Festive Menu</span>
+                </>
+              )}
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
-              <Card className="card-premium border-red-200 bg-gradient-to-br from-red-50 to-red-100 relative overflow-hidden group hover:shadow-2xl transition-all duration-300">
-                <div className="absolute top-4 right-4">
-                  <Badge className="bg-red-600 text-white font-bold animate-pulse">
-                    LIMITED TIME
-                  </Badge>
-                </div>
-                <CardContent className="p-8 text-center">
-                  <div className="mb-6">
-                    <Gift className="w-16 h-16 text-red-600 mx-auto mb-4 animate-bounce" />
-                    <h3 className="font-display text-3xl font-bold text-red-700 mb-2">2 Courses</h3>
-                  </div>
-                  <div className="text-6xl font-bold text-red-600 mb-4">£35</div>
-                  <p className="text-black mb-6">
-                    Perfect for a festive lunch with starter and main course
-                  </p>
-                </CardContent>
-              </Card>
+              {showSpecialMenu ? (
+                // December 25 Special Menu Pricing
+                <>
+                  <Card className="card-premium border-red-200 bg-gradient-to-br from-red-50 to-red-100 relative overflow-hidden group hover:shadow-2xl transition-all duration-300">
+                    <div className="absolute top-4 right-4">
+                      <Badge className="bg-red-600 text-white font-bold animate-pulse">
+                        ADULTS £55 PER HEAD
+                      </Badge>
+                    </div>
+                    <CardContent className="p-8 text-center">
+                      <div className="mb-6">
+                        <Gift className="w-16 h-16 text-red-600 mx-auto mb-4 animate-bounce" />
+                        <h3 className="font-display text-3xl font-bold text-red-700 mb-2">Adults Menu</h3>
+                      </div>
+                      <div className="text-6xl font-bold text-red-600 mb-4">£55</div>
+                      <p className="text-black mb-6">
+                        Full Christmas menu with starter, main, dessert & sides
+                      </p>
+                    </CardContent>
+                  </Card>
 
-              <Card className="card-premium border-green-200 bg-gradient-to-br from-green-50 to-green-100 relative overflow-hidden group hover:shadow-2xl transition-all duration-300">
-                <div className="absolute top-4 right-4">
-                  <Badge className="bg-green-600 text-white font-bold">
-                    MOST POPULAR
-                  </Badge>
-                </div>
-                <CardContent className="p-8 text-center">
-                  <div className="mb-6">
-                    <Star className="w-16 h-16 text-green-600 mx-auto mb-4 animate-pulse" />
-                    <h3 className="font-display text-3xl font-bold text-green-700 mb-2">3 Courses</h3>
-                  </div>
-                  <div className="text-6xl font-bold text-green-600 mb-4">£42</div>
-                  <p className="text-black mb-6">
-                    Complete festive experience with starter, main, and dessert
-                  </p>
-                </CardContent>
-              </Card>
+                  <Card className="card-premium border-green-200 bg-gradient-to-br from-green-50 to-green-100 relative overflow-hidden group hover:shadow-2xl transition-all duration-300">
+                    <div className="absolute top-4 right-4">
+                      <Badge className="bg-green-600 text-white font-bold">
+                        KIDS MENU
+                      </Badge>
+                    </div>
+                    <CardContent className="p-8 text-center">
+                      <div className="mb-6">
+                        <Star className="w-16 h-16 text-green-600 mx-auto mb-4 animate-pulse" />
+                        <h3 className="font-display text-3xl font-bold text-green-700 mb-2">Kids Menu</h3>
+                      </div>
+                      <div className="text-4xl font-bold text-green-600 mb-2">2 Courses: £15.95</div>
+                      <div className="text-4xl font-bold text-green-600 mb-4">3 Courses: £19.95</div>
+                      <p className="text-black mb-6">
+                        Special kids festive meals
+                      </p>
+                    </CardContent>
+                  </Card>
+                </>
+              ) : (
+                // Regular Christmas Menu Pricing
+                <>
+                  <Card className="card-premium border-red-200 bg-gradient-to-br from-red-50 to-red-100 relative overflow-hidden group hover:shadow-2xl transition-all duration-300">
+                    <div className="absolute top-4 right-4">
+                      <Badge className="bg-red-600 text-white font-bold animate-pulse">
+                        LIMITED TIME
+                      </Badge>
+                    </div>
+                    <CardContent className="p-8 text-center">
+                      <div className="mb-6">
+                        <Gift className="w-16 h-16 text-red-600 mx-auto mb-4 animate-bounce" />
+                        <h3 className="font-display text-3xl font-bold text-red-700 mb-2">2 Courses</h3>
+                      </div>
+                      <div className="text-6xl font-bold text-red-600 mb-4">£35</div>
+                      <p className="text-black mb-6">
+                        Perfect for a festive lunch with starter and main course
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="card-premium border-green-200 bg-gradient-to-br from-green-50 to-green-100 relative overflow-hidden group hover:shadow-2xl transition-all duration-300">
+                    <div className="absolute top-4 right-4">
+                      <Badge className="bg-green-600 text-white font-bold">
+                        MOST POPULAR
+                      </Badge>
+                    </div>
+                    <CardContent className="p-8 text-center">
+                      <div className="mb-6">
+                        <Star className="w-16 h-16 text-green-600 mx-auto mb-4 animate-pulse" />
+                        <h3 className="font-display text-3xl font-bold text-green-700 mb-2">3 Courses</h3>
+                      </div>
+                      <div className="text-6xl font-bold text-green-600 mb-4">£42</div>
+                      <p className="text-black mb-6">
+                        Complete festive experience with starter, main, and dessert
+                      </p>
+                    </CardContent>
+                  </Card>
+                </>
+              )}
             </div>
 
             <div className="bg-white rounded-lg p-6 shadow-md max-w-2xl mx-auto mb-8">
@@ -91,8 +296,8 @@ const ChristmasPage = () => {
             </div>
           </div>
 
-          {/* Menu Sections */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+          {/* Menu Sections - Desktop Grid */}
+          <div className={`hidden md:grid grid-cols-1 lg:${showSpecialMenu ? 'grid-cols-4' : 'grid-cols-3'} gap-8 mb-16`}>
             {/* Starters */}
             <Card className="card-premium">
               <CardContent className="p-6">
@@ -101,10 +306,31 @@ const ChristmasPage = () => {
                   <h3 className="font-display text-2xl font-bold text-foreground">Starters</h3>
                 </div>
                 <div className="space-y-4">
-                  <div className="border-l-4 border-red-500 pl-4">
-                    <h4 className="font-semibold text-foreground">Roast Pumpkin & Sage Soup</h4>
-                    <p className="text-sm text-muted-foreground">Creamy seasonal soup with fresh herbs</p>
-                  </div>
+                  {showSpecialMenu ? (
+                    // December 25 Special Menu
+                    <>
+                      <div className="border-l-4 border-red-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Roast Pumpkin & Sage Soup</h4>
+                        <p className="text-sm text-muted-foreground">Served with focaccia croutons</p>
+                      </div>
+                      <div className="border-l-4 border-red-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Burrata with Roasted Grapes & Walnuts</h4>
+                      </div>
+                      <div className="border-l-4 border-red-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Chicken Liver Parfait</h4>
+                        <p className="text-sm text-muted-foreground">With brioche & cranberry relish</p>
+                      </div>
+                      <div className="border-l-4 border-red-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Prawn & Crayfish Cocktail</h4>
+                      </div>
+                    </>
+                  ) : (
+                    // Regular Christmas Menu
+                    <>
+                      <div className="border-l-4 border-red-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Roast Pumpkin & Sage Soup</h4>
+                        <p className="text-sm text-muted-foreground">Creamy seasonal soup with fresh herbs</p>
+                      </div>
                   <div className="border-l-4 border-red-500 pl-4">
                     <h4 className="font-semibold text-foreground">Burrata with Roasted Grapes & Walnuts</h4>
                     <p className="text-sm text-muted-foreground">Fresh Italian cheese with seasonal accompaniments</p>
@@ -121,9 +347,41 @@ const ChristmasPage = () => {
                     <h4 className="font-semibold text-foreground">Smoked Salmon & Pickled Cucumber</h4>
                     <p className="text-sm text-muted-foreground">Premium salmon with crisp accompaniments</p>
                   </div>
+                    </>
+                  )}
                 </div>
               </CardContent>
             </Card>
+
+            {/* December 25 Special Sides Section - Second Column */}
+            {showSpecialMenu && (
+              <Card className="card-premium">
+                <CardContent className="p-6">
+                  <div className="text-center mb-6">
+                    <Utensils className="w-12 h-12 text-yellow-600 mx-auto mb-3" />
+                    <h3 className="font-display text-2xl font-bold text-foreground">Sides (£5 each)</h3>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="border-l-4 border-yellow-500 pl-4">
+                      <h4 className="font-semibold text-foreground">Pigs in Blankets</h4>
+                      <p className="text-sm text-muted-foreground">Classic festive sausage wrapped in bacon</p>
+                    </div>
+                    <div className="border-l-4 border-yellow-500 pl-4">
+                      <h4 className="font-semibold text-foreground">Cauliflower & Broccoli Cheese</h4>
+                      <p className="text-sm text-muted-foreground">Creamy cheesy vegetables</p>
+                    </div>
+                    <div className="border-l-4 border-yellow-500 pl-4">
+                      <h4 className="font-semibold text-foreground">Braised Red Cabbage</h4>
+                      <p className="text-sm text-muted-foreground">Slow-cooked seasonal favorite</p>
+                    </div>
+                    <div className="border-l-4 border-yellow-500 pl-4">
+                      <h4 className="font-semibold text-foreground">Seasonal Vegetables</h4>
+                      <p className="text-sm text-muted-foreground">Fresh garden vegetables</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
 
             {/* Mains */}
             <Card className="card-premium">
@@ -133,26 +391,50 @@ const ChristmasPage = () => {
                   <h3 className="font-display text-2xl font-bold text-foreground">Mains</h3>
                 </div>
                 <div className="space-y-4">
-                  <div className="border-l-4 border-green-500 pl-4">
-                    <h4 className="font-semibold text-foreground">Roast Turkey Roulade</h4>
-                    <p className="text-sm text-muted-foreground">Traditional Christmas centerpiece</p>
-                  </div>
-                  <div className="border-l-4 border-green-500 pl-4">
-                    <h4 className="font-semibold text-foreground">Porchetta with Festive Spices</h4>
-                    <p className="text-sm text-muted-foreground">Italian-style roast pork with herbs</p>
-                  </div>
-                  <div className="border-l-4 border-green-500 pl-4">
-                    <h4 className="font-semibold text-foreground">Roast Topside of Beef</h4>
-                    <p className="text-sm text-muted-foreground">Premium beef with rich gravy</p>
-                  </div>
-                  <div className="border-l-4 border-green-500 pl-4">
-                    <h4 className="font-semibold text-foreground">Wild Mushroom & Truffle Lasagne (V)</h4>
-                    <p className="text-sm text-muted-foreground">Vegetarian option with luxurious flavors</p>
-                  </div>
-                  <div className="border-l-4 border-green-500 pl-4">
-                    <h4 className="font-semibold text-foreground">Pan-Seared Sea Bass</h4>
-                    <p className="text-sm text-muted-foreground">Fresh fish with seasonal vegetables</p>
-                  </div>
+                  {showSpecialMenu ? (
+                    // December 25 Special Menu
+                    <>
+                      <div className="border-l-4 border-green-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Roast Turkey Roulade</h4>
+                        <p className="text-sm text-muted-foreground">With pancetta, chestnut & sage stuffing</p>
+                      </div>
+                      <div className="border-l-4 border-green-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Porchetta with Festive Spices</h4>
+                        <p className="text-sm text-muted-foreground">With apple mostarda</p>
+                      </div>
+                      <div className="border-l-4 border-green-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Roast Topside of Beef</h4>
+                        <p className="text-sm text-muted-foreground">With horseradish & red wine jus</p>
+                      </div>
+                      <div className="border-l-4 border-green-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Wild Mushroom & Truffle Lasagne (V)</h4>
+                      </div>
+                    </>
+                  ) : (
+                    // Regular Christmas Menu
+                    <>
+                      <div className="border-l-4 border-green-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Roast Turkey Roulade</h4>
+                        <p className="text-sm text-muted-foreground">Traditional Christmas centerpiece</p>
+                      </div>
+                      <div className="border-l-4 border-green-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Porchetta with Festive Spices</h4>
+                        <p className="text-sm text-muted-foreground">Italian-style roast pork with herbs</p>
+                      </div>
+                      <div className="border-l-4 border-green-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Roast Topside of Beef</h4>
+                        <p className="text-sm text-muted-foreground">Premium beef with rich gravy</p>
+                      </div>
+                      <div className="border-l-4 border-green-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Wild Mushroom & Truffle Lasagne (V)</h4>
+                        <p className="text-sm text-muted-foreground">Vegetarian option with luxurious flavors</p>
+                      </div>
+                      <div className="border-l-4 border-green-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Pan-Seared Sea Bass</h4>
+                        <p className="text-sm text-muted-foreground">Fresh fish with seasonal vegetables</p>
+                      </div>
+                    </>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -165,29 +447,217 @@ const ChristmasPage = () => {
                   <h3 className="font-display text-2xl font-bold text-foreground">Desserts</h3>
                 </div>
                 <div className="space-y-4">
-                  <div className="border-l-4 border-red-500 pl-4">
-                    <h4 className="font-semibold text-foreground">Panettone Bread & Butter Pudding</h4>
-                    <p className="text-sm text-muted-foreground">Italian Christmas classic reimagined</p>
-                  </div>
-                  <div className="border-l-4 border-red-500 pl-4">
-                    <h4 className="font-semibold text-foreground">Traditional Christmas Pudding with Brandy</h4>
-                    <p className="text-sm text-muted-foreground">Classic festive dessert with warm sauce</p>
-                  </div>
-                  <div className="border-l-4 border-red-500 pl-4">
-                    <h4 className="font-semibold text-foreground">Chocolate & Hazelnut Torte (GF)</h4>
-                    <p className="text-sm text-muted-foreground">Gluten-free indulgence</p>
-                  </div>
-                  <div className="border-l-4 border-red-500 pl-4">
-                    <h4 className="font-semibold text-foreground">Mulled Wine Tiramisu</h4>
-                    <p className="text-sm text-muted-foreground">Festive twist on Italian favorite</p>
-                  </div>
-                  <div className="border-l-4 border-red-500 pl-4">
-                    <h4 className="font-semibold text-foreground">Winter-Spiced Poached Pear</h4>
-                    <p className="text-sm text-muted-foreground">Light and elegant seasonal dessert</p>
-                  </div>
+                  {showSpecialMenu ? (
+                    // December 25 Special Menu
+                    <>
+                      <div className="border-l-4 border-red-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Panettone Bread & Butter Pudding</h4>
+                      </div>
+                      <div className="border-l-4 border-red-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Tiramisu with Mulled Wine Syrup</h4>
+                      </div>
+                      <div className="border-l-4 border-red-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Traditional Christmas Pudding</h4>
+                        <p className="text-sm text-muted-foreground">With brandy</p>
+                      </div>
+                      <div className="border-l-4 border-red-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Chocolate & Hazelnut Torte (GF)</h4>
+                      </div>
+                    </>
+                  ) : (
+                    // Regular Christmas Menu
+                    <>
+                      <div className="border-l-4 border-red-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Panettone Bread & Butter Pudding</h4>
+                        <p className="text-sm text-muted-foreground">Italian Christmas classic reimagined</p>
+                      </div>
+                      <div className="border-l-4 border-red-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Traditional Christmas Pudding with Brandy</h4>
+                        <p className="text-sm text-muted-foreground">Classic festive dessert with warm sauce</p>
+                      </div>
+                      <div className="border-l-4 border-red-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Chocolate & Hazelnut Torte (GF)</h4>
+                        <p className="text-sm text-muted-foreground">Gluten-free indulgence</p>
+                      </div>
+                      <div className="border-l-4 border-red-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Mulled Wine Tiramisu</h4>
+                        <p className="text-sm text-muted-foreground">Festive twist on Italian favorite</p>
+                      </div>
+                      <div className="border-l-4 border-red-500 pl-4">
+                        <h4 className="font-semibold text-foreground">Winter-Spiced Poached Pear</h4>
+                        <p className="text-sm text-muted-foreground">Light and elegant seasonal dessert</p>
+                      </div>
+                    </>
+                  )}
                 </div>
               </CardContent>
             </Card>
+          </div>
+
+          {/* Mobile Carousel View - Auto-scrolling */}
+          <div className="md:hidden mb-16">
+            <Carousel 
+              className="w-full" 
+              opts={{ 
+                loop: true, 
+                align: "start"
+              }}
+              setApi={setApi}
+            >
+              <CarouselContent>
+                {/* Starters Card */}
+                <CarouselItem>
+                  <Card className="card-premium h-full">
+                    <CardContent className="p-6">
+                      <div className="text-center mb-6">
+                        <Utensils className="w-12 h-12 text-red-600 mx-auto mb-3" />
+                        <h3 className="font-display text-2xl font-bold text-foreground">Starters</h3>
+                      </div>
+                      <div className="space-y-4">
+                        <div className="border-l-4 border-red-500 pl-4">
+                          <h4 className="font-semibold text-foreground">Roast Pumpkin & Sage Soup</h4>
+                          <p className="text-sm text-muted-foreground">Creamy seasonal soup with fresh herbs</p>
+                        </div>
+                        <div className="border-l-4 border-red-500 pl-4">
+                          <h4 className="font-semibold text-foreground">Burrata with Roasted Grapes & Walnuts</h4>
+                          <p className="text-sm text-muted-foreground">Fresh Italian cheese with seasonal accompaniments</p>
+                        </div>
+                        <div className="border-l-4 border-red-500 pl-4">
+                          <h4 className="font-semibold text-foreground">Chicken Liver Parfait</h4>
+                          <p className="text-sm text-muted-foreground">Rich and smooth with festive spices</p>
+                        </div>
+                        <div className="border-l-4 border-red-500 pl-4">
+                          <h4 className="font-semibold text-foreground">Prawn & Crayfish Cocktail</h4>
+                          <p className="text-sm text-muted-foreground">Fresh seafood with tangy cocktail sauce</p>
+                        </div>
+                        <div className="border-l-4 border-red-500 pl-4">
+                          <h4 className="font-semibold text-foreground">Smoked Salmon & Pickled Cucumber</h4>
+                          <p className="text-sm text-muted-foreground">Premium salmon with crisp accompaniments</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+
+                {/* Mains Card */}
+                <CarouselItem>
+                  <Card className="card-premium h-full">
+                    <CardContent className="p-6">
+                      <div className="text-center mb-6">
+                        <ChefHat className="w-12 h-12 text-green-600 mx-auto mb-3" />
+                        <h3 className="font-display text-2xl font-bold text-foreground">Mains</h3>
+                      </div>
+                      <div className="space-y-4">
+                        <div className="border-l-4 border-green-500 pl-4">
+                          <h4 className="font-semibold text-foreground">Roast Turkey Roulade</h4>
+                          <p className="text-sm text-muted-foreground">Traditional Christmas centerpiece</p>
+                        </div>
+                        <div className="border-l-4 border-green-500 pl-4">
+                          <h4 className="font-semibold text-foreground">Porchetta with Festive Spices</h4>
+                          <p className="text-sm text-muted-foreground">Italian-style roast pork with herbs</p>
+                        </div>
+                        <div className="border-l-4 border-green-500 pl-4">
+                          <h4 className="font-semibold text-foreground">Roast Topside of Beef</h4>
+                          <p className="text-sm text-muted-foreground">Premium beef with rich gravy</p>
+                        </div>
+                        <div className="border-l-4 border-green-500 pl-4">
+                          <h4 className="font-semibold text-foreground">Wild Mushroom & Truffle Lasagne (V)</h4>
+                          <p className="text-sm text-muted-foreground">Vegetarian option with luxurious flavors</p>
+                        </div>
+                        <div className="border-l-4 border-green-500 pl-4">
+                          <h4 className="font-semibold text-foreground">Pan-Seared Sea Bass</h4>
+                          <p className="text-sm text-muted-foreground">Fresh fish with seasonal vegetables</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+
+                {/* Desserts Card */}
+                <CarouselItem>
+                  <Card className="card-premium h-full">
+                    <CardContent className="p-6">
+                      <div className="text-center mb-6">
+                        <Star className="w-12 h-12 text-red-600 mx-auto mb-3" />
+                        <h3 className="font-display text-2xl font-bold text-foreground">Desserts</h3>
+                      </div>
+                      <div className="space-y-4">
+                        <div className="border-l-4 border-red-500 pl-4">
+                          <h4 className="font-semibold text-foreground">Panettone Bread & Butter Pudding</h4>
+                          <p className="text-sm text-muted-foreground">Italian Christmas classic reimagined</p>
+                        </div>
+                        <div className="border-l-4 border-red-500 pl-4">
+                          <h4 className="font-semibold text-foreground">Traditional Christmas Pudding with Brandy</h4>
+                          <p className="text-sm text-muted-foreground">Classic festive dessert with warm sauce</p>
+                        </div>
+                        <div className="border-l-4 border-red-500 pl-4">
+                          <h4 className="font-semibold text-foreground">Chocolate & Hazelnut Torte (GF)</h4>
+                          <p className="text-sm text-muted-foreground">Gluten-free indulgence</p>
+                        </div>
+                        <div className="border-l-4 border-red-500 pl-4">
+                          <h4 className="font-semibold text-foreground">Mulled Wine Tiramisu</h4>
+                          <p className="text-sm text-muted-foreground">Festive twist on Italian favorite</p>
+                        </div>
+                        <div className="border-l-4 border-red-500 pl-4">
+                          <h4 className="font-semibold text-foreground">Winter-Spiced Poached Pear</h4>
+                          <p className="text-sm text-muted-foreground">Light and elegant seasonal dessert</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+
+                {/* Sides Card - Only show on Dec 25 */}
+                {showSpecialMenu && (
+                  <CarouselItem>
+                    <Card className="card-premium h-full">
+                      <CardContent className="p-6">
+                        <div className="text-center mb-6">
+                          <Utensils className="w-12 h-12 text-yellow-600 mx-auto mb-3" />
+                          <h3 className="font-display text-2xl font-bold text-foreground">Sides (£5 each)</h3>
+                        </div>
+                        <div className="space-y-4">
+                          <div className="border-l-4 border-yellow-500 pl-4">
+                            <h4 className="font-semibold text-foreground">Pigs in Blankets</h4>
+                            <p className="text-sm text-muted-foreground">Classic festive sausage wrapped in bacon</p>
+                          </div>
+                          <div className="border-l-4 border-yellow-500 pl-4">
+                            <h4 className="font-semibold text-foreground">Cauliflower & Broccoli Cheese</h4>
+                            <p className="text-sm text-muted-foreground">Creamy cheesy vegetables</p>
+                          </div>
+                          <div className="border-l-4 border-yellow-500 pl-4">
+                            <h4 className="font-semibold text-foreground">Braised Red Cabbage</h4>
+                            <p className="text-sm text-muted-foreground">Slow-cooked seasonal favorite</p>
+                          </div>
+                          <div className="border-l-4 border-yellow-500 pl-4">
+                            <h4 className="font-semibold text-foreground">Seasonal Vegetables</h4>
+                            <p className="text-sm text-muted-foreground">Fresh garden vegetables</p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                )}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+            
+            {/* Indicator Dots */}
+            <div className="flex justify-center gap-2 mt-4">
+              {[0, 1, 2, ...(showSpecialMenu ? [3] : [])].map((index) => (
+                <button
+                  key={index}
+                  onClick={() => api?.scrollTo(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    current === index 
+                      ? 'bg-primary w-8' 
+                      : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Festive Drinks */}

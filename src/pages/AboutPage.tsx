@@ -2,8 +2,51 @@ import { MapPin, Clock, Users, Award, Heart, Pizza, ChefHat, Coffee, Utensils, T
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { locations } from "@/data/locations";
+import aboutUsImage from "@/assets/about_us/100004.jpg";
+import { useState, useEffect } from "react";
+import image1 from "@/assets/about_us/100006.jpg";
+import image2 from "@/assets/about_us/About Us - Calzone.jpg";
+import image3 from "@/assets/about_us/About Us - Lasagne.png";
+import image4 from "@/assets/about_us/Offer - Tuesday Bogojpg.jpg";
 
 const AboutPage = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const features = [
+    {
+      icon: <Leaf className="w-6 h-6 text-secondary" />,
+      title: "Freshness First",
+      description: "We use only fresh, premium ingredients in every single pizza.",
+      image: image1
+    },
+    {
+      icon: <Home className="w-6 h-6 text-secondary" />,
+      title: "Cozy Vibes",
+      description: "Our dining experience is always cozy and family-friendly.",
+      image: image2
+    },
+    {
+      icon: <Zap className="w-6 h-6 text-secondary" />,
+      title: "Easy & Convenient",
+      description: "We offer easy takeaway and online ordering options.",
+      image: image3
+    },
+    {
+      icon: <Heart className="w-6 h-6 text-secondary" />,
+      title: "Service with a Smile",
+      description: "Our friendly team is ready to welcome you at all three branches.",
+      image: image4
+    }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % features.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [features.length]);
+
   return (
     <div className="pt-16">
       {/* Hero Section */}
@@ -40,7 +83,7 @@ const AboutPage = () => {
             <div className="relative">
               <div className="aspect-square rounded-2xl overflow-hidden">
                 <img 
-                  src="/about_us.jpg" 
+                  src={aboutUsImage} 
                   alt="Zia Pizza - Made with Love" 
                   className="w-full h-full object-cover"
                 />
@@ -130,62 +173,46 @@ const AboutPage = () => {
             </h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="text-center">
-              <CardHeader>
-                <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Leaf className="w-6 h-6 text-secondary" />
+          <div className="max-w-4xl mx-auto">
+            <div className="relative">
+              {/* Image with Overlay Text */}
+              <div className="aspect-video rounded-2xl overflow-hidden relative">
+                <img 
+                  src={features[currentIndex].image} 
+                  alt={features[currentIndex].title}
+                  className="w-full h-full object-cover transition-opacity duration-1000"
+                />
+                
+                {/* Dark Overlay on Full Image */}
+                <div className="absolute inset-0 bg-black/50"></div>
+                
+                {/* Text Content Centered */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center w-full max-w-2xl mx-auto p-8">
+                    <h3 className="text-white text-3xl font-bold mb-4">
+                      {features[currentIndex].title}
+                    </h3>
+                    <p className="text-white/90 text-lg">
+                      {features[currentIndex].description}
+                    </p>
+                  </div>
                 </div>
-                <CardTitle className="text-xl">Freshness First</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  We use only fresh, premium ingredients in every single pizza.
-                </p>
-              </CardContent>
-            </Card>
 
-            <Card className="text-center">
-              <CardHeader>
-                <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Home className="w-6 h-6 text-secondary" />
+                {/* Dots Indicator Over Image */}
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex justify-center gap-2">
+                  {features.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentIndex(index)}
+                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        index === currentIndex ? 'bg-white w-8' : 'bg-white/50'
+                      }`}
+                      aria-label={`Go to slide ${index + 1}`}
+                    />
+                  ))}
                 </div>
-                <CardTitle className="text-xl">Cozy Vibes</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Our dining experience is always cozy and family-friendly.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center">
-              <CardHeader>
-                <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Zap className="w-6 h-6 text-secondary" />
-                </div>
-                <CardTitle className="text-xl">Easy & Convenient</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  We offer easy takeaway and online ordering options.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center">
-              <CardHeader>
-                <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Heart className="w-6 h-6 text-secondary" />
-                </div>
-                <CardTitle className="text-xl">Service with a Smile</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Our friendly team is ready to welcome you at all three branches.
-                </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </div>
       </section>
