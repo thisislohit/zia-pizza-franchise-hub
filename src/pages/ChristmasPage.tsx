@@ -25,22 +25,7 @@ const ChristmasPage = () => {
     setShowSpecialMenu(isDecember25());
   }, []);
 
-  // Auto-play carousel every 3 seconds
-  useEffect(() => {
-    if (!api) return;
-
-    const totalSlides = showSpecialMenu ? 4 : 3;
-
-    const interval = setInterval(() => {
-      if (api.canScrollNext()) {
-        api.scrollNext();
-      } else {
-        api.scrollTo(0); // Reset to first slide
-      }
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [api, showSpecialMenu]);
+  // Manual scrolling only - no auto-play
 
   // Track carousel slide changes
   useEffect(() => {
@@ -82,56 +67,56 @@ const ChristmasPage = () => {
     <div className="pt-16 relative">
       {/* Christmas Popup Modal */}
       <Dialog open={isPopupOpen} onOpenChange={handleClosePopup}>
-        <DialogContent className="max-w-2xl bg-black border-4 border-white rounded-2xl text-white">
-          <div className="text-center space-y-6">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <span className="text-4xl animate-bounce">🎄</span>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-black border-4 border-white rounded-2xl text-white p-4 md:p-6">
+          <div className="text-center space-y-4 md:space-y-6">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <span className="text-3xl md:text-4xl animate-bounce">🎄</span>
             </div>
             
-            <h2 className="font-display text-3xl font-bold text-white">
+            <h2 className="font-display text-xl md:text-3xl font-bold text-white px-2">
               It's the Season to Feast, Laugh & Be Merry — the Italian Way!
             </h2>
             
-            <p className="text-lg text-white/80 leading-relaxed">
+            <p className="text-sm md:text-lg text-white/80 leading-relaxed px-2">
               Step inside Zia Pizza and let the aroma of stone-baked joy, mulled wine, and Christmas magic wrap around you.
             </p>
 
-            <div className="bg-white/10 rounded-xl p-6 border border-white/20">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="bg-white/10 rounded-xl p-4 md:p-6 border border-white/20">
+              <div className="grid grid-cols-3 gap-2 md:gap-4 mb-4">
                 <div className="text-center">
-                  <p className="text-sm text-white/70 mb-1">Adults</p>
-                  <p className="text-2xl font-bold text-red-500">£55</p>
+                  <p className="text-xs md:text-sm text-white/70 mb-1">Adults</p>
+                  <p className="text-lg md:text-2xl font-bold text-red-500">£55</p>
                 </div>
                 <div className="text-center border-x border-white/30">
-                  <p className="text-sm text-white/70 mb-1">Kids 2 Courses</p>
-                  <p className="text-2xl font-bold text-green-400">£15.95</p>
+                  <p className="text-xs md:text-sm text-white/70 mb-1">Kids 2 Courses</p>
+                  <p className="text-lg md:text-2xl font-bold text-green-400">£15.95</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-sm text-white/70 mb-1">Kids 3 Courses</p>
-                  <p className="text-2xl font-bold text-green-400">£19.95</p>
+                  <p className="text-xs md:text-sm text-white/70 mb-1">Kids 3 Courses</p>
+                  <p className="text-lg md:text-2xl font-bold text-green-400">£19.95</p>
                 </div>
               </div>
               
-              <p className="text-sm text-white/70 mb-2">Indulge in:</p>
-              <div className="flex flex-wrap gap-2 justify-center text-sm">
-                <Badge variant="outline" className="border-white/50 text-white">Roast Turkey Roulade</Badge>
-                <Badge variant="outline" className="border-white/50 text-white">Porchetta with Festive Spices</Badge>
-                <Badge variant="outline" className="border-white/50 text-white">Truffle Lasagne</Badge>
-                <Badge variant="outline" className="border-white/50 text-white">Mulled Wine Tiramisu</Badge>
+              <p className="text-xs md:text-sm text-white/70 mb-2">Indulge in:</p>
+              <div className="flex flex-wrap gap-1 md:gap-2 justify-center text-xs md:text-sm">
+                <Badge variant="outline" className="border-white/50 text-white text-xs">Roast Turkey</Badge>
+                <Badge variant="outline" className="border-white/50 text-white text-xs">Porchetta</Badge>
+                <Badge variant="outline" className="border-white/50 text-white text-xs">Lasagne</Badge>
+                <Badge variant="outline" className="border-white/50 text-white text-xs">Tiramisu</Badge>
               </div>
             </div>
 
-            <div className="text-center space-y-3">
+            <div className="text-center space-y-2 md:space-y-3">
               <div className="flex items-center justify-center gap-2">
-                <span className="text-2xl">✨</span>
-                <p className="text-white/80">
+                <span className="text-xl md:text-2xl">✨</span>
+                <p className="text-sm md:text-base text-white/80">
                   Golden lights, laughter, and Italian warmth await.
                 </p>
               </div>
               
               <div className="flex items-center justify-center gap-2">
-                <span className="text-2xl">🎁</span>
-                <p className="text-white/80 font-semibold">
+                <span className="text-xl md:text-2xl">🎁</span>
+                <p className="text-sm md:text-base text-white/80 font-semibold">
                   Tables are vanishing faster than snowflakes — book yours before Santa grabs the last one!
                 </p>
               </div>
@@ -139,13 +124,13 @@ const ChristmasPage = () => {
 
             <Button 
               size="lg" 
-              className="w-full bg-red-600 hover:bg-red-700 text-white font-bold text-lg py-6"
+              className="w-full bg-red-600 hover:bg-red-700 text-white font-bold text-sm md:text-lg py-4 md:py-6"
               onClick={() => {
                 setIsPopupOpen(false);
                 window.open('https://www.eposhybrid.uk/index.php/online-table-booking/SUhBQkJW', '_blank');
               }}
             >
-              <Calendar className="w-5 h-5 mr-2" />
+              <Calendar className="w-4 h-4 md:w-5 md:h-5 mr-2" />
               Book Your Table Now
             </Button>
           </div>
@@ -500,20 +485,23 @@ const ChristmasPage = () => {
               className="w-full" 
               opts={{ 
                 loop: true, 
-                align: "start"
+                align: "start",
+                dragFree: false,
+                containScroll: "trimSnaps",
+                skipSnaps: false
               }}
               setApi={setApi}
             >
-              <CarouselContent>
+              <CarouselContent className="-ml-4">
                 {/* Starters Card */}
-                <CarouselItem>
-                  <Card className="card-premium h-full">
-                    <CardContent className="p-6">
-                      <div className="text-center mb-6">
-                        <Utensils className="w-12 h-12 text-red-600 mx-auto mb-3" />
-                        <h3 className="font-display text-2xl font-bold text-foreground">Starters</h3>
+                <CarouselItem className="pl-4">
+                  <Card className="card-premium h-[600px] overflow-y-auto">
+                    <CardContent className="p-4">
+                      <div className="text-center mb-4">
+                        <Utensils className="w-8 h-8 text-red-600 mx-auto mb-2" />
+                        <h3 className="font-display text-xl font-bold text-foreground">Starters</h3>
                       </div>
-                      <div className="space-y-4">
+                      <div className="space-y-3">
                         <div className="border-l-4 border-red-500 pl-4">
                           <h4 className="font-semibold text-foreground">Roast Pumpkin & Sage Soup</h4>
                           <p className="text-sm text-muted-foreground">Creamy seasonal soup with fresh herbs</p>
@@ -540,14 +528,14 @@ const ChristmasPage = () => {
                 </CarouselItem>
 
                 {/* Mains Card */}
-                <CarouselItem>
-                  <Card className="card-premium h-full">
-                    <CardContent className="p-6">
-                      <div className="text-center mb-6">
-                        <ChefHat className="w-12 h-12 text-green-600 mx-auto mb-3" />
-                        <h3 className="font-display text-2xl font-bold text-foreground">Mains</h3>
+                <CarouselItem className="pl-4">
+                  <Card className="card-premium h-[600px] overflow-y-auto">
+                    <CardContent className="p-4">
+                      <div className="text-center mb-4">
+                        <ChefHat className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                        <h3 className="font-display text-xl font-bold text-foreground">Mains</h3>
                       </div>
-                      <div className="space-y-4">
+                      <div className="space-y-3">
                         <div className="border-l-4 border-green-500 pl-4">
                           <h4 className="font-semibold text-foreground">Roast Turkey Roulade</h4>
                           <p className="text-sm text-muted-foreground">Traditional Christmas centerpiece</p>
@@ -574,14 +562,14 @@ const ChristmasPage = () => {
                 </CarouselItem>
 
                 {/* Desserts Card */}
-                <CarouselItem>
-                  <Card className="card-premium h-full">
-                    <CardContent className="p-6">
-                      <div className="text-center mb-6">
-                        <Star className="w-12 h-12 text-red-600 mx-auto mb-3" />
-                        <h3 className="font-display text-2xl font-bold text-foreground">Desserts</h3>
+                <CarouselItem className="pl-4">
+                  <Card className="card-premium h-[600px] overflow-y-auto">
+                    <CardContent className="p-4">
+                      <div className="text-center mb-4">
+                        <Star className="w-8 h-8 text-red-600 mx-auto mb-2" />
+                        <h3 className="font-display text-xl font-bold text-foreground">Desserts</h3>
                       </div>
-                      <div className="space-y-4">
+                      <div className="space-y-3">
                         <div className="border-l-4 border-red-500 pl-4">
                           <h4 className="font-semibold text-foreground">Panettone Bread & Butter Pudding</h4>
                           <p className="text-sm text-muted-foreground">Italian Christmas classic reimagined</p>
@@ -609,14 +597,14 @@ const ChristmasPage = () => {
 
                 {/* Sides Card - Only show on Dec 25 */}
                 {showSpecialMenu && (
-                  <CarouselItem>
-                    <Card className="card-premium h-full">
-                      <CardContent className="p-6">
-                        <div className="text-center mb-6">
-                          <Utensils className="w-12 h-12 text-yellow-600 mx-auto mb-3" />
-                          <h3 className="font-display text-2xl font-bold text-foreground">Sides (£5 each)</h3>
+                  <CarouselItem className="pl-4">
+                    <Card className="card-premium h-[600px] overflow-y-auto">
+                      <CardContent className="p-4">
+                        <div className="text-center mb-4">
+                          <Utensils className="w-8 h-8 text-yellow-600 mx-auto mb-2" />
+                          <h3 className="font-display text-xl font-bold text-foreground">Sides (£5 each)</h3>
                         </div>
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                           <div className="border-l-4 border-yellow-500 pl-4">
                             <h4 className="font-semibold text-foreground">Pigs in Blankets</h4>
                             <p className="text-sm text-muted-foreground">Classic festive sausage wrapped in bacon</p>
