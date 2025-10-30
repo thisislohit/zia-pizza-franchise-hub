@@ -108,6 +108,7 @@ const Navigation = () => {
     { href: "/deals", label: "Deals" },
     { href: "/christmas", label: "Christmas" },
     { href: "/blog", label: "Blog" },
+    { href: "/menu", label: "Menu" },
     { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact" }
   ];
@@ -131,7 +132,7 @@ const Navigation = () => {
               <Link
                 key={item.href}
                 to={item.href}
-                className={`font-body font-medium transition-all duration-300 hover:text-primary hover:transform hover:-translate-y-1 hover:scale-105 ${
+                className={`font-body font-medium whitespace-nowrap transition-all duration-300 hover:text-primary hover:transform hover:-translate-y-1 hover:scale-105 ${
                   location.pathname === item.href
                     ? "text-primary"
                     : "text-foreground"
@@ -172,7 +173,7 @@ const Navigation = () => {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`font-body font-medium py-2 transition-all duration-300 hover:text-primary hover:transform hover:-translate-y-1 hover:scale-105 ${
+                  className={`font-body font-medium py-2 whitespace-nowrap transition-all duration-300 hover:text-primary hover:transform hover:-translate-y-1 hover:scale-105 ${
                     location.pathname === item.href
                       ? "text-primary"
                       : "text-foreground"

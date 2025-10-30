@@ -170,7 +170,15 @@ const LocationDetailPage = () => {
             <div>
               <div className="flex items-center gap-4 mb-4">
                 <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold">
-                  {location.name.includes('Zia Pizza') ? (
+                  {location.name.includes('by Zia Pizza') ? (
+                    <>
+                      <span style={{ color: '#D4C29C' }}>
+                        {location.name.split('by Zia Pizza')[0].trim()}
+                      </span>{' '}
+                      <span className="text-white/90">by</span>{' '}
+                      <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
+                    </>
+                  ) : location.name.includes('Zia Pizza') ? (
                     <>
                       <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
                       {location.name.replace('Zia Pizza', '').trim() && (

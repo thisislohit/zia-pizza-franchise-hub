@@ -260,18 +260,24 @@ const AboutPage = () => {
                     <MapPin className="w-6 h-6 text-secondary" />
                   </div>
                   <CardTitle className="text-xl">
-                    {(() => {
-                      const marker = 'Zia Pizza';
-                      if (!location.name.includes(marker)) return location.name;
-                      const [before, after] = location.name.split(marker);
-                      return (
-                        <>
-                          {before && <span style={{ color: '#D4C29C' }}>{before}</span>}
-                          <span className="text-white"> Zia</span> <span className="text-red-600"> Pizza</span>
-                          {after && <span style={{ color: '#D4C29C' }}>{after}</span>}
-                        </>
-                      );
-                    })()}
+                    {location.name.includes('by Zia Pizza') ? (
+                      <>
+                        <span style={{ color: '#D4C29C' }}>
+                          {location.name.split('by Zia Pizza')[0].trim()}
+                        </span>{' '}
+                        <span className="text-foreground/80">by</span>{' '}
+                        <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
+                      </>
+                    ) : location.name.includes('Zia Pizza') ? (
+                      <>
+                        <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
+                        {location.name.replace('Zia Pizza', '').trim() && (
+                          <span style={{ color: '#D4C29C' }}>{location.name.replace('Zia Pizza', '').trim()}</span>
+                        )}
+                      </>
+                    ) : (
+                      location.name
+                    )}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col justify-between h-full">

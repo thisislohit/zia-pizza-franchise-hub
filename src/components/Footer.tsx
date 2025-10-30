@@ -133,6 +133,12 @@ const Footer = () => {
                 Deals
               </Link>
               <Link 
+                to="/menu" 
+                className="block px-3 py-1.5 rounded-full text-muted-foreground hover:text-primary transition-colors font-medium text-sm"
+              >
+                Menu
+              </Link>
+              <Link 
                 to="/about" 
                 className="block px-3 py-1.5 rounded-full text-muted-foreground hover:text-primary transition-colors font-medium text-sm"
               >

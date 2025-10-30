@@ -338,7 +338,7 @@ const ChristmasPage = () => {
               </CardContent>
             </Card>
 
-            {/* December 25 Special Sides Section - Second Column */}
+            {/* Sides Section - Only show on Dec 25 (special menu) */}
             {showSpecialMenu && (
               <Card className="card-premium">
                 <CardContent className="p-6">
@@ -760,7 +760,7 @@ const ChristmasPage = () => {
                 </div>
                 <div className="flex items-center justify-center gap-3 text-lg opacity-80">
                   <MapPin className="w-5 h-5" />
-                  <span>Zia Pizza – The Lamb On the Strand | Open throughout December 2025</span>
+                  <span>The Lamb on the Strand by Zia Pizza | Open throughout December 2025</span>
                 </div>
               </div>
             </div>

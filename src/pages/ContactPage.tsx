@@ -155,9 +155,18 @@ const ContactPage = () => {
             {locations.map((location) => (
               <Card key={location.id}>
                 <CardHeader>
-                  <CardTitle className="flex items-center flex-wrap">
-                    {location.name.includes('Zia Pizza') ? (
-                      <div className="flex items-center flex-wrap">
+                  <CardTitle className="flex items-center gap-1 whitespace-nowrap">
+                    {location.name.includes('by Zia Pizza') ? (
+                      <div className="flex items-center gap-1 whitespace-nowrap">
+                        <span style={{ color: '#D4C29C' }} className="whitespace-nowrap">
+                          {location.name.split('by Zia Pizza')[0].trim()}
+                        </span>{' '}
+                        <span className="text-foreground/80">by</span>{' '}
+                        <span className="text-white">Zia</span>{' '}
+                        <span className="text-red-600">Pizza</span>
+                      </div>
+                    ) : location.name.includes('Zia Pizza') ? (
+                      <div className="flex items-center gap-1 whitespace-nowrap">
                         <span className="text-white">Zia</span>
                         <span className="text-red-600">Pizza</span>
                         {location.name.replace('Zia Pizza', '').trim() && (
