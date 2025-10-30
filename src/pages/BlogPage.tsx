@@ -2,54 +2,40 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
-const renderBrand = (text: string) => {
-  const parts = text.split(/(Zia Pizza)/g);
-  return parts.map((part, idx) => {
-    if (part === "Zia Pizza") {
-      return (
-        <span key={idx}>
-          <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
-        </span>
-      );
-    }
-    return <span key={idx}>{part}</span>;
-  });
-};
-
 const BlogPage = () => {
   const blogPosts = [
     {
       id: 1,
-      title: "Pubs in Trowbridge – Enjoy the Best Pub Experience at Zia Pizza – The Lamb on the Strand - Zia Pizza",
-      location: "The Lamb on the Strand - Zia Pizza, Trowbridge",
+      title: "Pubs in Trowbridge – Enjoy the Best Pub Experience at The Lamb on the Strand by Zia Pizza",
+      location: "The Lamb on the Strand by Zia Pizza, Trowbridge",
       metaTitle: "Pubs in Trowbridge | Best Pubs in Trowbridge – Zia Pizza",
       metaDescription: "Discover the best pubs in Trowbridge at Zia Pizza! Enjoy great food, refreshing drinks, and a lively atmosphere perfect for friends and family.",
-      intro: "Looking for the best pubs in Trowbridge? Welcome to Zia Pizza – The Lamb on the Strand - Zia Pizza, where great food, refreshing drinks, and a friendly atmosphere come together for the perfect evening out. We're not just known for our delicious pizzas — our Trowbridge location offers a lively pub-style dining experience that locals love, complete with cozy seating, tasty meals, and drinks to match every occasion.",
+      intro: "Looking for the best pubs in Trowbridge? Welcome to The Lamb on the Strand by Zia Pizza, where great food, refreshing drinks, and a friendly atmosphere come together for the perfect evening out. We're not just known for our delicious pizzas — our Trowbridge location offers a lively pub-style dining experience that locals love, complete with cozy seating, tasty meals, and drinks to match every occasion.",
       sections: [
         {
           title: "A Pub in Trowbridge with a Difference",
-          content: "At Zia Pizza – The Lamb on the Strand - Zia Pizza, we bring something unique to the pubs in Trowbridge scene. Whether you're stopping by after work, meeting friends for a weekend get-together, or planning a casual family meal, our welcoming space is perfect for relaxing and enjoying the moment.\n\nFrom hand-stretched pizzas baked to perfection to crisp salads and delicious sides, every dish is made with fresh, high-quality ingredients. Pair your meal with a refreshing beverage and unwind in a warm, inviting atmosphere."
+          content: "At The Lamb on the Strand by Zia Pizza, we bring something unique to the pubs in Trowbridge scene. Whether you're stopping by after work, meeting friends for a weekend get-together, or planning a casual family meal, our welcoming space is perfect for relaxing and enjoying the moment.\n\nFrom hand-stretched pizzas baked to perfection to crisp salads and delicious sides, every dish is made with fresh, high-quality ingredients. Pair your meal with a refreshing beverage and unwind in a warm, inviting atmosphere."
         },
         {
           title: "Why We're One of the Best Pubs in Trowbridge",
-          content: "• Authentic Italian flavors with freshly made pizzas using premium ingredients\n• A great selection of drinks to complement every meal\n• Cozy, family-friendly atmosphere perfect for everyone\n• Friendly service that makes every visit enjoyable\n• Ideal for casual dining, celebrations, and relaxed evenings\n\nWe combine the comfort of a local pub with the passion of Italian cooking — making The Lamb on the Strand - Zia Pizza a go-to spot for food, fun, and connection in Trowbridge."
+          content: "• Authentic Italian flavors with freshly made pizzas using premium ingredients\n• A great selection of drinks to complement every meal\n• Cozy, family-friendly atmosphere perfect for everyone\n• Friendly service that makes every visit enjoyable\n• Ideal for casual dining, celebrations, and relaxed evenings\n\nWe combine the comfort of a local pub with the passion of Italian cooking — making The Lamb on the Strand by Zia Pizza a go-to spot for food, fun, and connection in Trowbridge."
         },
         {
-          title: "Visit The Lamb on the Strand - Zia Pizza in Trowbridge",
-          content: "Come and see why locals call The Lamb on the Strand - Zia Pizza one of the best pubs in Trowbridge. Whether you're craving a stone-baked pizza, sharing a drink with friends, or enjoying a cozy meal with family, we promise a relaxed experience full of flavor and good vibes."
+          title: "Visit The Lamb on the Strand by Zia Pizza in Trowbridge",
+          content: "Come and see why locals call The Lamb on the Strand by Zia Pizza one of the best pubs in Trowbridge. Whether you're craving a stone-baked pizza, sharing a drink with friends, or enjoying a cozy meal with family, we promise a relaxed experience full of flavor and good vibes."
         }
       ],
       faq: [
         {
-          question: "What makes The Lamb on the Strand - Zia Pizza one of the best pubs in Trowbridge?",
-          answer: "The Lamb on the Strand - Zia Pizza stands out for its authentic Italian food, welcoming ambiance, friendly staff, and great selection of drinks — offering a unique twist on the traditional pub experience."
+          question: "What makes The Lamb on the Strand by Zia Pizza one of the best pubs in Trowbridge?",
+          answer: "The Lamb on the Strand by Zia Pizza stands out for its authentic Italian food, welcoming ambiance, friendly staff, and great selection of drinks — offering a unique twist on the traditional pub experience."
         },
         {
           question: "Do you serve drinks along with food?",
           answer: "Yes. We offer a variety of refreshing drinks to pair perfectly with our handcrafted pizzas and delicious sides."
         },
         {
-          question: "Is The Lamb on the Strand - Zia Pizza suitable for families?",
+          question: "Is The Lamb on the Strand by Zia Pizza suitable for families?",
           answer: "Absolutely. We're a family-friendly restaurant and pub, perfect for casual meals, family gatherings, and celebrations."
         },
         {
@@ -185,11 +171,11 @@ const BlogPage = () => {
                     </Badge>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <MapPin className="w-4 h-4" />
-                      {renderBrand(post.location)}
+                      {post.location}
                     </div>
                   </div>
                   <CardTitle className="font-display text-2xl md:text-3xl font-bold text-foreground">
-                    {renderBrand(post.title)}
+                    {post.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
@@ -204,7 +190,7 @@ const BlogPage = () => {
                   {post.sections.map((section, index) => (
                     <div key={index} className="space-y-4">
                       <h3 className="font-display text-xl font-bold text-foreground">
-                        {renderBrand(section.title)}
+                        {section.title}
                       </h3>
                       <div className="text-muted-foreground leading-relaxed font-raleway whitespace-pre-line">
                         {section.content}
@@ -221,7 +207,7 @@ const BlogPage = () => {
                       {post.faq.map((item, index) => (
                         <div key={index} className="border border-border/20 rounded-lg p-4">
                           <h4 className="font-semibold text-foreground mb-2">
-                            {renderBrand(item.question)}
+                            {item.question}
                           </h4>
                           <p className="text-muted-foreground font-raleway">
                             {item.answer}

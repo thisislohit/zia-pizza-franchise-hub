@@ -114,7 +114,7 @@ export const locations: Location[] = [
   },
   {
     id: "trowbridge",
-    name: "The Lamb on the Strand - Zia Pizza",
+    name: "The Lamb on the Strand by Zia Pizza",
     address: "99 The Strand, Trowbridge, BA14 6LL, United Kingdom",
     phone: "+44 13805 03525",
     email: "semington@ziapizza.com",
@@ -163,7 +163,7 @@ export interface Offer {
 }
 
 export const offers: Offer[] = [
-  // Semington (The Lamb on the Strand - Zia Pizza) - Sunday
+  // Semington (The Lamb on the Strand) - Sunday
   {
     id: "semington-sunday-roast",
     title: "Great Zia Roast",

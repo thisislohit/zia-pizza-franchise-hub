@@ -16,7 +16,7 @@ const DealsPage = () => {
   const dealsData = [
     {
       id: 1,
-      name: "The Lamb on the Strand - Zia Pizza",
+      name: "The Lamb on the Strand by Zia Pizza",
       location: "Semington",
       address: "Semington, Wiltshire",
       offers: [
@@ -190,16 +190,18 @@ const DealsPage = () => {
                     <div className="flex items-center gap-3">
                       <MapPin className="w-6 h-6 text-secondary" />
                       <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground">
-                        {location.name.includes('Zia Pizza') ? (
-                          <>
-                            <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
-                            {location.name.replace('Zia Pizza', '').trim() && (
-                              <span className="text-white"> – {location.name.replace('Zia Pizza', '').trim()}</span>
-                            )}
-                          </>
-                        ) : (
-                          location.name
-                        )}
+                        {(() => {
+                          const marker = 'Zia Pizza';
+                          if (!location.name.includes(marker)) return location.name;
+                          const [before, after] = location.name.split(marker);
+                          return (
+                            <>
+                              {before && <span className="text-white">{before}</span>}
+                              <span className="text-white"> Zia</span> <span className="text-red-600"> Pizza</span>
+                              {after && <span className="text-white">{after}</span>}
+                            </>
+                          );
+                        })()}
                       </h3>
                     </div>
                   </div>
