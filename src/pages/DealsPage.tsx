@@ -16,7 +16,7 @@ const DealsPage = () => {
   const dealsData = [
     {
       id: 1,
-      name: "The Lamb on the Strand by Zia Pizza",
+      name: "The Lamb on the Strand - Zia Pizza",
       location: "Semington",
       address: "Semington, Wiltshire",
       offers: [
