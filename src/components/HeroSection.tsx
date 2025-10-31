@@ -22,10 +22,10 @@ const HeroSection = () => {
             Welcome to Zia Pizza
           </h1>
           <h2 className="font-display text-lg md:text-xl lg:text-2xl mb-4 text-white/90 animate-bounce-in-up animation-delay-200">
-            Your Home for Authentic Italian Pizza in Wiltshire!
+            Where Italy Meets Britain — A Slice Above the Rest
           </h2>
           <h3 className="font-display text-base md:text-lg lg:text-xl mb-6 text-white/80 animate-bounce-in-up animation-delay-400">
-            Fresh, affordable, and made with love.
+            Whether you’re looking for the best pizza in Salisbury, a cozy restaurant in Westbury, or a relaxing pub in Trowbridge for your next family meal, Zia Pizza brings authentic Italian flavours to every table
           </h3>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-glow transition-all duration-300 transform hover:-translate-y-1" onClick={() => {

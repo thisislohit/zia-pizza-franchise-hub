@@ -161,7 +161,7 @@ const ChristmasPage = () => {
               <span className="text-red-600">Christmas</span> <span className="text-green-600">2025</span> at <span className="text-red-600">Zia Pizza</span>
             </h1>
             <p className="text-xl text-white max-w-3xl mx-auto leading-relaxed font-raleway mb-6">
-              A Festive Feast in Trowbridge - Celebrate the magic of the season with an unforgettable Christmas lunch
+              Celebrate Christmas 2025 at Zia Pizza with family and friends! Our special Christmas menu is filled with festive flavours and seasonal favourites for a joyful Christmas lunch in Trowbridge..
             </p>
             {/* Test Button - Remove in production */}
             <Button 
@@ -281,10 +281,10 @@ const ChristmasPage = () => {
             </div>
           </div>
 
-          {/* Menu Sections - Desktop Grid */}
-          <div className={`hidden md:grid grid-cols-1 lg:${showSpecialMenu ? 'grid-cols-4' : 'grid-cols-3'} gap-8 mb-16`}>
+          {/* Menu Sections - Desktop Row */}
+          <div className={`hidden md:flex flex-col lg:flex-row gap-8 mb-16`}>
             {/* Starters */}
-            <Card className="card-premium">
+            <Card className="card-premium flex-1 min-w-0">
               <CardContent className="p-6">
                 <div className="text-center mb-6">
                   <Utensils className="w-12 h-12 text-red-600 mx-auto mb-3" />
@@ -340,7 +340,7 @@ const ChristmasPage = () => {
 
             {/* Sides Section - Only show on Dec 25 (special menu) */}
             {showSpecialMenu && (
-              <Card className="card-premium">
+              <Card className="card-premium flex-1 min-w-0">
                 <CardContent className="p-6">
                   <div className="text-center mb-6">
                     <Utensils className="w-12 h-12 text-yellow-600 mx-auto mb-3" />
@@ -369,7 +369,7 @@ const ChristmasPage = () => {
             )}
 
             {/* Mains */}
-            <Card className="card-premium">
+            <Card className="card-premium flex-1 min-w-0">
               <CardContent className="p-6">
                 <div className="text-center mb-6">
                   <ChefHat className="w-12 h-12 text-green-600 mx-auto mb-3" />
@@ -425,7 +425,7 @@ const ChristmasPage = () => {
             </Card>
 
             {/* Desserts */}
-            <Card className="card-premium">
+            <Card className="card-premium flex-1 min-w-0">
               <CardContent className="p-6">
                 <div className="text-center mb-6">
                   <Star className="w-12 h-12 text-red-600 mx-auto mb-3" />

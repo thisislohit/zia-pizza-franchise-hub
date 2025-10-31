@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { MapPin, Search, Navigation, Clock, Phone, Mail, ExternalLink } from "lucide-react";
+import { MapPin, Search, Navigation, Clock, Phone, Mail, ExternalLink, Utensils, Beer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -100,9 +100,44 @@ const LocationChooser = () => {
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Choose Your <span className="text-primary">Location</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-raleway">
-            Find your nearest <span className="text-foreground">Zia</span> <span className="text-primary">Pizza</span> location and start your authentic Italian dining experience
-          </p>
+          <div className="max-w-2xl mx-auto space-y-4 font-raleway">
+            <div className="text-left">
+              <h3 className="font-display text-base md:text-lg font-semibold text-foreground mb-3 text-center">
+                Two Ways to Experience Zia Pizza
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="p-4 rounded-xl border border-secondary/30 bg-secondary/10 hover:border-secondary/50 transition-colors">
+                  <div className="flex items-start gap-3">
+                    <div className="shrink-0 rounded-full bg-secondary/20 p-2 text-secondary">
+                      <Utensils className="w-5 h-5" />
+                    </div>
+                    <div className="space-y-1">
+                      <div className="font-semibold text-foreground">Zia Pizza Express</div>
+                      <p className="text-sm text-muted-foreground">
+                        Authentic Italian restaurant in Salisbury and restaurant in Westbury, perfect for families, friends, and quick bites.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-4 rounded-xl border border-secondary/30 bg-secondary/10 hover:border-secondary/50 transition-colors">
+                  <div className="flex items-start gap-3">
+                    <div className="shrink-0 rounded-full bg-secondary/20 p-2 text-secondary">
+                      <Beer className="w-5 h-5" />
+                    </div>
+                    <div className="space-y-1">
+                      <div className="font-semibold text-foreground">Zia Pizza Gastropubs</div>
+                      <p className="text-sm text-muted-foreground">
+                        Historic pubs in UK reborn with Italian soul, great food, and community warmth.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p className="text-lg text-muted-foreground">
+              Find your nearest <span className="text-foreground">Zia</span> <span className="text-primary">Pizza</span> location and experience Italian flavours like never before
+            </p>
+          </div>
         </div>
 
         {/* Search Controls */}

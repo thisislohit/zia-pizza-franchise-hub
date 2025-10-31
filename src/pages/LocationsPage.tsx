@@ -32,12 +32,14 @@ const LocationsPage = () => {
       <section className="py-16 bg-gradient-to-br from-primary/5 to-secondary/5">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-            Our <span className="text-primary">Locations</span>
+            Three <span className="text-primary">Towns</span>, One <span className="text-primary">Heart</span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Find your nearest <span className="text-foreground">Zia</span> <span className="text-primary">Pizza</span> restaurant and experience authentic Italian cuisine in a premium setting. 
-            Each location offers the same exceptional quality with its own unique character.
-          </p>
+          <div className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 space-y-2 font-raleway">
+            <p>
+              Discover our <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span> Express and <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span> Gastropubs across Wiltshire.
+            </p>
+            <p>Each restaurant offers its own unique character but the same signature touch — stone-baked perfection, fresh ingredients, and a cozy atmosphere that feels like family</p>
+          </div>
           
           {/* List view only */}
         </div>

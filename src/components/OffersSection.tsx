@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, MapPin, Percent } from "lucide-react";
-import { offers } from "@/data/locations";
+import { offers, locations } from "@/data/locations";
 import { detectUserLocation, getCityFromLocationId, isSupportedLocation } from "@/lib/location-utils";
 import { useState, useEffect } from "react";
 
@@ -60,6 +60,7 @@ const OffersSection = () => {
   const locationOffers = getLocationSpecificOffers(userLocation);
   const todaysOffers = getTodaysOffers(userLocation);
   const upcomingOffers = getUpcomingOffers(userLocation);
+  const lambBookingUrl = locations.find(l => l.id === 'trowbridge')?.iframes.booking;
 
   // Cycle through today's offers every 5 seconds if there are multiple offers
   useEffect(() => {
@@ -86,9 +87,10 @@ const OffersSection = () => {
         <div className="container mx-auto px-4">
           <div className="text-center">
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              Special <span className="text-primary">Offers</span>
+              Special <span className="text-primary">Offers</span> & Local <span className="text-primary">Events</span>
             </h2>
-            <p className="text-lg text-muted-foreground font-raleway">Loading offers...</p>
+            <p className="text-lg text-muted-foreground font-raleway">From midweek pizza deals to Sunday Roasts, there’s always something special waiting at Zia Pizza.</p>
+            <p className="text-lg text-muted-foreground font-raleway">We also host seasonal events — from Christmas lunch to family nights at Zia Pizza.</p>
           </div>
         </div>
       </section>
@@ -102,11 +104,24 @@ const OffersSection = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              Special <span className="text-primary">Offers</span>
+              Special <span className="text-primary">Offers</span> & Local <span className="text-primary">Events</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 font-raleway">
-              Select your nearest <span className="text-foreground">Zia</span> <span className="text-primary">Pizza</span> branch to see offers.
-            </p>
+            <div className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4 font-raleway space-y-2">
+              <p>From midweek pizza deals to Sunday Roasts, there’s always something special waiting at Zia Pizza.</p>
+              <p>We also host seasonal events — from Christmas lunch to family nights at Zia Pizza.</p>
+            </div>
+            {lambBookingUrl && (
+              <div className="mb-8">
+                <a
+                  href={lambBookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-sm text-primary underline underline-offset-4 hover:text-primary/80"
+                >
+                  Book a Table at The Lamb on the Strand
+                </a>
+              </div>
+            )}
             <Button
               onClick={() => {
                 const el = document.getElementById('locations');
@@ -125,19 +140,32 @@ const OffersSection = () => {
 
   return (
     <section className="py-16 bg-gradient-to-br from-muted/20 to-muted/10">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Special <span className="text-primary">Offers</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4 font-raleway">
-            Discover our delicious deals at {getCityFromLocationId(userLocation)} branch
-          </p>
-          <Badge variant="outline" className="text-sm border-secondary text-secondary">
-            <MapPin className="w-3 h-3 mr-1" />
-            {getCityFromLocationId(userLocation)}
-          </Badge>
-        </div>
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+              Special <span className="text-primary">Offers</span> & Local <span className="text-primary">Events</span>
+            </h2>
+            <div className="text-lg text-muted-foreground max-w-2xl mx-auto mb-3 font-raleway space-y-2">
+              <p>From midweek pizza deals to Sunday Roasts, there’s always something special waiting at Zia Pizza.</p>
+              <p>We also host seasonal events — from Christmas lunch to family nights at Zia Pizza.</p>
+            </div>
+            {lambBookingUrl && (
+              <div className="mb-4">
+                <a
+                  href={lambBookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-sm text-primary underline underline-offset-4 hover:text-primary/80"
+                >
+                  Book a Table at The Lamb on the Strand
+                </a>
+              </div>
+            )}
+            <Badge variant="outline" className="text-sm border-secondary text-secondary">
+              <MapPin className="w-3 h-3 mr-1" />
+              {getCityFromLocationId(userLocation)}
+            </Badge>
+          </div>
 
         {/* Today's Special Offers */}
         {todaysOffers.length > 0 && (

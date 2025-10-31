@@ -53,12 +53,20 @@ const AboutPage = () => {
       <section className="py-16 bg-gradient-to-br from-secondary/5 to-accent/5">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
               About <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              A Slice of Italy in Every Bite!
-            </p>
+            <h2 className="font-display text-2xl md:text-3xl text-foreground mb-6">
+              A Slice Above the Rest
+            </h2>
+            <div className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed space-y-4 font-raleway">
+              <p>
+                <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span> is more than a restaurant — it’s a legacy of love, stone, and flavour. Born in a sunlit kitchen in Naples and reborn in the heart of Wiltshire, we exist to revive community pubs and fill them with Italian warmth, great food, and honest value.
+              </p>
+              <p>
+                Whether you’re looking for the best pizza in Salisbury, a family-friendly restaurant in Westbury, or a cosy pub in Trowbridge, you’ll find the same heritage and heart in every bite.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -73,11 +81,27 @@ const AboutPage = () => {
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed font-raleway">
                 <p>
-                  Welcome to <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>! We're not just another pizza place; we're your go-to destination for authentic Italian cuisine and unforgettable, freshly baked pizzas. We are a place where friends, families, and pizza lovers come together to share great food in a cozy, welcoming atmosphere.
+                  Welcome to <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span> — a British restaurant with an Italian touch. We’re more than just a place to eat; we’re a space where friends and families come together to enjoy good food, good times, and great flavours.
                 </p>
+
                 <p>
-                  At <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>, we believe flavour is everything. Every pizza is crafted with passion, using only fresh, high-quality ingredients. From the timeless Classic Margherita to our unique gourmet specialty pizzas, each slice is a taste of Italy, made with love.
+                  Every great tradition begins with love. For Chef Vittorio Capetti, that love came from his Zia Maria — the heart of his family’s kitchen in Naples. Her stone-baked pizzas were more than food; they were memories, crafted with patience, fire, and heart.
                 </p>
+                <h3 className="font-display text-xl font-bold text-foreground mt-6">A Legacy Begins</h3>
+                <p>
+                  In 2009, Chef Vittorio brought her recipes to Westbury, Wiltshire, lighting the oven that started it all. His pizzas — hand-stretched, slow-proofed, and baked on stone — captured Zia Maria’s timeless spirit and made <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span> one of Wiltshire’s favourite dining spots.
+                </p>
+                <blockquote className="border-l-4 border-secondary pl-4 italic text-foreground/90">
+                  “Steel heats fast, but stone sings.” — Zia Maria, 1962
+                </blockquote>
+
+                <h3 className="font-display text-xl font-bold text-foreground mt-6">The Next Chapter</h3>
+                <p>
+                  When Vittorio retired, he passed Zia Maria’s handwritten recipes and a pressed sprig of basil to Nidhin Rey Sajeev — a loyal guest turned guardian of the legacy. Under Nidhin’s vision, <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span> grew into a family of restaurants — from the best pubs in Trowbridge to beloved Italian restaurants in Salisbury and Westbury.
+                </p>
+                <blockquote className="border-l-4 border-secondary pl-4 italic text-foreground/90">
+                  “The story isn’t about who owns the oven. It’s about who keeps the fire burning.” — Nidhin Sajeev
+                </blockquote>
               </div>
             </div>
             <div className="relative">
@@ -105,7 +129,10 @@ const AboutPage = () => {
           <div className="max-w-4xl mx-auto">
             <div className="space-y-6 text-muted-foreground leading-relaxed font-raleway text-center">
               <p className="text-lg">
-                <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span> began with one simple passion: bringing the true, authentic flavours of Italy to the heart of Salisbury, Trowbridge, and Westbury. Inspired by traditional recipes, we've grown from a small beginning into three beloved branches. But our dedication remains the same: delivering incredible quality, amazing taste, and a warm, welcoming experience for everyone.
+                <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span> was born from a love for good food and great experiences. We set out to blend Italian flavours with the warmth of a British dining style — and today, you can enjoy that mix in Salisbury, Westbury and Trowbridge.
+              </p>
+              <p className="text-lg">
+                From our kitchen to your table, every dish is prepared with care, served with a smile, and made to be shared. At <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>, it’s all about simple ingredients, bold flavours, and moments that bring people together.
               </p>
             </div>
           </div>
@@ -130,7 +157,7 @@ const AboutPage = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground leading-relaxed font-raleway">
-                  Our Salisbury location is a local favourite! As a top Restaurant in Salisbury, we offer a warm, family-friendly setting. Perfect for a casual meal or a fun gathering.
+                  Zia Pizza is a popular restaurant in Salisbury, offering a delicious mix of classic and contemporary pizzas made with the freshest ingredients. Whether you’re dining with family or catching up with friends, our welcoming atmosphere and great food make every meal special. Relax, unwind, and experience why Zia Pizza is one of the top choices for dining in Salisbury.
                 </p>
               </CardContent>
             </Card>
@@ -143,7 +170,7 @@ const AboutPage = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground leading-relaxed font-raleway">
-                  Your community spot for flavour! Our Restaurant in Trowbridge is loved by locals for fresh, handcrafted pizzas in a cozy atmosphere. Ideal for dining in or grabbing a takeaway.
+                  Looking for a cozy restaurant in Trowbridge? Zia Pizza is the perfect place to enjoy freshly made pizzas, tasty sides, and a friendly pub-style setting. Ideal for casual hangouts, family dinners, or evening drinks, our Trowbridge restaurant combines great food with a warm, inviting vibe that keeps guests coming back for more.
                 </p>
               </CardContent>
             </Card>
@@ -156,7 +183,7 @@ const AboutPage = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground leading-relaxed font-raleway">
-                  A popular hub for families and pizza fans! Get the same high-quality pizzas and friendly service you love, right here in Westbury.
+                  Discover the flavour and comfort of Zia Pizza, your go-to restaurant in Westbury. Whether you’re stopping by for a meal or ordering takeaway, we serve up authentic pizzas and comfort food with a smile. Enjoy a relaxed dining experience where good food, great service, and a homely atmosphere come together perfectly.
                 </p>
               </CardContent>
             </Card>

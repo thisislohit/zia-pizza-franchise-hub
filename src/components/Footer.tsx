@@ -19,8 +19,7 @@ const Footer = () => {
               />
             </div>
             <p className="text-muted-foreground leading-relaxed text-sm">
-              Authentic Italian pizza and dining experience across three premium locations in the UK. 
-              Fresh ingredients, traditional recipes, exceptional service.
+              Experience the joy of Italian-inspired flavours in a cosy and welcoming atmosphere. Each dish is prepared with care to bring you a perfect balance of taste and comfort. Visit any of our locations and enjoy a dining experience that feels truly special.
             </p>
             <div className="flex space-x-3">
               <a 

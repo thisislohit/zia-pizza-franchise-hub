@@ -105,11 +105,11 @@ const Navigation = () => {
   const navItems = [
     { href: "/", label: "Home" },
     { href: "/locations", label: "Locations" },
-    { href: "/deals", label: "Deals" },
-    { href: "/christmas", label: "Christmas" },
-    { href: "/blog", label: "Blog" },
     { href: "/menu", label: "Menu" },
+    { href: "/christmas", label: "Christmas" },
+    { href: "/deals", label: "Deals" },
     { href: "/about", label: "About Us" },
+    { href: "/blog", label: "Blog" },
     { href: "/contact", label: "Contact" }
   ];
 

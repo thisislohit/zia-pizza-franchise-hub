@@ -223,6 +223,24 @@ const ContactPage = () => {
             </h2>
             
             <div className="space-y-6">
+              {/* Reservations & Enquiries copy (inside Get in Touch) */}
+              <div className="space-y-4 font-raleway text-center">
+                <p className="text-lg text-muted-foreground">
+                  Whether you’re booking a table for Christmas lunch in Trowbridge, ordering pizza delivery in Salisbury, or planning a family meal in Westbury, our team is here to help.
+                </p>
+                <div className="text-left md:text-center space-y-2">
+                  <h3 className="font-display text-lg md:text-xl font-semibold text-foreground">For Reservations & Enquiries</h3>
+                  <ul className="list-none space-y-1 text-base md:text-lg text-muted-foreground">
+                    <li>📍 Choose your nearest <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span> Express or <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span> Gastropub</li>
+                    <li>📞 Call us or connect via social media</li>
+                    <li>💬 We’ll get back to you as soon as possible</li>
+                  </ul>
+                </div>
+                <p className="text-lg text-muted-foreground">
+                  Because at <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>, every conversation starts a story — and every guest is family.
+                </p>
+              </div>
+
               {/* General Contact */}
               <Card>
                 <CardHeader>
@@ -250,6 +268,8 @@ const ContactPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Info - Bottom Placement (removed as content is now inside Get in Touch) */}
     </div>
   );
 };

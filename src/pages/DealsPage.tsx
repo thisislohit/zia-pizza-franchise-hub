@@ -160,24 +160,27 @@ const DealsPage = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Weekly <span className="text-white">Deals</span> <span className="text-red-600">&</span> <span style={{ color: '#D4C29C' }}>Offers</span>
+              Delicious Days at <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Discover amazing deals and special offers at all our locations. From BOGO pizzas to Sunday roasts, we've got something special for every day of the week!
-            </p>
+            <div className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed space-y-2">
+              <p>Whether you’re at our Express restaurants or Gastropubs, there’s always a reason to celebrate.</p>
+              <p>
+                Discover delicious deals and specials across all <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span> locations — explore, enjoy and have a great time.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Weekly Offers by Branch */}
-      <section className="py-16">
+      <section className="py-16" id="weekly-offers">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
               Weekly Offers by Branch
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Each location has its own unique weekly specials. Find your favorite deals below!
+              Each location has its own weekly specials and local events. Find your favourite deals below — from pizza nights to Christmas lunch — and plan your next visit to a <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span> near you.
             </p>
           </div>
           
@@ -402,25 +405,16 @@ const DealsPage = () => {
         <div className="container mx-auto px-4">
           <div className="text-center">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Ready to Save? Visit Us Today!
+              Ready to Save?
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 font-raleway">
-              Don't miss out on these amazing deals! Visit any of our three locations to enjoy fresh, authentic Italian cuisine at unbeatable prices.
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6 font-raleway">
+              Don’t miss out on great food and greater value. Visit any 
+              <span className="text-white"> Zia</span> <span className="text-red-600">Pizza</span> Express or 
+              <span className="text-white"> Zia</span> <span className="text-red-600">Pizza</span> Gastropub to enjoy authentic Italian flavours and the best pubs in Trowbridge for family dining and community gatherings.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="/locations" 
-                className="btn-hero inline-flex items-center justify-center px-8 py-3"
-              >
-                <MapPin className="w-5 h-5 mr-2" />
-                Find Your Nearest Location
-              </a>
-              <a 
-                href="/contact" 
-                className="btn-gold-outline inline-flex items-center justify-center px-8 py-3"
-              >
-                <Coffee className="w-5 h-5 mr-2" />
-                Contact Us
+            <div className="flex justify-center">
+              <a href="#weekly-offers" className="btn-hero inline-flex items-center justify-center px-8 py-3">
+                Explore This Week’s Deals →
               </a>
             </div>
           </div>
