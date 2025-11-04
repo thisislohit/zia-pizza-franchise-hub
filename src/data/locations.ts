@@ -57,6 +57,7 @@ export const locations: Location[] = [
     bookingUrl: "/book/westbury",
     deliveryPartners: {
       uberEats: "https://www.ubereats.com/gb/store/zia-pizza-15-palomino-pl/LTFu_grXQcW0Qb7VSyYmQw?srsltid=AfmBOorXGXPm4FmWldz1ZbiUFdFLbwSR-VmcbpuA9ibAcd7h5utaPRcX",
+      justEat: "https://www.just-eat.co.uk/restaurants-ziapizza-ba13/menu",
       deliveroo: "https://deliveroo.co.uk/menu/Bath/westbury-leigh/zia-pizza-westbury-15-palomino-pl?srsltid=AfmBOooePO6aKZE5BW4WWFq7fYZ-gneAw5l2cJoualOgxmayCsEFsigc"
     },
     socialMedia: {
@@ -67,7 +68,7 @@ export const locations: Location[] = [
       lat: 51.2604,
       lng: -2.1875
     },
-    features: ["Dine-In", "Takeaway", "Delivery", "Collection"],
+    features: ["Dine-In", "Takeaway", "Collection"],
     iframes: {
       order: "https://www.food-order.net/index.php/web_orders/home/SUdQS1lF?uid=67b70649c7141",
       booking: "https://www.eposhybrid.uk/index.php/online-table-booking/SUdQS1lF",

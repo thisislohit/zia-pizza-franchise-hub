@@ -257,7 +257,7 @@ const LocationChooser = () => {
 
                   {/* Features */}
                   <div className="flex flex-wrap gap-2">
-                    {location.features.slice(0, 3).map((feature) => (
+                    {location.features.map((feature) => (
                       <Badge key={feature} variant="outline" className="text-xs">
                         {feature}
                       </Badge>

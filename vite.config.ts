@@ -5,6 +5,9 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // Base path for deployment - set to '/' for root domain hosting
+  // If hosting in a subdirectory, change this to '/your-subdirectory/'
+  base: '/',
   server: {
     host: "::",
     port: 8080,
