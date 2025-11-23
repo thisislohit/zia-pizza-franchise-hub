@@ -45,7 +45,7 @@ export const locations: Location[] = [
     phone: "+44 1373 865271",
     email: "westbury@ziapizza.com",
     openingHours: {
-      monday: "Closed",
+      monday: "11:30 AM – 11:00 PM",
       tuesday: "11:30 AM – 11:00 PM",
       wednesday: "11:30 AM – 11:00 PM",
       thursday: "11:30 AM – 11:00 PM",
@@ -238,42 +238,12 @@ export const offers: Offer[] = [
   // Westbury - Tuesday
   {
     id: "westbury-tuesday-bogo",
-    title: "2-for-1 Pizza",
-    description: "Fresh, stone-baked pizzas, dine-in, takeaway or delivery 🍕.",
+    title: "BOGO Pizza",
+    description: "Buy 1, Get 1 Free (equal/lesser value). Dine-in, takeaway, delivery (web & phone).",
     validDays: ["Tuesday"],
     locations: ["westbury"],
     isActive: true,
     priority: 8
-  },
-  // Westbury - Thursday
-  {
-    id: "westbury-thursday-pasta",
-    title: "2-for-1 Pasta",
-    description: "Creamy, saucy, and flavorful pasta dishes 🍝, share with friends.",
-    validDays: ["Thursday"],
-    locations: ["westbury"],
-    isActive: true,
-    priority: 9
-  },
-  // Westbury - Friday
-  {
-    id: "westbury-friday-kids",
-    title: "Kids Eat for £1",
-    description: "Affordable treat for families, kids dine with adult mains.",
-    validDays: ["Friday"],
-    locations: ["westbury"],
-    isActive: true,
-    priority: 10
-  },
-  // Westbury - Daily
-  {
-    id: "westbury-daily-drinks",
-    title: "Double the Drinks",
-    description: "2 cocktails £13.95 from 5 PM 🍹, perfect for evenings out.",
-    validTimes: "5:00 PM - Close",
-    locations: ["westbury"],
-    isActive: true,
-    priority: 11
   },
   // Salisbury - Tuesday
   {

@@ -92,28 +92,8 @@ const DealsPage = () => {
           price: "50% OFF",
           icon: <Gift className="w-5 h-5" />,
           highlight: true
-        },
-        {
-          day: "Thursday",
-          title: "2 for 1 Pasta",
-          description: "Buy one pasta, get one free.",
-          price: "50% OFF",
-          icon: <Utensils className="w-5 h-5" />
-        },
-        {
-          day: "Friday",
-          title: "Kids Eat for £1",
-          description: "With a full-price adult main (under 12).",
-          price: "£1.00",
-          icon: <Users className="w-5 h-5" />
         }
-      ],
-      dailyOffer: {
-        title: "Double the Drinks",
-        description: "2 cocktails £13.95, 5 PM–Close. Daily",
-        price: "£13.95",
-        icon: <Beer className="w-5 h-5" />
-      }
+      ]
     },
     {
       id: 3,
@@ -377,22 +357,24 @@ const DealsPage = () => {
                   </div>
 
                   {/* Daily Offer */}
-                  <div className="bg-gradient-to-r from-accent/10 to-secondary/10 rounded-lg p-6 border border-secondary/20">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Clock className="w-5 h-5 text-secondary" />
-                      <h4 className="font-display text-lg font-bold text-foreground">Daily Special</h4>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h5 className="font-semibold text-foreground mb-1">{location.dailyOffer.title}</h5>
-                        <p className="text-sm text-muted-foreground font-raleway">{location.dailyOffer.description}</p>
+                  {location.dailyOffer && (
+                    <div className="bg-gradient-to-r from-accent/10 to-secondary/10 rounded-lg p-6 border border-secondary/20">
+                      <div className="flex items-center gap-3 mb-3">
+                        <Clock className="w-5 h-5 text-secondary" />
+                        <h4 className="font-display text-lg font-bold text-foreground">Daily Special</h4>
                       </div>
-                      <div className="flex items-center gap-2 text-secondary">
-                        {location.dailyOffer.icon}
-                        <span className="font-bold text-lg">{location.dailyOffer.price}</span>
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h5 className="font-semibold text-foreground mb-1">{location.dailyOffer.title}</h5>
+                          <p className="text-sm text-muted-foreground font-raleway">{location.dailyOffer.description}</p>
+                        </div>
+                        <div className="flex items-center gap-2 text-secondary">
+                          {location.dailyOffer.icon}
+                          <span className="font-bold text-lg">{location.dailyOffer.price}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
             ))}
