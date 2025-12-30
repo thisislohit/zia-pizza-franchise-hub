@@ -17,6 +17,7 @@ import DealsPage from "./pages/DealsPage";
 import ChristmasPage from "./pages/ChristmasPage";
 import BlogPage from "./pages/BlogPage";
 import MenuPage from "./pages/MenuPage";
+import ChristmasMenuPage from "./pages/ChristmasMenuPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
 import CookiesPolicyPage from "./pages/CookiesPolicyPage";
@@ -49,6 +50,7 @@ const App = () => {
                 <Route path="/christmas" element={<ChristmasPage />} />
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/menu" element={<MenuPage />} />
+                <Route path="/menu/christmas" element={<ChristmasMenuPage />} />
                 <Route path="/privacy" element={<PrivacyPolicyPage />} />
                 <Route path="/terms" element={<TermsAndConditionsPage />} />
                 <Route path="/cookies" element={<CookiesPolicyPage />} />

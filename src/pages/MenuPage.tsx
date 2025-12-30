@@ -1,17 +1,87 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ChevronLeft, ChevronRight, MapPin, RefreshCw, Snowflake } from "lucide-react";
+import { locations } from "@/data/locations";
+import ChristmasMenuImage from "@/assets/Christmas_menu.png";
 
 const MenuPage = () => {
-  const images = import.meta.glob("@/assets/menu/*.{png,jpg,jpeg,webp}", {
+  const navigate = useNavigate();
+  const [selectedLocation, setSelectedLocation] = useState<string>("");
+  const [showLocationPopup, setShowLocationPopup] = useState<boolean>(false);
+
+  // Show popup if no location is selected
+  useEffect(() => {
+    if (!selectedLocation) {
+      setShowLocationPopup(true);
+    }
+  }, [selectedLocation]);
+
+  // Load menu cover images for location selection popup
+  const locationMenuCovers = useMemo(() => {
+    const covers: Record<string, string> = {};
+    
+    // Load default menu cover (first page) - for The Lamb and Salisbury
+    const defaultImages = import.meta.glob("@/assets/menu/*.{png,jpg,jpeg,webp}", {
+      eager: true,
+      as: "url",
+    }) as Record<string, string>;
+    const defaultCover = Object.values(defaultImages).sort()[0];
+    
+    // Load Westbury menu cover (first page)
+    const westburyImages = import.meta.glob("@/assets/menu-westbury/*.{png,jpg,jpeg,webp}", {
+      eager: true,
+      as: "url",
+    }) as Record<string, string>;
+    const westburyCover = Object.values(westburyImages).sort()[0];
+    
+    // Assign covers to locations
+    locations.forEach(location => {
+      if (location.id === "westbury") {
+        covers[location.id] = westburyCover || "";
+      } else {
+        covers[location.id] = defaultCover || "";
+      }
+    });
+    
+    return covers;
+  }, []);
+
+  // Load menu images based on selected location
+  const menuImages = useMemo(() => {
+    if (!selectedLocation) return [];
+    
+    if (selectedLocation === "westbury") {
+      // Load Westbury menu images
+      const westburyImages = import.meta.glob("@/assets/menu-westbury/*.{png,jpg,jpeg,webp}", {
+        eager: true,
+        as: "url",
+      }) as Record<string, string>;
+      return Object.values(westburyImages).sort();
+    } else {
+      // Load default menu images for The Lamb and Salisbury
+      const defaultImages = import.meta.glob("@/assets/menu/*.{png,jpg,jpeg,webp}", {
     eager: true,
     as: "url",
   }) as Record<string, string>;
+      return Object.values(defaultImages).sort();
+    }
+  }, [selectedLocation]);
 
-  const menuImages = useMemo(() => Object.values(images).sort(), [images]);
-  const coverFront = menuImages[0];
+  const handleLocationSelect = (locationId: string) => {
+    setSelectedLocation(locationId);
+    setShowLocationPopup(false);
+  };
+
+  const handleChristmasMenuClick = () => {
+    setShowLocationPopup(false);
+    navigate("/christmas?menu=special");
+  };
+  
+  const coverFront = menuImages.length > 0 ? menuImages[0] : undefined;
   const coverBack = menuImages.length > 1 ? menuImages[menuImages.length - 1] : undefined;
   const innerPages = useMemo(() => {
     if (menuImages.length <= 2) return menuImages;
@@ -30,6 +100,11 @@ const MenuPage = () => {
   const flipRef = useRef<any>(null);
   const [flipPage, setFlipPage] = useState(0);
   const [flipTotal, setFlipTotal] = useState(0);
+
+  // Reset page index when location changes
+  useEffect(() => {
+    setCurrentIndex(1);
+  }, [selectedLocation]);
 
   // Mobile lightbox (only)
   const openImageMobile = (src: string) => {
@@ -86,22 +161,196 @@ const MenuPage = () => {
 
   return (
     <div className="pt-16">
+      {/* Location Selection Popup */}
+      <Dialog 
+        open={showLocationPopup} 
+        onOpenChange={(open) => {
+          if (!open && !selectedLocation) {
+            // If user tries to close without selecting, redirect to home
+            navigate("/");
+          } else {
+            setShowLocationPopup(open);
+          }
+        }}
+      >
+        <DialogContent className="max-w-4xl max-h-[95vh] overflow-y-auto p-4 md:p-6 w-[95vw] md:w-full">
+          <DialogHeader className="px-2 md:px-0">
+            <DialogTitle className="font-display text-xl md:text-2xl lg:text-3xl font-bold text-foreground text-center">
+              Choose Your Location
+            </DialogTitle>
+            <p className="text-sm md:text-base text-muted-foreground text-center font-raleway mt-2">
+              Select a location to view the menu
+            </p>
+          </DialogHeader>
+          
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 md:gap-6 mt-4 md:mt-6 px-2 md:px-0">
+            {/* Christmas Menu Card */}
+            <button
+              onClick={handleChristmasMenuClick}
+              className="group relative overflow-hidden rounded-lg border-2 border-border hover:border-primary active:border-primary transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] md:hover:scale-105 touch-manipulation w-full sm:w-auto sm:flex-1 sm:max-w-[280px]"
+            >
+              <Card className="border-0 shadow-none">
+                <CardContent className="p-0">
+                  <div className="relative">
+                    <img
+                      src={ChristmasMenuImage}
+                      alt="Christmas Menu"
+                      className="w-full h-auto object-cover max-h-[300px] md:max-h-none"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 group-active:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                      <div className="opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300">
+                        <div className="bg-primary/90 text-white px-3 py-2 md:px-4 md:py-2 rounded-lg font-semibold text-sm md:text-base">
+                          View Menu
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-3 md:p-4 bg-card">
+                    <h3 className="font-display text-base md:text-lg font-semibold text-center flex items-center justify-center gap-2">
+                      <Snowflake className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+                      <span className="text-foreground">Christmas Menu</span>
+                    </h3>
+                  </div>
+                </CardContent>
+              </Card>
+            </button>
+            
+            {locations.map((location) => (
+              <button
+                key={location.id}
+                onClick={() => handleLocationSelect(location.id)}
+                className="group relative overflow-hidden rounded-lg border-2 border-border hover:border-primary active:border-primary transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] md:hover:scale-105 touch-manipulation w-full sm:w-auto sm:flex-1 sm:max-w-[280px]"
+              >
+                <Card className="border-0 shadow-none">
+                  <CardContent className="p-0">
+                    {locationMenuCovers[location.id] ? (
+                      <div className="relative">
+                        <img
+                          src={locationMenuCovers[location.id]}
+                          alt={`${location.name} menu`}
+                          className="w-full h-auto object-cover max-h-[300px] md:max-h-none"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 group-active:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                          <div className="opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300">
+                            <div className="bg-primary/90 text-white px-3 py-2 md:px-4 md:py-2 rounded-lg font-semibold text-sm md:text-base">
+                              View Menu
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="aspect-[3/4] bg-muted flex items-center justify-center max-h-[300px] md:max-h-none">
+                        <MapPin className="w-8 h-8 md:w-12 md:h-12 text-muted-foreground" />
+                      </div>
+                    )}
+                    <div className="p-3 md:p-4 bg-card">
+                      <h3 className="font-display text-base md:text-lg font-semibold text-center line-clamp-2">
+                        {location.name.includes('by Zia Pizza') ? (
+                          <>
+                            <span style={{ color: '#D4C29C' }}>
+                              {location.name.split('by Zia Pizza')[0].trim()}
+                            </span>{' '}
+                            <span className="text-foreground/80">by</span>{' '}
+                            <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
+                          </>
+                        ) : location.name.includes('Zia Pizza Express') ? (
+                          <>
+                            <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>{' '}
+                            <span style={{ color: '#e5e7eb' }}>Express</span>{' '}
+                            <span style={{ color: '#D4C29C' }}>{location.name.replace('Zia Pizza Express', '').trim()}</span>
+                          </>
+                        ) : location.name.includes('Zia Pizza') ? (
+                          <>
+                            <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
+                            {location.name.replace('Zia Pizza', '').trim() && (
+                              <span style={{ color: '#D4C29C' }}>{location.name.replace('Zia Pizza', '').trim()}</span>
+                            )}
+                          </>
+                        ) : (
+                          <span className="text-foreground">{location.name}</span>
+                        )}
+                      </h3>
+                    </div>
+                  </CardContent>
+                </Card>
+              </button>
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
+
       {/* Hero Section */}
-      <section className="py-16 bg-gradient-to-br from-secondary/5 to-accent/5">
+      <section className="py-8 md:py-16 bg-gradient-to-br from-secondary/5 to-accent/5">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 mb-4">
+            <h1 className="font-display text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground">
             Our <span className="text-primary">Menu</span>
           </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto font-raleway">
-            Explore our current menu pages below.
-          </p>
+            {selectedLocation && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowLocationPopup(true)}
+                className="mt-0 md:mt-2 w-full sm:w-auto"
+              >
+                <RefreshCw className="w-4 h-4 mr-2" />
+                Change Location
+              </Button>
+            )}
+          </div>
+          
+          {selectedLocation && (() => {
+            const location = locations.find(loc => loc.id === selectedLocation);
+            if (!location) return null;
+            return (
+              <p className="text-xs md:text-sm text-muted-foreground font-raleway px-2">
+                Showing menu for{' '}
+                {location.name.includes('by Zia Pizza') ? (
+                  <>
+                    <span style={{ color: '#D4C29C' }}>
+                      {location.name.split('by Zia Pizza')[0].trim()}
+                    </span>{' '}
+                    <span className="text-foreground/80">by</span>{' '}
+                    <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
+                  </>
+                ) : location.name.includes('Zia Pizza Express') ? (
+                  <>
+                    <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>{' '}
+                    <span style={{ color: '#e5e7eb' }}>Express</span>{' '}
+                    <span style={{ color: '#D4C29C' }}>{location.name.replace('Zia Pizza Express', '').trim()}</span>
+                  </>
+                ) : location.name.includes('Zia Pizza') ? (
+                  <>
+                    <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
+                    {location.name.replace('Zia Pizza', '').trim() && (
+                      <span style={{ color: '#D4C29C' }}>{location.name.replace('Zia Pizza', '').trim()}</span>
+                    )}
+                  </>
+                ) : (
+                  <span className="text-primary font-semibold">{location.name}</span>
+                )}
+              </p>
+            );
+          })()}
         </div>
       </section>
 
       {/* Menu Images - Book View (Desktop) */}
       <section className="py-16 hidden md:block">
         <div className="container mx-auto px-4">
-          {flipbookReady && FlipBook ? (
+          {!selectedLocation ? (
+            <div className="text-center py-16">
+              <p className="text-lg text-muted-foreground font-raleway">
+                Please select a location above to view the menu.
+              </p>
+            </div>
+          ) : menuImages.length === 0 ? (
+            <div className="text-center py-16">
+              <p className="text-lg text-muted-foreground font-raleway">
+                Menu images are being prepared. Please check back soon!
+              </p>
+            </div>
+          ) : flipbookReady && FlipBook ? (
             <div className="mx-auto max-w-5xl">
               <FlipBook
                 width={550}
@@ -200,6 +449,19 @@ const MenuPage = () => {
       {/* Mobile/Tablet Grid fallback */}
       <section className="py-16 md:hidden">
         <div className="container mx-auto px-4">
+          {!selectedLocation ? (
+            <div className="text-center py-16">
+              <p className="text-lg text-muted-foreground font-raleway">
+                Please select a location above to view the menu.
+              </p>
+            </div>
+          ) : menuImages.length === 0 ? (
+            <div className="text-center py-16">
+              <p className="text-lg text-muted-foreground font-raleway">
+                Menu images are being prepared. Please check back soon!
+              </p>
+            </div>
+          ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {menuImages.map((src, idx) => (
               <Card key={idx} className="card-premium overflow-hidden">
@@ -211,6 +473,7 @@ const MenuPage = () => {
               </Card>
             ))}
           </div>
+          )}
         </div>
       </section>
 

@@ -6,8 +6,10 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Snowfall from 'react-snowfall';
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const ChristmasPage = () => {
+  const [searchParams] = useSearchParams();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [showSpecialMenu, setShowSpecialMenu] = useState(false);
   const [api, setApi] = useState<any>(null);
@@ -22,8 +24,16 @@ const ChristmasPage = () => {
   };
   
   useEffect(() => {
+    // Check if coming from menu popup (menu=special parameter)
+    const menuParam = searchParams.get('menu');
+    if (menuParam === 'special') {
+      // Force show special menu when coming from menu popup
+      setShowSpecialMenu(true);
+    } else {
+      // Otherwise check if it's December 25th
     setShowSpecialMenu(isDecember25());
-  }, []);
+    }
+  }, [searchParams]);
 
   // Manual scrolling only - no auto-play
 

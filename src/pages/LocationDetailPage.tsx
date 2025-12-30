@@ -2,20 +2,34 @@ import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { 
   MapPin, Phone, Mail, Clock, Navigation, ArrowLeft, 
-  ExternalLink, Calendar, Users, Utensils, Car, Store, MessageSquare 
+  ExternalLink, Calendar, Users, Utensils, Car, Store, MessageSquare, X
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { locations, offers } from "@/data/locations";
 import Footer from "@/components/Footer";
+import WestburyPopupImage from "@/assets/Westbury_pop.jpeg";
 
 const LocationDetailPage = () => {
   const { locationId } = useParams();
   const location = locations.find(loc => loc.id === locationId);
   const [activeTab, setActiveTab] = useState("feedback");
   const [timeUntil, setTimeUntil] = useState<{type: 'opening' | 'closing' | null, hours: number, minutes: number, seconds: number}>({type: null, hours: 0, minutes: 0, seconds: 0});
+  const [showWestburyPopup, setShowWestburyPopup] = useState(false);
+
+  // Show popup for Westbury location on page load
+  useEffect(() => {
+    if (locationId === "westbury") {
+      // Show popup after a short delay on every page visit
+      const timer = setTimeout(() => {
+        setShowWestburyPopup(true);
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [locationId]);
 
   if (!location) {
     return (
@@ -154,6 +168,28 @@ const LocationDetailPage = () => {
 
   return (
     <div className="pt-16">
+      {/* Westbury Popup */}
+      {locationId === "westbury" && (
+        <Dialog open={showWestburyPopup} onOpenChange={setShowWestburyPopup}>
+          <DialogContent className="max-w-[600px] max-h-[90vh] p-0 w-[90vw] sm:w-[500px] overflow-hidden">
+            <div className="relative">
+              <button
+                onClick={() => setShowWestburyPopup(false)}
+                className="absolute top-2 right-2 z-10 rounded-full bg-black/60 hover:bg-black/80 text-white p-1.5 sm:p-2 transition-colors"
+                aria-label="Close"
+              >
+                <X className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+              <img
+                src={WestburyPopupImage}
+                alt="Westbury Special Offer"
+                className="w-full h-auto object-contain max-h-[90vh]"
+              />
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
+      
       {/* Hero Section */}
       <section className="py-16 bg-gradient-to-br from-muted/20 to-muted/10">
         <div className="container mx-auto px-4">
@@ -177,6 +213,12 @@ const LocationDetailPage = () => {
                       </span>{' '}
                       <span className="text-white/90">by</span>{' '}
                       <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
+                    </>
+                  ) : location.name.includes('Zia Pizza Express') ? (
+                    <>
+                      <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>{' '}
+                      <span style={{ color: '#e5e7eb' }}>Express</span>{' '}
+                      <span style={{ color: '#D4C29C' }}>{location.name.replace('Zia Pizza Express', '').trim()}</span>
                     </>
                   ) : location.name.includes('Zia Pizza') ? (
                     <>

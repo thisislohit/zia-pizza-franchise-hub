@@ -29,13 +29,6 @@ const DealsPage = () => {
           highlight: true
         },
         {
-          day: "Monday",
-          title: "Monday Funday",
-          description: "Carlsberg & Thatchers Gold £2.95/pint (excl. bank holidays)",
-          price: "£2.95/pint",
-          icon: <Beer className="w-5 h-5" />
-        },
-        {
           day: "Tuesday",
           title: "BOGO Pizza",
           description: "Buy 1, Get 1 Free (equal/lesser value). Dine-in, takeaway, delivery (web & phone).",
@@ -81,7 +74,7 @@ const DealsPage = () => {
     },
     {
       id: 2,
-      name: "Zia Pizza Westbury",
+      name: "Zia Pizza Express Westbury",
       location: "Westbury",
       address: "Westbury, Wiltshire",
       offers: [
@@ -358,22 +351,22 @@ const DealsPage = () => {
 
                   {/* Daily Offer */}
                   {location.dailyOffer && (
-                    <div className="bg-gradient-to-r from-accent/10 to-secondary/10 rounded-lg p-6 border border-secondary/20">
-                      <div className="flex items-center gap-3 mb-3">
-                        <Clock className="w-5 h-5 text-secondary" />
-                        <h4 className="font-display text-lg font-bold text-foreground">Daily Special</h4>
+                  <div className="bg-gradient-to-r from-accent/10 to-secondary/10 rounded-lg p-6 border border-secondary/20">
+                    <div className="flex items-center gap-3 mb-3">
+                      <Clock className="w-5 h-5 text-secondary" />
+                      <h4 className="font-display text-lg font-bold text-foreground">Daily Special</h4>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h5 className="font-semibold text-foreground mb-1">{location.dailyOffer.title}</h5>
+                        <p className="text-sm text-muted-foreground font-raleway">{location.dailyOffer.description}</p>
                       </div>
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h5 className="font-semibold text-foreground mb-1">{location.dailyOffer.title}</h5>
-                          <p className="text-sm text-muted-foreground font-raleway">{location.dailyOffer.description}</p>
-                        </div>
-                        <div className="flex items-center gap-2 text-secondary">
-                          {location.dailyOffer.icon}
-                          <span className="font-bold text-lg">{location.dailyOffer.price}</span>
-                        </div>
+                      <div className="flex items-center gap-2 text-secondary">
+                        {location.dailyOffer.icon}
+                        <span className="font-bold text-lg">{location.dailyOffer.price}</span>
                       </div>
                     </div>
+                  </div>
                   )}
                 </div>
               </div>

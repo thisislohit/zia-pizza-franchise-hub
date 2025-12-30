@@ -66,6 +66,12 @@ const LocationsPage = () => {
                                 <span className="text-foreground/80">by</span>{' '}
                                 <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>
                               </>
+                            ) : location.name.includes('Zia Pizza Express') ? (
+                              <>
+                                <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>{' '}
+                                <span style={{ color: '#e5e7eb' }}>Express</span>{' '}
+                                <span style={{ color: '#D4C29C' }}>{location.name.replace('Zia Pizza Express', '').trim()}</span>
+                              </>
                             ) : location.name.includes('Zia Pizza') ? (
                               <>
                                 <span className="text-white">Zia</span> <span className="text-red-600">Pizza</span>

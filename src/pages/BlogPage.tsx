@@ -47,10 +47,10 @@ const BlogPage = () => {
     {
       id: 2,
       title: "Best Pizza in Westbury | Pizza Delivery in Westbury – Zia Pizza",
-      location: "Zia Pizza Westbury",
+      location: "Zia Pizza Express Westbury",
       metaTitle: "Best Pizza in Westbury | Pizza Delivery in Westbury",
       metaDescription: "Enjoy the best pizza in Westbury with Zia Pizza! Fast pizza delivery in Westbury, fresh ingredients, and authentic Italian flavors at your doorstep.",
-      intro: "Welcome to Zia Pizza Westbury, where authentic Italian flavor meets local charm. We're proud to serve the best pizza in Westbury, crafted from fresh ingredients, hand-stretched dough, and time-honored Italian recipes. Whether you dine in with friends or order from home, every bite delivers true Italian satisfaction.",
+      intro: "Welcome to Zia Pizza Express Westbury, where authentic Italian flavor meets local charm. We're proud to serve the best pizza in Westbury, crafted from fresh ingredients, hand-stretched dough, and time-honored Italian recipes. Whether you dine in with friends or order from home, every bite delivers true Italian satisfaction.",
       sections: [
         {
           title: "Enjoy the Best Pizza in Westbury",
@@ -61,7 +61,7 @@ const BlogPage = () => {
           content: "Can't make it to the restaurant? No problem! Zia Pizza offers pizza delivery in Westbury, so you can enjoy your favorite Italian dishes from the comfort of your home.\n\nOur delivery team ensures your pizza arrives fresh, hot, and perfectly baked — ready to enjoy. Whether it's a family meal, movie night, or office lunch, our pizza delivery in Westbury brings restaurant-quality flavor right to your door."
         },
         {
-          title: "Why Choose Zia Pizza Westbury",
+          title: "Why Choose Zia Pizza Express Westbury",
           content: "• The best pizza in Westbury, handcrafted daily\n• Fast and reliable pizza delivery in Westbury\n• Fresh, locally sourced ingredients\n• Cozy dine-in atmosphere with friendly staff\n• Vegetarian and vegan pizza options available"
         }
       ],
@@ -87,11 +87,11 @@ const BlogPage = () => {
           answer: "Yes, we offer delicious vegetarian and vegan pizzas made with the same care and authentic flavors as our traditional options."
         },
         {
-          question: "Can I dine in at Zia Pizza Westbury?",
+          question: "Can I dine in at Zia Pizza Express Westbury?",
           answer: "Of course! Our Westbury restaurant offers a warm, friendly environment perfect for family meals, date nights, and group gatherings."
         },
         {
-          question: "Where is Zia Pizza Westbury located?",
+          question: "Where is Zia Pizza Express Westbury located?",
           answer: "We're conveniently located in the heart of Westbury, making it easy for locals to stop by for dine-in or order takeaway and delivery."
         }
       ]

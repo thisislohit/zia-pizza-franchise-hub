@@ -39,44 +39,6 @@ export interface Location {
 
 export const locations: Location[] = [
   {
-    id: "westbury",
-    name: "Zia Pizza – Westbury",
-    address: "15 Palomino Pl, Westbury BA13 3SD, United Kingdom",
-    phone: "+44 1373 865271",
-    email: "westbury@ziapizza.com",
-    openingHours: {
-      monday: "11:30 AM – 11:00 PM",
-      tuesday: "11:30 AM – 11:00 PM",
-      wednesday: "11:30 AM – 11:00 PM",
-      thursday: "11:30 AM – 11:00 PM",
-      friday: "11:30 AM – 11:00 PM",
-      saturday: "11:30 AM – 11:00 PM",
-      sunday: "11:30 AM – 11:00 PM"
-    },
-    orderUrl: "/order/westbury",
-    bookingUrl: "/book/westbury",
-    deliveryPartners: {
-      uberEats: "https://www.ubereats.com/gb/store/zia-pizza-15-palomino-pl/LTFu_grXQcW0Qb7VSyYmQw?srsltid=AfmBOorXGXPm4FmWldz1ZbiUFdFLbwSR-VmcbpuA9ibAcd7h5utaPRcX",
-      justEat: "https://www.just-eat.co.uk/restaurants-ziapizza-ba13/menu",
-      deliveroo: "https://deliveroo.co.uk/menu/Bath/westbury-leigh/zia-pizza-westbury-15-palomino-pl?srsltid=AfmBOooePO6aKZE5BW4WWFq7fYZ-gneAw5l2cJoualOgxmayCsEFsigc"
-    },
-    socialMedia: {
-      facebook: "https://www.facebook.com/share/16K5gAssg7/?mibextid=wwXIfr",
-      instagram: "https://www.instagram.com/ziapizza_westbury?igsh=dTdrbjM4MjVqNThi"
-    },
-    coordinates: {
-      lat: 51.2604,
-      lng: -2.1875
-    },
-    features: ["Dine-In", "Takeaway", "Collection"],
-    iframes: {
-      order: "https://www.food-order.net/index.php/web_orders/home/SUdQS1lF?uid=67b70649c7141",
-      booking: "https://www.eposhybrid.uk/index.php/online-table-booking/SUdQS1lF",
-      feedback: "https://www.eposhybrid.uk/customer_feedback/reviews/SUdQS1lF",
-      map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2497.147041088998!2d-2.203340523395101!3d51.253201971756575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4873d410217ac42b%3A0xb7fde4acaed8017c!2sZia%20Pizza%20Westbury!5e0!3m2!1sen!2sin!4v1758469944227!5m2!1sen!2sin"
-    }
-  },
-  {
     id: "salisbury",
     name: "Zia Pizza – Salisbury",
     address: "46 Silver St, Salisbury, SP1 2NE, United Kingdom",
@@ -114,13 +76,51 @@ export const locations: Location[] = [
     }
   },
   {
+    id: "westbury",
+    name: "Zia Pizza Express Westbury",
+    address: "15 Palomino Pl, Westbury BA13 3SD, United Kingdom",
+    phone: "+44 1373 865271",
+    email: "westbury@ziapizza.com",
+    openingHours: {
+      monday: "11:30 AM – 11:00 PM",
+      tuesday: "11:30 AM – 11:00 PM",
+      wednesday: "11:30 AM – 11:00 PM",
+      thursday: "11:30 AM – 11:00 PM",
+      friday: "11:30 AM – 11:00 PM",
+      saturday: "11:30 AM – 11:00 PM",
+      sunday: "11:30 AM – 11:00 PM"
+    },
+    orderUrl: "/order/westbury",
+    bookingUrl: "/book/westbury",
+    deliveryPartners: {
+      uberEats: "https://www.ubereats.com/gb/store/zia-pizza-15-palomino-pl/LTFu_grXQcW0Qb7VSyYmQw?srsltid=AfmBOorXGXPm4FmWldz1ZbiUFdFLbwSR-VmcbpuA9ibAcd7h5utaPRcX",
+      justEat: "https://www.just-eat.co.uk/restaurants-ziapizza-ba13/menu",
+      deliveroo: "https://deliveroo.co.uk/menu/Bath/westbury-leigh/zia-pizza-westbury-15-palomino-pl?srsltid=AfmBOooePO6aKZE5BW4WWFq7fYZ-gneAw5l2cJoualOgxmayCsEFsigc"
+    },
+    socialMedia: {
+      facebook: "https://www.facebook.com/share/16K5gAssg7/?mibextid=wwXIfr",
+      instagram: "https://www.instagram.com/ziapizza_westbury?igsh=dTdrbjM4MjVqNThi"
+    },
+    coordinates: {
+      lat: 51.2604,
+      lng: -2.1875
+    },
+    features: ["Dine-In", "Takeaway", "Collection"],
+    iframes: {
+      order: "https://www.food-order.net/index.php/web_orders/home/SUdQS1lF?uid=67b70649c7141",
+      booking: "https://www.eposhybrid.uk/index.php/online-table-booking/SUdQS1lF",
+      feedback: "https://www.eposhybrid.uk/customer_feedback/reviews/SUdQS1lF",
+      map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2497.147041088998!2d-2.203340523395101!3d51.253201971756575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4873d410217ac42b%3A0xb7fde4acaed8017c!2sZia%20Pizza%20Westbury!5e0!3m2!1sen!2sin!4v1758469944227!5m2!1sen!2sin"
+    }
+  },
+  {
     id: "trowbridge",
     name: "The Lamb on the Strand by Zia Pizza.",
     address: "99 The Strand, Trowbridge, BA14 6LL, United Kingdom",
     phone: "+44 13805 03525",
     email: "semington@ziapizza.com",
     openingHours: {
-      monday: "11:30 AM – 11:00 PM",
+      monday: "Closed",
       tuesday: "11:30 AM – 11:00 PM",
       wednesday: "11:30 AM – 11:00 PM",
       thursday: "11:30 AM – 11:00 PM",
@@ -181,7 +181,7 @@ export const offers: Offer[] = [
     description: "Carlsberg & Thatchers Gold £2.95/pint, best way to start the week.",
     validDays: ["Monday"],
     locations: ["trowbridge"],
-    isActive: true,
+    isActive: false,
     priority: 2
   },
   // Semington - Tuesday
