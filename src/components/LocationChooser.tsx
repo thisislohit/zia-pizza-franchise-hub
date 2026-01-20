@@ -125,9 +125,10 @@ const LocationChooser = () => {
                       <Beer className="w-5 h-5" />
                     </div>
                     <div className="space-y-1">
-                      <div className="font-semibold text-foreground">Zia Pizza Gastropubs</div>
+                      <div className="font-semibold text-foreground">Zia Pizza Country Pubs</div>
                       <p className="text-sm text-muted-foreground">
-                        Historic pubs in UK reborn with Italian soul, great food, and community warmth.
+                      Traditional British pubs reimagined with Italian comfort food.
+                      Relaxed, food-led country pubs serving stone-baked pizzas, pub classics, and great drinks — designed for families, locals, and communities.
                       </p>
                     </div>
                   </div>

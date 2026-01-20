@@ -45,19 +45,20 @@ export const locations: Location[] = [
     phone: "01722433829",
     email: "salisbury@ziapizza.com",
     openingHours: {
-      monday: "Closed",
-      tuesday: "11:30 AM – 11:00 PM",
-      wednesday: "11:30 AM – 11:00 PM",
-      thursday: "11:30 AM – 11:00 PM",
-      friday: "11:30 AM – 11:00 PM",
-      saturday: "11:30 AM – 11:00 PM",
-      sunday: "11:30 AM – 11:00 PM"
+      monday: "12:30 PM – 10:30 PM",
+      tuesday: "12:30 PM – 10:30 PM",
+      wednesday: "12:30 PM – 10:30 PM",
+      thursday: "12:30 PM – 10:30 PM",
+      friday: "12:30 PM – 10:30 PM",
+      saturday: "12:30 PM – 10:30 PM",
+      sunday: "12:30 PM – 10:30 PM"
     },
     orderUrl: "/order/salisbury",
     bookingUrl: "/book/salisbury",
     deliveryPartners: {
       uberEats: "https://www.ubereats.com/gb/store/zia-pizza-salisbury/ZKw0-eTvTOuXhb6bwZkLyg?srsltid=AfmBOoptJayJ3W-g7f48y5Hbr2-FtXHNVJT7PA4pcfGAM_2rmHzRlojt",
-      justEat: "https://www.just-eat.co.uk/restaurants-zia-pizza-salisbury/menu"
+      justEat: "https://www.just-eat.co.uk/restaurants-zia-pizza-salisbury/menu",
+      deliveroo: "https://deliveroo.co.uk/menu/Salisbury/salisbury/zia-pizza-salisbury-46-silver-street?day=today"
     },
     socialMedia: {
       facebook: "https://www.facebook.com/share/19tVr2C1Gy/?mibextid=wwXIfr",
@@ -248,8 +249,8 @@ export const offers: Offer[] = [
   // Salisbury - Tuesday
   {
     id: "salisbury-tuesday-bogo",
-    title: "2-for-1 Pizza",
-    description: "Classic Zia pizzas 🍕, dine-in, takeaway & delivery deals.",
+    title: "Half Price Pizza",
+    description: "Buy one pizza and get the second pizza at half price 🍕.",
     validDays: ["Tuesday"],
     locations: ["salisbury"],
     isActive: true,
@@ -258,8 +259,8 @@ export const offers: Offer[] = [
   // Salisbury - Thursday
   {
     id: "salisbury-thursday-pasta",
-    title: "2-for-1 Pasta",
-    description: "Share Italian favorites 🍝, tasty dishes for every pasta lover.",
+    title: "Half Price Pasta",
+    description: "Buy one pasta and get the second pasta at half price 🍝.",
     validDays: ["Thursday"],
     locations: ["salisbury"],
     isActive: true,
