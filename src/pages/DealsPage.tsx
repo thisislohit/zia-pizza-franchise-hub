@@ -22,40 +22,34 @@ const DealsPage = () => {
       offers: [
         {
           day: "Sunday",
-          title: "The Great Zia Sunday Roast",
-          description: "All day. Includes chipolata, roast potatoes, seasonal veg, Yorkshire, unlimited gravy.",
+          title: "Sunday Roast",
+          description: "Traditional Sunday roast starting from £14.95. Served until sold out, family & group friendly.",
           price: "From £14.95",
           icon: <Utensils className="w-5 h-5" />,
           highlight: true
         },
         {
           day: "Tuesday",
-          title: "BOGO Pizza",
-          description: "Buy 1, Get 1 Free (equal/lesser value). Dine-in, takeaway, delivery (web & phone).",
-          price: "50% OFF",
+          title: "Tuesday Burger & Drink",
+          description: "Any burger from the menu with one drink for £14.95. Optional drink upgrade available.",
+          price: "£14.95",
           icon: <Gift className="w-5 h-5" />,
           highlight: true
         },
         {
           day: "Wednesday",
-          title: "Buffet",
-          description: "6:00–9:00 PM | Adults £16.45 | Kids (under 12) £9.00. \"Come hungry, leave happy.\"",
-          price: "Adults £16.45 | Kids £9.00",
+          title: "Wednesday Italian Buffet",
+          description: "6:00–9:00 PM | Unlimited pizza & pasta buffet, £16.90 per person. Family friendly, dine in only.",
+          price: "£16.90 per person",
           icon: <Users className="w-5 h-5" />
         },
         {
           day: "Thursday",
-          title: "2 for 1 Pasta",
-          description: "Buy one pasta, get one free.",
-          price: "50% OFF",
-          icon: <Utensils className="w-5 h-5" />
-        },
-        {
-          day: "Friday",
-          title: "Kids Eat for £1",
-          description: "With a full-price adult main (under 12).",
-          price: "£1.00",
-          icon: <Users className="w-5 h-5" />
+          title: "Thursday Steak Night",
+          description: "5:30–9:30 PM | Sirloin steak served with chips & fresh mixed salad for £19.95. One sauce included, drink upgrade available £3.50.",
+          price: "£19.95",
+          icon: <Utensils className="w-5 h-5" />,
+          highlight: true
         },
         {
           day: "Saturday",
@@ -64,13 +58,7 @@ const DealsPage = () => {
           price: "Regular prices",
           icon: <Star className="w-5 h-5" />
         }
-      ],
-      dailyOffer: {
-        title: "Double the Drinks",
-        description: "2 cocktails £13.95, 5 PM–Close. Everyday",
-        price: "£13.95",
-        icon: <Beer className="w-5 h-5" />
-      }
+      ]
     },
     {
       id: 2,
@@ -96,17 +84,17 @@ const DealsPage = () => {
       offers: [
         {
           day: "Tuesday",
-          title: "BOGO Pizza",
-          description: "Buy 1, Get 1 Free (equal/lesser value). Dine-in, takeaway, delivery (web & phone).",
-          price: "50% OFF",
+          title: "Half Price Pizza",
+          description: "Buy one pizza and get the second pizza at half price. Dine-in, takeaway, delivery (web & phone).",
+          price: "50% OFF 2nd Pizza",
           icon: <Gift className="w-5 h-5" />,
           highlight: true
         },
         {
           day: "Thursday",
-          title: "2 for 1 Pasta",
-          description: "Buy one pasta, get one free.",
-          price: "50% OFF",
+          title: "Half Price Pasta",
+          description: "Buy one pasta and get the second pasta at half price.",
+          price: "50% OFF 2nd Pasta",
           icon: <Utensils className="w-5 h-5" />
         },
         {

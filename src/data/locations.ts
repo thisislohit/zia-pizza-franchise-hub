@@ -168,8 +168,8 @@ export const offers: Offer[] = [
   // Semington (The Lamb on the Strand) - Sunday
   {
     id: "semington-sunday-roast",
-    title: "Great Zia Roast",
-    description: "Family feast with Yorkshire puds, gravy & veggies from £14.95.",
+    title: "Sunday Roast",
+    description: "Traditional Sunday roast starting from £14.95. Served until sold out, family & group friendly.",
     validDays: ["Sunday"],
     locations: ["trowbridge"],
     isActive: true,
@@ -187,9 +187,9 @@ export const offers: Offer[] = [
   },
   // Semington - Tuesday
   {
-    id: "semington-tuesday-bogo",
-    title: "2-for-1 Pizza",
-    description: "Dine-in, takeaway & delivery 🍕, share delicious slices without extra cost.",
+    id: "semington-tuesday-burger",
+    title: "Tuesday Burger & Drink",
+    description: "Any burger from the menu with one drink for £14.95. Optional drink upgrade available.",
     validDays: ["Tuesday"],
     locations: ["trowbridge"],
     isActive: true,
@@ -198,8 +198,8 @@ export const offers: Offer[] = [
   // Semington - Wednesday
   {
     id: "semington-wednesday-buffet",
-    title: "Buffet Night",
-    description: "6–9 PM, Adults £16.45, Kids £9, all-you-can-eat favorites.",
+    title: "Wednesday Italian Buffet",
+    description: "Unlimited pizza & pasta buffet, £16.90 per person. Family friendly, dine in only.",
     validDays: ["Wednesday"],
     validTimes: "6:00 PM - 9:00 PM",
     locations: ["trowbridge"],
@@ -208,33 +208,14 @@ export const offers: Offer[] = [
   },
   // Semington - Thursday
   {
-    id: "semington-thursday-pasta",
-    title: "2-for-1 Pasta",
-    description: "Authentic Italian dishes 🍝, perfect for couples, friends, or family dinners.",
+    id: "semington-thursday-steak",
+    title: "Thursday Steak Night",
+    description: "Sirloin steak served with chips & fresh mixed salad for £19.95. One sauce included, drink upgrade available £3.50.",
     validDays: ["Thursday"],
+    validTimes: "5:30 PM - 9:30 PM",
     locations: ["trowbridge"],
     isActive: true,
     priority: 5
-  },
-  // Semington - Friday
-  {
-    id: "semington-friday-kids",
-    title: "Kids Eat for £1",
-    description: "With full-price adult main, great for family evenings.",
-    validDays: ["Friday"],
-    locations: ["trowbridge"],
-    isActive: true,
-    priority: 6
-  },
-  // Semington - Daily
-  {
-    id: "semington-daily-drinks",
-    title: "Double the Drinks",
-    description: "2 cocktails £13.95 from 5 PM 🍹, enjoy happy vibes daily.",
-    validTimes: "5:00 PM - Close",
-    locations: ["trowbridge"],
-    isActive: true,
-    priority: 7
   },
   // Westbury - Tuesday
   {

@@ -1,15 +1,51 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, MapPin, Phone } from "lucide-react";
+import { Menu, X, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { locations } from "@/data/locations";
 import { useToast } from "@/hooks/use-toast";
 
+// Menu dropdown: order Lamb, Salisbury, Westbury. Display names per location.
+const menuLocationDisplayNames: Record<string, string> = {
+  salisbury: "Salisbury",
+  westbury: "Westbury",
+  trowbridge: "Lamb",
+};
+const menuDropdownOrder: string[] = ["trowbridge", "salisbury", "westbury"];
+
+const MENU_CLOSE_DELAY_MS = 300;
+const MENU_OPEN_GRACE_MS = 200;
+
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuDropdownOpen, setMenuDropdownOpen] = useState(false);
+  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const openTimeRef = useRef<number>(0);
   const location = useLocation();
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  const handleMenuDropdownMouseEnter = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    openTimeRef.current = Date.now();
+    setMenuDropdownOpen(true);
+  };
+
+  const handleMenuDropdownMouseLeave = () => {
+    const now = Date.now();
+    const justOpened = now - openTimeRef.current < MENU_OPEN_GRACE_MS;
+    if (justOpened) return;
+    closeTimeoutRef.current = setTimeout(() => setMenuDropdownOpen(false), MENU_CLOSE_DELAY_MS);
+  };
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -106,7 +142,6 @@ const Navigation = () => {
     { href: "/", label: "Home" },
     { href: "/locations", label: "Locations" },
     { href: "/menu", label: "Menu" },
-    // { href: "/christmas", label: "Christmas" },
     { href: "/deals", label: "Deals" },
     { href: "/about", label: "About Us" },
     { href: "/blog", label: "Blog" },
@@ -128,19 +163,65 @@ const Navigation = () => {
 
           {/* Desktop Navigation - Absolutely Centered */}
           <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                to={item.href}
-                className={`font-body font-medium whitespace-nowrap transition-all duration-300 hover:text-primary hover:transform hover:-translate-y-1 hover:scale-105 ${
-                  location.pathname === item.href
-                    ? "text-primary"
-                    : "text-foreground"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) =>
+              item.href === "/menu" ? (
+                <DropdownMenu
+                  key={item.href}
+                  open={menuDropdownOpen}
+                  onOpenChange={setMenuDropdownOpen}
+                  modal={false}
+                >
+                  <div
+                    onMouseEnter={handleMenuDropdownMouseEnter}
+                    onMouseLeave={handleMenuDropdownMouseLeave}
+                    className="flex items-center"
+                  >
+                    <DropdownMenuTrigger asChild>
+                      <button
+                        className="font-body font-medium whitespace-nowrap text-foreground transition-colors focus:outline-none focus:ring-0"
+                      >
+                        {item.label}
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent
+                      align="center"
+                      sideOffset={2}
+                      onMouseEnter={handleMenuDropdownMouseEnter}
+                      onMouseLeave={handleMenuDropdownMouseLeave}
+                      className="w-fit min-w-0 p-1"
+                    >
+                      {menuDropdownOrder.map((locationId, index) => {
+                        const loc = locations.find((l) => l.id === locationId);
+                        if (!loc) return null;
+                        return (
+                          <DropdownMenuItem key={loc.id} asChild>
+                            <Link
+                              to={`/menu?location=${loc.id}`}
+                              className="block animate-dropdown-item-in"
+                              style={{ animationDelay: `${index * 100}ms` }}
+                            >
+                              {menuLocationDisplayNames[loc.id] ?? loc.name}
+                            </Link>
+                          </DropdownMenuItem>
+                        );
+                      })}
+                    </DropdownMenuContent>
+                  </div>
+                </DropdownMenu>
+              ) : (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className={`font-body font-medium whitespace-nowrap transition-all duration-300 hover:text-primary hover:transform hover:-translate-y-1 hover:scale-105 ${
+                    location.pathname === item.href
+                      ? "text-primary"
+                      : "text-foreground"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
           </div>
 
           {/* CTA Buttons */}
@@ -173,7 +254,7 @@ const Navigation = () => {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`font-body font-medium py-2 whitespace-nowrap transition-all duration-300 hover:text-primary hover:transform hover:-translate-y-1 hover:scale-105 ${
+                  className={`font-body font-medium py-2 whitespace-nowrap transition-all duration-300 hover:text-primary ${
                     location.pathname === item.href
                       ? "text-primary"
                       : "text-foreground"

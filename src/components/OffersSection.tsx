@@ -89,7 +89,7 @@ const OffersSection = () => {
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
               Special <span className="text-primary">Offers</span> & Local <span className="text-primary">Events</span>
             </h2>
-            <p className="text-lg text-muted-foreground font-raleway">From midweek pizza deals to Sunday Roasts, there’s always something special waiting at Zia Pizza.</p>
+            <p className="text-lg text-muted-foreground font-raleway">From midweek pizza deals to great food offers, there’s always something special waiting at Zia Pizza.</p>
             <p className="text-lg text-muted-foreground font-raleway">We also host seasonal events — from Christmas lunch to family nights at Zia Pizza.</p>
           </div>
         </div>
@@ -107,7 +107,7 @@ const OffersSection = () => {
               Special <span className="text-primary">Offers</span> & Local <span className="text-primary">Events</span>
             </h2>
             <div className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4 font-raleway space-y-2">
-              <p>From midweek pizza deals to Sunday Roasts, there’s always something special waiting at Zia Pizza.</p>
+              <p>From midweek pizza deals to great food offers, there’s always something special waiting at Zia Pizza.</p>
               <p>We also host seasonal events — from Christmas lunch to family nights at Zia Pizza.</p>
             </div>
             {lambBookingUrl && (
@@ -146,7 +146,7 @@ const OffersSection = () => {
               Special <span className="text-primary">Offers</span> & Local <span className="text-primary">Events</span>
             </h2>
             <div className="text-lg text-muted-foreground max-w-2xl mx-auto mb-3 font-raleway space-y-2">
-              <p>From midweek pizza deals to Sunday Roasts, there’s always something special waiting at Zia Pizza.</p>
+              <p>From midweek pizza deals to great food offers, there’s always something special waiting at Zia Pizza.</p>
               <p>We also host seasonal events — from Christmas lunch to family nights at Zia Pizza.</p>
             </div>
             {lambBookingUrl && (

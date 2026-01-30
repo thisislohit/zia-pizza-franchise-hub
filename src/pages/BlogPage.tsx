@@ -98,45 +98,49 @@ const BlogPage = () => {
     },
     {
       id: 3,
-      title: "Sunday Roast in Salisbury & Pizza Delivery in Salisbury – Zia Pizza",
+      title: "Pizza Delivery in Salisbury – Zia Pizza",
       location: "Zia Pizza Salisbury",
-      metaTitle: "Sunday Roast in Salisbury | Pizza Delivery in Salisbury",
-      metaDescription: "Enjoy a delicious Sunday Roast in Salisbury or fast Pizza Delivery in Salisbury with Zia Pizza – fresh, flavorful, and made with authentic Italian care",
-      intro: "Welcome to Zia Pizza Salisbury, your local destination for authentic Italian flavors and comforting British classics. Whether you're joining us for a hearty Sunday Roast in Salisbury or craving a fresh, hot pizza delivered right to your door, we bring the taste of Italy closer to home.",
+      metaTitle: "Pizza Delivery in Salisbury | Best Pizza in Salisbury",
+      metaDescription: "Enjoy fast Pizza Delivery in Salisbury with Zia Pizza – fresh, flavorful, authentic Italian pizzas made with care and delivered to your door.",
+      intro: "Welcome to Zia Pizza Salisbury, your local destination for authentic Italian flavors. Craving a fresh, hot pizza delivered right to your door? We bring the taste of Italy closer to home with our signature pizzas, made fresh daily.",
       sections: [
-        {
-          title: "The Perfect Sunday Roast in Salisbury",
-          content: "There's nothing better than a relaxed Sunday lunch with family and friends. Our Sunday Roast in Salisbury combines classic British comfort with a touch of Italian finesse. Each roast features tender meats, golden potatoes, fresh seasonal vegetables, and rich homemade gravy — all crafted to perfection."
-        },
         {
           title: "Fast, Fresh Pizza Delivery in Salisbury",
           content: "Prefer to enjoy your meal at home? Zia Pizza offers pizza delivery in Salisbury, bringing freshly baked Italian pizzas straight to your doorstep. Our pizzas are hand-stretched, topped with locally sourced ingredients, and baked in our signature stone oven for the perfect crisp crust."
         },
         {
+          title: "Authentic Italian Pizza Made Fresh Daily",
+          content: "At Zia Pizza Salisbury, every pizza is crafted with passion and precision. From classic Margherita to gourmet specialties, we use only the finest ingredients to ensure every bite is bursting with authentic Italian flavor. Our dough is made fresh daily, our sauce is homemade, and our toppings are carefully selected for quality and taste."
+        },
+        {
           title: "Why Locals Love Zia Pizza Salisbury",
-          content: "• Authentic Italian pizzas and hearty Sunday roasts\n• Fresh, high-quality ingredients\n• Cozy, family-friendly restaurant atmosphere\n• Fast and reliable local delivery service\n• Vegetarian and vegan options available"
+          content: "• Authentic Italian pizzas made with premium ingredients\n• Fresh, high-quality ingredients sourced locally\n• Cozy, family-friendly restaurant atmosphere\n• Fast and reliable local delivery service\n• Vegetarian and vegan options available\n• Dine-in, takeaway, and delivery options"
         }
       ],
       faq: [
         {
-          question: "Do you serve Sunday Roast in Salisbury every week?",
-          answer: "Yes! Our Sunday Roast in Salisbury is served every Sunday, freshly prepared with quality ingredients and a touch of Italian flair."
-        },
-        {
-          question: "What time is the Sunday Roast available?",
-          answer: "Our Sunday roast is available from 12 PM to 4 PM every Sunday. We recommend booking early to secure your table."
-        },
-        {
           question: "Do you offer pizza delivery in Salisbury?",
-          answer: "Absolutely! We provide fast, fresh, and reliable pizza delivery in Salisbury daily from 12 PM to 10 PM."
+          answer: "Absolutely! We provide fast, fresh, and reliable pizza delivery in Salisbury daily from 12:30 PM to 10:30 PM."
         },
         {
-          question: "Can I order both pizza and Sunday roast for delivery?",
-          answer: "Currently, our Sunday roast is available for dine-in only, while all pizzas and sides can be delivered hot and fresh to your home."
+          question: "How do I order pizza for delivery?",
+          answer: "You can easily order online through our website, via delivery partners like Uber Eats, Just Eat, and Deliveroo, or call us directly for quick service."
+        },
+        {
+          question: "What types of pizzas do you offer?",
+          answer: "We offer a wide range of pizzas including classic Margherita, Pepperoni, BBQ Chicken, Vegetarian options, and gourmet specialties. All pizzas can be customized to your preferences."
         },
         {
           question: "Do you offer vegetarian or vegan options?",
-          answer: "Yes, Zia Pizza Salisbury offers a variety of vegetarian and vegan pizzas, along with plant-based roast options available upon request."
+          answer: "Yes, Zia Pizza Salisbury offers a variety of vegetarian and vegan pizzas made with the same authentic Italian care and quality ingredients."
+        },
+        {
+          question: "Can I dine in at Zia Pizza Salisbury?",
+          answer: "Of course! Our Salisbury restaurant offers a warm, welcoming atmosphere perfect for family meals, date nights, and gatherings with friends."
+        },
+        {
+          question: "What are your delivery hours?",
+          answer: "We deliver from 12:30 PM to 10:30 PM daily. Order online or call us to have fresh, hot pizza delivered to your door."
         }
       ]
     }

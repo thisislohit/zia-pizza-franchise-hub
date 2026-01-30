@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -10,15 +10,26 @@ import ChristmasMenuImage from "@/assets/Christmas_menu.png";
 
 const MenuPage = () => {
   const navigate = useNavigate();
-  const [selectedLocation, setSelectedLocation] = useState<string>("");
+  const [searchParams] = useSearchParams();
+  const locationFromUrl = searchParams.get("location");
+  const validLocationIds = useMemo(() => locations.map((loc) => loc.id), []);
+  const [selectedLocation, setSelectedLocation] = useState<string>(() => {
+    if (locationFromUrl && validLocationIds.includes(locationFromUrl)) {
+      return locationFromUrl;
+    }
+    return "";
+  });
   const [showLocationPopup, setShowLocationPopup] = useState<boolean>(false);
 
-  // Show popup if no location is selected
+  // When URL has ?location=..., use it and show that menu; otherwise show location popup
   useEffect(() => {
-    if (!selectedLocation) {
+    if (locationFromUrl && validLocationIds.includes(locationFromUrl)) {
+      setSelectedLocation(locationFromUrl);
+      setShowLocationPopup(false);
+    } else if (!selectedLocation) {
       setShowLocationPopup(true);
     }
-  }, [selectedLocation]);
+  }, [locationFromUrl, selectedLocation, validLocationIds]);
 
   // Load menu cover images for location selection popup
   const locationMenuCovers = useMemo(() => {
@@ -101,7 +112,12 @@ const MenuPage = () => {
   const [flipPage, setFlipPage] = useState(0);
   const [flipTotal, setFlipTotal] = useState(0);
 
-  // Reset page index when location changes
+  // Safe index so we never show blank when switching locations (menu length changes)
+  const safeCurrentIndex = menuImages.length > 0
+    ? Math.min(Math.max(1, currentIndex), menuImages.length - 1)
+    : 1;
+
+  // Reset page index when location changes (avoids blank when switching Salisbury -> Westbury -> Lamb)
   useEffect(() => {
     setCurrentIndex(1);
   }, [selectedLocation]);
@@ -127,9 +143,9 @@ const MenuPage = () => {
   const onTouchMove = (_e: React.TouchEvent) => {};
   const onTouchEnd = () => {};
 
-  // Book view navigation (desktop)
-  const canPrev = currentIndex > 1;
-  const canNext = currentIndex < menuImages.length - 1;
+  // Book view navigation (desktop) - use safe index so switching locations never shows blank
+  const canPrev = safeCurrentIndex > 1;
+  const canNext = safeCurrentIndex < menuImages.length - 1;
   const goPrevSpread = () => {
     if (!canPrev) return;
     setFlipDir("prev");
@@ -335,8 +351,8 @@ const MenuPage = () => {
         </div>
       </section>
 
-      {/* Menu Images - Book View (Desktop) */}
-      <section className="py-16 hidden md:block">
+      {/* Menu Images - Book View (Desktop) - key forces remount when location changes to avoid blank/flipbook state */}
+      <section className="py-16 hidden md:block" key={selectedLocation || "none"}>
         <div className="container mx-auto px-4">
           {!selectedLocation ? (
             <div className="text-center py-16">
@@ -409,14 +425,14 @@ const MenuPage = () => {
               <div className="relative mx-auto max-w-6xl">
                 <div className="perspective-[2000px] flex items-stretch gap-4">
                   {/* Previous page preview (left) */}
-                  {currentIndex - 2 >= 0 && (
+                  {safeCurrentIndex - 2 >= 0 && (
                     <div
                       className="hidden lg:block w-24 shrink-0 self-center opacity-70 hover:opacity-100 cursor-pointer"
                       onClick={goPrevSpread}
                     >
                       <img
-                        src={menuImages[currentIndex - 2]}
-                        alt={`Prev page ${currentIndex - 1}`}
+                        src={menuImages[safeCurrentIndex - 2]}
+                        alt={`Prev page ${safeCurrentIndex - 1}`}
                         className="w-24 h-auto object-cover rounded select-none"
                       />
                       <div className="text-center text-[10px] text-muted-foreground mt-1">Previous</div>
@@ -425,8 +441,8 @@ const MenuPage = () => {
                   {/* Left Page */}
                   <Card className={`card-premium overflow-hidden flex-1 min-w-0 transform transition-transform duration-300 ${flipDir === 'prev' ? 'rotate-y-6' : ''}`}>
                     <CardContent className="p-0">
-                      {menuImages[currentIndex - 1] && (
-                        <img src={menuImages[currentIndex - 1]} alt={`Menu page ${currentIndex}`} className="w-full h-auto object-cover select-none" />
+                      {menuImages[safeCurrentIndex - 1] && (
+                        <img src={menuImages[safeCurrentIndex - 1]} alt={`Menu page ${safeCurrentIndex}`} className="w-full h-auto object-cover select-none" />
                       )}
                     </CardContent>
                   </Card>
@@ -434,8 +450,8 @@ const MenuPage = () => {
                   {/* Right Page */}
                   <Card className={`card-premium overflow-hidden flex-1 min-w-0 transform transition-transform duration-300 ${flipDir === 'next' ? '-rotate-y-6' : ''}`}>
                     <CardContent className="p-0">
-                      {menuImages[currentIndex] && (
-                        <img src={menuImages[currentIndex]} alt={`Menu page ${currentIndex + 1}`} className="w-full h-auto object-cover select-none" />
+                      {menuImages[safeCurrentIndex] && (
+                        <img src={menuImages[safeCurrentIndex]} alt={`Menu page ${safeCurrentIndex + 1}`} className="w-full h-auto object-cover select-none" />
                       )}
                     </CardContent>
                   </Card>
@@ -447,7 +463,7 @@ const MenuPage = () => {
       </section>
 
       {/* Mobile/Tablet Grid fallback */}
-      <section className="py-16 md:hidden">
+      <section className="py-16 md:hidden" key={selectedLocation ? `mobile-${selectedLocation}` : "mobile-none"}>
         <div className="container mx-auto px-4">
           {!selectedLocation ? (
             <div className="text-center py-16">
