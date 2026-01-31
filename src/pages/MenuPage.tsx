@@ -4,9 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ChevronLeft, ChevronRight, MapPin, RefreshCw, Snowflake } from "lucide-react";
+import { ChevronLeft, ChevronRight, MapPin, RefreshCw } from "lucide-react";
 import { locations } from "@/data/locations";
-import ChristmasMenuImage from "@/assets/Christmas_menu.png";
 
 const MenuPage = () => {
   const navigate = useNavigate();
@@ -87,11 +86,6 @@ const MenuPage = () => {
     setShowLocationPopup(false);
   };
 
-  const handleChristmasMenuClick = () => {
-    setShowLocationPopup(false);
-    navigate("/christmas?menu=special");
-  };
-  
   const coverFront = menuImages.length > 0 ? menuImages[0] : undefined;
   const coverBack = menuImages.length > 1 ? menuImages[menuImages.length - 1] : undefined;
   const innerPages = useMemo(() => {
@@ -200,37 +194,6 @@ const MenuPage = () => {
           </DialogHeader>
           
           <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 md:gap-6 mt-4 md:mt-6 px-2 md:px-0">
-            {/* Christmas Menu Card */}
-            <button
-              onClick={handleChristmasMenuClick}
-              className="group relative overflow-hidden rounded-lg border-2 border-border hover:border-primary active:border-primary transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] md:hover:scale-105 touch-manipulation w-full sm:w-auto sm:flex-1 sm:max-w-[280px]"
-            >
-              <Card className="border-0 shadow-none">
-                <CardContent className="p-0">
-                  <div className="relative">
-                    <img
-                      src={ChristmasMenuImage}
-                      alt="Christmas Menu"
-                      className="w-full h-auto object-cover max-h-[300px] md:max-h-none"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 group-active:bg-black/30 transition-all duration-300 flex items-center justify-center">
-                      <div className="opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300">
-                        <div className="bg-primary/90 text-white px-3 py-2 md:px-4 md:py-2 rounded-lg font-semibold text-sm md:text-base">
-                          View Menu
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-3 md:p-4 bg-card">
-                    <h3 className="font-display text-base md:text-lg font-semibold text-center flex items-center justify-center gap-2">
-                      <Snowflake className="w-4 h-4 md:w-5 md:h-5 text-primary" />
-                      <span className="text-foreground">Christmas Menu</span>
-                    </h3>
-                  </div>
-                </CardContent>
-              </Card>
-            </button>
-            
             {locations.map((location) => (
               <button
                 key={location.id}
