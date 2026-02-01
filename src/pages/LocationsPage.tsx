@@ -174,11 +174,15 @@ const LocationsPage = () => {
                             Direction
                           </Button>
                         </a>
-                        <Link to={location.orderUrl || "#"}>
+                        <a
+                          href={location.iframes.order}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <Button className="w-full bg-red-600 hover:bg-red-700">
                             Order Now
                           </Button>
-                        </Link>
+                        </a>
                       </div>
                     </div>
 

@@ -32,7 +32,7 @@ const Footer = () => {
                 <Facebook className="w-5 h-5" />
               </a>
               <a 
-                href="https://www.instagram.com/ziapizza_lambonthestrand?igsh=azY5d3NhMG5ma2pq" 
+                href="https://www.instagram.com/thelambonthestrand.trowbridge?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"

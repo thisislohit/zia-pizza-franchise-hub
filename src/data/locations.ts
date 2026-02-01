@@ -100,7 +100,7 @@ export const locations: Location[] = [
     },
     socialMedia: {
       facebook: "https://www.facebook.com/share/16K5gAssg7/?mibextid=wwXIfr",
-      instagram: "https://www.instagram.com/ziapizza_westbury?igsh=dTdrbjM4MjVqNThi"
+      instagram: "https://www.instagram.com/ziapizzaexpress_westbury?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
     },
     coordinates: {
       lat: 51.2604,
@@ -137,7 +137,7 @@ export const locations: Location[] = [
     },
     socialMedia: {
       facebook: "https://www.facebook.com/share/1CkvTGuMtM/?mibextid=wwXIfr",
-      instagram: "https://www.instagram.com/ziapizza_lambonthestrand?igsh=azY5d3NhMG5ma2pq"
+      instagram: "https://www.instagram.com/thelambonthestrand.trowbridge?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
     },
     coordinates: {
       lat: 51.3188,
