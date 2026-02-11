@@ -10,16 +10,44 @@ const LocationsPage = () => {
 
   const isCurrentlyOpen = (location: any) => {
     const now = new Date();
-    const day = now.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
-    const currentTime = now.getHours() * 100 + now.getMinutes();
-    
+    const day = now.toLocaleDateString("en-US", {
+      weekday: "long",
+    }).toLowerCase();
+
     const todayHours = location.openingHours[day];
     if (!todayHours || todayHours === "Closed") return false;
-    
-    if (todayHours.includes("11:30 AM – 11:00 PM")) {
-      return currentTime >= 1130 && currentTime <= 2300;
-    }
-    return false;
+
+    // Expected format e.g. "12:30 PM – 10:30 PM"
+    const parts = todayHours.split("–");
+    if (parts.length !== 2) return false;
+
+    const parseTimeToMinutes = (timeStr: string) => {
+      const [time, meridiem] = timeStr.trim().split(" ");
+      if (!time || !meridiem) return null;
+      const [rawHours, rawMinutes] = time.split(":");
+      let hours = Number(rawHours);
+      const minutes = Number(rawMinutes ?? 0);
+
+      if (Number.isNaN(hours) || Number.isNaN(minutes)) return null;
+
+      const upperMeridiem = meridiem.toUpperCase();
+      if (upperMeridiem === "PM" && hours !== 12) {
+        hours += 12;
+      } else if (upperMeridiem === "AM" && hours === 12) {
+        hours = 0;
+      }
+
+      return hours * 60 + minutes;
+    };
+
+    const startMinutes = parseTimeToMinutes(parts[0]);
+    const endMinutes = parseTimeToMinutes(parts[1]);
+    if (startMinutes == null || endMinutes == null) return false;
+
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+    // Handle ranges that don't cross midnight (all current data)
+    return currentMinutes >= startMinutes && currentMinutes <= endMinutes;
   };
 
   const getDirectionsUrl = (location: any) => {
