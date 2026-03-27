@@ -34,13 +34,20 @@ const MenuPage = () => {
   const locationMenuCovers = useMemo(() => {
     const covers: Record<string, string> = {};
     
-    // Load default menu cover (first page) - for The Lamb and Salisbury
+    // Load default menu cover (first page) - for Salisbury
     const defaultImages = import.meta.glob("@/assets/menu/*.{png,jpg,jpeg,webp}", {
       eager: true,
       as: "url",
     }) as Record<string, string>;
     const defaultCover = Object.values(defaultImages).sort()[0];
     
+    // Load The Lamb menu cover (first page)
+    const lambImages = import.meta.glob("@/assets/menu-lamb/*.{png,jpg,jpeg,webp}", {
+      eager: true,
+      as: "url",
+    }) as Record<string, string>;
+    const lambCover = Object.values(lambImages).sort()[0];
+
     // Load Westbury menu cover (first page)
     const westburyImages = import.meta.glob("@/assets/menu-westbury/*.{png,jpg,jpeg,webp}", {
       eager: true,
@@ -52,8 +59,12 @@ const MenuPage = () => {
     locations.forEach(location => {
       if (location.id === "westbury") {
         covers[location.id] = westburyCover || "";
+      } else if (location.id === "trowbridge") {
+        // The Lamb on the Strand
+        covers[location.id] = lambCover || defaultCover || "";
       } else {
-        covers[location.id] = defaultCover || "";
+        // Salisbury and any others use default menu
+        covers[location.id] = defaultCover || lambCover || "";
       }
     });
     
@@ -71,12 +82,19 @@ const MenuPage = () => {
         as: "url",
       }) as Record<string, string>;
       return Object.values(westburyImages).sort();
+    } else if (selectedLocation === "trowbridge") {
+      // Load The Lamb on the Strand menu images
+      const lambImages = import.meta.glob("@/assets/menu-lamb/*.{png,jpg,jpeg,webp}", {
+        eager: true,
+        as: "url",
+      }) as Record<string, string>;
+      return Object.values(lambImages).sort();
     } else {
-      // Load default menu images for The Lamb and Salisbury
+      // Load default menu images for Salisbury (and any others)
       const defaultImages = import.meta.glob("@/assets/menu/*.{png,jpg,jpeg,webp}", {
-    eager: true,
-    as: "url",
-  }) as Record<string, string>;
+        eager: true,
+        as: "url",
+      }) as Record<string, string>;
       return Object.values(defaultImages).sort();
     }
   }, [selectedLocation]);

@@ -11,16 +11,17 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { locations, offers } from "@/data/locations";
 import Footer from "@/components/Footer";
-import WestburyPopupImage from "@/assets/Westbury_pop.jpeg";
+// import WestburyPopupImage from "@/assets/Westbury_pop.jpeg";
 
 const LocationDetailPage = () => {
   const { locationId } = useParams();
   const location = locations.find(loc => loc.id === locationId);
   const [activeTab, setActiveTab] = useState("feedback");
   const [timeUntil, setTimeUntil] = useState<{type: 'opening' | 'closing' | null, hours: number, minutes: number, seconds: number}>({type: null, hours: 0, minutes: 0, seconds: 0});
-  const [showWestburyPopup, setShowWestburyPopup] = useState(false);
+  // const [showWestburyPopup, setShowWestburyPopup] = useState(false);
 
   // Show popup for Westbury location on page load
+  /*
   useEffect(() => {
     if (locationId === "westbury") {
       // Show popup after a short delay on every page visit
@@ -30,6 +31,7 @@ const LocationDetailPage = () => {
       return () => clearTimeout(timer);
     }
   }, [locationId]);
+  */
 
   if (!location) {
     return (
@@ -169,7 +171,7 @@ const LocationDetailPage = () => {
   return (
     <div className="pt-16">
       {/* Westbury Popup */}
-      {locationId === "westbury" && (
+      {/* locationId === "westbury" && (
         <Dialog open={showWestburyPopup} onOpenChange={setShowWestburyPopup}>
           <DialogContent className="max-w-[600px] max-h-[90vh] p-0 w-[90vw] sm:w-[500px] overflow-hidden">
             <div className="relative">
@@ -188,7 +190,7 @@ const LocationDetailPage = () => {
             </div>
           </DialogContent>
         </Dialog>
-      )}
+      ) */}
       
       {/* Hero Section */}
       <section className="py-16 bg-gradient-to-br from-muted/20 to-muted/10">

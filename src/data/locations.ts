@@ -83,7 +83,7 @@ export const locations: Location[] = [
     phone: "+44 1373 865271",
     email: "westbury@ziapizza.com",
     openingHours: {
-      monday: "11:30 AM – 11:00 PM",
+      monday: "Closed",
       tuesday: "11:30 AM – 11:00 PM",
       wednesday: "11:30 AM – 11:00 PM",
       thursday: "11:30 AM – 11:00 PM",

@@ -17,23 +17,25 @@ const LocationsPage = () => {
     const todayHours = location.openingHours[day];
     if (!todayHours || todayHours === "Closed") return false;
 
-    // Expected format e.g. "12:30 PM – 10:30 PM"
-    const parts = todayHours.split("–");
+    // Expected format e.g. "12:30 PM – 10:30 PM" (en-dash or hyphen)
+    const parts = todayHours.split(/\s*[–-]\s*/);
     if (parts.length !== 2) return false;
 
     const parseTimeToMinutes = (timeStr: string) => {
-      const [time, meridiem] = timeStr.trim().split(" ");
-      if (!time || !meridiem) return null;
+      const tokens = timeStr.trim().split(/\s+/).filter(Boolean);
+      if (tokens.length < 2) return null;
+      const time = tokens[0];
+      const meridiem = tokens[tokens.length - 1].toUpperCase();
+      if (!time || (meridiem !== "AM" && meridiem !== "PM")) return null;
       const [rawHours, rawMinutes] = time.split(":");
       let hours = Number(rawHours);
       const minutes = Number(rawMinutes ?? 0);
 
       if (Number.isNaN(hours) || Number.isNaN(minutes)) return null;
 
-      const upperMeridiem = meridiem.toUpperCase();
-      if (upperMeridiem === "PM" && hours !== 12) {
+      if (meridiem === "PM" && hours !== 12) {
         hours += 12;
-      } else if (upperMeridiem === "AM" && hours === 12) {
+      } else if (meridiem === "AM" && hours === 12) {
         hours = 0;
       }
 
